@@ -1,10 +1,16 @@
 import { Component } from '@angular/core';
+import * as services from "../assets/services.json";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'the-astro-project';
+
+    appServices = [];
+
+    constructor() {
+        this.appServices = services["default"];
+    }
 }
