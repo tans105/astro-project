@@ -1,9 +1,18 @@
+@import "src/utilities/colorpalette";
+
 .card-container {
   height: 300px;
-}
 
-.card-button {
-  position: absolute;
-  bottom: 0;
-  width: 100%
+  &:hover {
+    box-shadow: 5px 10px $gray-600;
+    -webkit-transition: all .2s linear;
+    -o-transition: all .2s linear;
+    transition: all .2s linear
+  }
+
+  .card-button {
+    position: absolute;
+    bottom: 0;
+    width: 100%
+  }
 }

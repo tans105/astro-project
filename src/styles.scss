@@ -1,11 +1,4 @@
-$gray-100: #f8f9fa;
-$gray-600: #868e96;
-$gray-800: #343a40;
-
-$red: #dc3545;
-$yellow: #ffc107;
-$green: #006600;
-$cyan: #17a2b8;
+@import "src/utilities/colorpalette";
 
 $theme-colors: (
         primary: $green,
@@ -18,5 +11,7 @@ $theme-colors: (
         dark: $gray-800
 );
 
-
 @import '../node_modules/bootstrap/scss/bootstrap.scss';
+$fa-font-path: "../node_modules/font-awesome/fonts";
+@import "../node_modules/font-awesome/scss/font-awesome.scss";
+
