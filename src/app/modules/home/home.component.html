@@ -1,0 +1,15 @@
+<div>
+    <div class="jumbotron">
+        <h1 class="display-4">Simple. Elegant. Awesome.</h1>
+        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. </p>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12 col-md-4 mb-4" *ngFor="let service of appServices">
+            <app-card class="app-card" title="{{service.title.en}}" content="{{service.content.en}}"
+                      (click)="loadService(service)"></app-card>
+        </div>
+    </div>
+</div>
