@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from "../../app.service";
+import { Router } from "@angular/router";
 
 @Component({
     selector: 'app-home',
@@ -9,7 +10,7 @@ import { AppService } from "../../app.service";
 export class HomeComponent implements OnInit {
     appServices = [];
 
-    constructor(private appService: AppService) {
+    constructor(private appService: AppService, private router: Router) {
         this.appServices = appService.getModuleList();
     }
 
@@ -17,7 +18,9 @@ export class HomeComponent implements OnInit {
     }
 
     loadService(selectedService) {
-        console.log(selectedService);
+        this.router.navigateByUrl(selectedService.name).then(function(){
+            //
+        });
     }
 
 }

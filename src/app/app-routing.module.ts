@@ -9,6 +9,7 @@ import { HoroscopeComponent } from "./modules/horoscope/horoscope.component";
 import { HealthComponent } from "./modules/health/health.component";
 import { EducationComponent } from "./modules/education/education.component";
 import { CareerComponent } from "./modules/career/career.component";
+import { LoveComponent } from "./modules/love/love.component";
 
 
 const routes: Routes = [
@@ -21,6 +22,7 @@ const routes: Routes = [
     {path: 'knowyourself', component: KnowyourselfComponent},
     {path: 'marriage', component: MarriageComponent},
     {path: 'remedies', component: RemediesComponent},
+    {path: 'love', component: LoveComponent},
     {path: '**', component: HomeComponent}
 ];
 
