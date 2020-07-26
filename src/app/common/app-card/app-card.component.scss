@@ -16,4 +16,14 @@
     bottom: 0;
     width: 100%
   }
+
+  .card-image {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .card-title {
+    text-align: center;
+  }
 }

@@ -8,6 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class AppCardComponent implements OnInit {
     @Input('title') title;
     @Input('content') content;
+    @Input('cardImage') cardImage;
 
     constructor() {
     }

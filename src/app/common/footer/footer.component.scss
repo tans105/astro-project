@@ -1,7 +1,6 @@
 @import "src/utilities/colorpalette";
 
 .site-footer {
-  background-color: $gray-200;
   padding: 45px 0 20px;
   font-size: 15px;
   line-height: 24px;
@@ -38,7 +37,7 @@
   }
 
   .site-footer-header {
-    color: $dark;
+    color: $primary;
   }
 
   .footer-links li {

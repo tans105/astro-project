@@ -1,14 +1,45 @@
 <div>
-    <div class="jumbotron">
-        <h1 class="display-4">Simple. Elegant. Awesome.</h1>
-        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. </p>
+    <h2 style="text-align: center; margin: 30px;">About Us</h2>
+    <hr>
+    <p class="lead">
+        <br>
+        A Good Astrologer helps to understand your past, accept your piles of karma and work on your future
+        by choosing the right actions and negating further negative karmas by remedies like Meditation, Ayurveda,
+        Gemstones, Mantra, Homa and Yoga (Bhakti, Karma, Gyan, Raj, Kundalini, Swar Yoga).
+
+        <br><br>
+        Our Astrologers are on Mission. They strongly believes that Rishis have envisioned Vedic
+        Sciences to bring light
+        in the life of human civilization by helping them to choose Right path. They are trained through Guru Sisya
+        Parampara
+        in Himalayas. They also has deep interest in Yoga, Meditation, Ayurveda, Pranayam, Yantra, Mantra and
+        homa..Their
+        Remedies are based upon all these tools and they tries to match the remedies according to the needs of
+        Jatak..
+    </p>
+
+
+
+    <h2 style="text-align: center; margin: 30px;">Why Choose Us ?</h2>
+    <hr>
+    <div style="display:flex; justify-content: space-evenly">
+        <app-tile icon="fa fa-lock" heading="Privacy Guarenteed"></app-tile>
+        <app-tile icon="fa fa-globe" heading="Instant Access Worldwide"></app-tile>
+        <app-tile icon="fa fa-handshake-o" heading="Privacy Guarenteed"></app-tile>
+
+    </div>
+    <div style="display:flex; justify-content: space-evenly">
+        <app-tile icon="fa fa-users" heading="Trusted by Many"></app-tile>
+        <app-tile icon="fa fa-id-card" heading="Personal Treatment"></app-tile>
+        <app-tile icon="fa fa-check" heading="Field Expertise"></app-tile>
     </div>
 
+    <h2 style="text-align: center; margin: 80px 0 30px 0;">Our Services</h2>
+    <hr>
     <div class="row">
         <div class="col-sm-12 col-md-4 mb-4" *ngFor="let service of appServices">
             <app-card class="app-card" title="{{service.title.en}}" content="{{service.content.en}}"
+                      cardImage="{{service.image}}"
                       (click)="loadService(service)"></app-card>
         </div>
     </div>

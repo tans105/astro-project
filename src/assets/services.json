@@ -2,6 +2,7 @@
   {
     "id": 1,
     "name": "business",
+    "image": "business.jpeg",
     "title": {
       "en": "Business",
       "hi": "व्यापार"
@@ -14,6 +15,7 @@
   {
     "id": 3,
     "name": "career",
+    "image": "career.jpeg",
     "title": {
       "en": "Career",
       "hi": ""
@@ -26,6 +28,7 @@
   {
     "id": 4,
     "name": "love",
+    "image": "love.jpg",
     "title": {
       "en": "Love",
       "hi": ""
@@ -38,6 +41,7 @@
   {
     "id": 5,
     "name": "health",
+    "image": "health.jpg",
     "title": {
       "en": "Health",
       "hi": ""
@@ -50,6 +54,7 @@
   {
     "id": 6,
     "name": "marriage",
+    "image": "marriage.jpg",
     "title": {
       "en": "Marriage",
       "hi": ""
@@ -62,6 +67,7 @@
   {
     "id": 7,
     "name": "education",
+    "image": "education.jpeg",
     "title": {
       "en": "Education",
       "hi": ""
@@ -74,6 +80,7 @@
   {
     "id": 8,
     "name": "knowyourself",
+    "image": "self.jpg",
     "title": {
       "en": "Know yourself",
       "hi": ""
@@ -86,6 +93,7 @@
   {
     "id": 9,
     "name": "horoscope",
+    "image": "kundli.jpg",
     "title": {
       "en": "Horoscope Matching",
       "hi": ""
@@ -98,6 +106,7 @@
   {
     "id": 10,
     "name": "remedies",
+    "image": "remedies.jpg",
     "title": {
       "en": "Remedies",
       "hi": ""
