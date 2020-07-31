@@ -1,13 +1,28 @@
 <div id="demo" class="carousel slide" data-ride="carousel">
 
     <ul class="carousel-indicators">
-        <li data-target="#demo" *ngFor="let model of models; let i = index" [attr.data-slide-to]="i" ngClass="i == 0 ? 'active' : ''"></li>
+        <li data-target="#demo" *ngFor="let model of models; let i = index" [attr.data-slide-to]="i"
+            ngClass="i == 0 ? 'active' : ''"></li>
     </ul>
 
     <div class="carousel-inner">
+        <div *ngFor="let model of models" class="carousel-item carousel-size-lg"
+             [ngStyle]="getImageUrl(model)" [ngClass]="{'active': model.id === 0}">
+            <div class="carousel-content-container">
+                <div class="carousel-content-heading">
+                    <h1 class="carousel-content-text" [ngStyle]="getTextScheme(model)">{{model.title.en}}</h1>
+                </div>
 
-        <div *ngFor="let model of models" style="height: 500px;" class="carousel-item" [ngClass]="{'active': model.id === 0}">
-            <img src="assets/images/modules/{{model.image}}" alt=""/>
+                <hr [ngStyle]="getBackgroundScheme(model)">
+
+                <div class="carousel-content-sub">
+                    <p class="carousel-subcontent-text" [ngStyle]="getTextScheme(model)">{{model.content.en}}</p>
+                </div>
+            </div>
+            <div class="know-link">
+                <a class="btn btn-light btn-lg" href="#" role="button">Know more</a>
+            </div>
+
         </div>
 
 

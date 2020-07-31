@@ -2,7 +2,8 @@
   {
     "id": 0,
     "name": "business",
-    "image": "money.jpg",
+    "image": "business.jpg",
+    "scheme": "light",
     "title": {
       "en": "Business",
       "hi": "व्यापार"
@@ -15,7 +16,8 @@
   {
     "id": 1,
     "name": "career",
-    "image": "career.jpeg",
+    "image": "money.jpg",
+    "scheme": "dark",
     "title": {
       "en": "Career",
       "hi": ""
@@ -29,6 +31,7 @@
     "id": 2,
     "name": "health",
     "image": "covid.png",
+    "scheme": "light",
     "title": {
       "en": "Health",
       "hi": ""
@@ -42,6 +45,7 @@
     "id": 3,
     "name": "knowyourself",
     "image": "self.jpg",
+    "scheme": "dark",
     "title": {
       "en": "Know yourself",
       "hi": ""
@@ -55,6 +59,7 @@
     "id": 4,
     "name": "horoscope",
     "image": "indian-wedding.jpg",
+    "scheme": "dark",
     "title": {
       "en": "Horoscope Matching",
       "hi": ""
