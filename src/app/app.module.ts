@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ServicesModule } from "./modules/services.module";
 import { SharedModule } from "./common/shared.module";
+import {CookieService} from "ngx-cookie-service";
 
 @NgModule({
     declarations: [
@@ -16,7 +17,7 @@ import { SharedModule } from "./common/shared.module";
         SharedModule,
         AppRoutingModule
     ],
-    providers: [],
+    providers: [CookieService],
     bootstrap: [AppComponent]
 })
 export class AppModule {

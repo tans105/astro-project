@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { AppService } from "../../app.service";
 
 @Component({
     selector: 'app-carousel',
@@ -8,11 +9,14 @@ import { Component, Input, OnInit } from '@angular/core';
 export class CarouselComponent implements OnInit {
     @Input("models") models: [];
     @Input("size") size;
+    language: string;
 
-    constructor() {
+    constructor(private appService: AppService) {
+
     }
 
     ngOnInit(): void {
+        this.language = this.appService.getLanguage();
     }
 
     getImageUrl(model) {

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CookieService } from "ngx-cookie-service";
+import { AppService } from "../../app.service";
 
 @Component({
     selector: 'app-header',
@@ -7,10 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-    constructor() {
+    constructor(private appService: AppService) {
     }
 
     ngOnInit(): void {
     }
 
+    chooseLanguage(lang) {
+        this.appService.setLanguage(lang);
+        location.reload();
+    }
 }

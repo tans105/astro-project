@@ -1,39 +1,23 @@
 <div>
-    <!-- The slideshow -->
     <app-carousel [models]="appServices" size="lg"></app-carousel>
 
-    <h2 style="text-align: center; margin: 30px;">About Us</h2>
+    <h2 class="title">{{aboutUsTitle}}</h2>
+
     <hr>
-    <p class="lead">
-        <br>
-        A Good Astrologer helps to understand your past, accept your piles of karma and work on your future
-        by choosing the right actions and negating further negative karmas by remedies like Meditation, Ayurveda,
-        Gemstones, Mantra, Homa and Yoga (Bhakti, Karma, Gyan, Raj, Kundalini, Swar Yoga).
 
-        <br><br>
-        Our Astrologers are on Mission. They strongly believes that Rishis have envisioned Vedic
-        Sciences to bring light
-        in the life of human civilization by helping them to choose Right path. They are trained through Guru Sisya
-        Parampara
-        in Himalayas. They also has deep interest in Yoga, Meditation, Ayurveda, Pranayam, Yantra, Mantra and
-        homa..Their
-        Remedies are based upon all these tools and they tries to match the remedies according to the needs of
-        Jatak..
-    </p>
+    <p *ngFor="let para of aboutUsContent" class="lead">{{para}}</p>
+
+    <h2 *ngIf="lang === 'en'" class="title">Why Choose Us ?</h2>
+    <h2 *ngIf="lang === 'hi'" class="title">हमारा चयन क्यों ?</h2>
 
 
-    <h2 style="text-align: center; margin: 30px;">Why Choose Us ?</h2>
     <hr>
-    <div style="display:flex; justify-content: space-evenly">
-        <app-tile icon="fa fa-lock" heading="Privacy Guarenteed"></app-tile>
-        <app-tile icon="fa fa-globe" heading="Instant Access Worldwide"></app-tile>
-        <app-tile icon="fa fa-handshake-o" heading="Privacy Guarenteed"></app-tile>
-
+    <div class="tile-container">
+        <app-tile *ngFor="let tile of tileContent1" icon="{{tile.icon}}" heading="{{(lang == 'en') ? tile.title.en: tile.title.hi}}"></app-tile>
     </div>
-    <div style="display:flex; justify-content: space-evenly">
-        <app-tile icon="fa fa-users" heading="Trusted by Many"></app-tile>
-        <app-tile icon="fa fa-id-card" heading="Personal Treatment"></app-tile>
-        <app-tile icon="fa fa-check" heading="Field Expertise"></app-tile>
+
+    <div class="tile-container">
+        <app-tile *ngFor="let tile of tileContent2" icon="{{tile.icon}}" heading="{{(lang == 'en') ? tile.title.en: tile.title.hi}}"></app-tile>
     </div>
 
 </div>
