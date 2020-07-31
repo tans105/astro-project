@@ -1,12 +1,14 @@
 .carousel-inner {
   opacity: 0.7;
-  background-size: cover;
-  background-repeat: no-repeat;
+
+  .carousel-item {
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-position:center;
+  }
 
   .know-link {
-    position: absolute;
-    top: 450px;
-    float: left
+    text-align: center;
   }
 
   .carousel-content-container {
