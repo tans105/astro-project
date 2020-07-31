@@ -1,23 +1,20 @@
 <div>
-    <app-carousel [models]="appServices" size="lg"></app-carousel>
-
+    <app-carousel [button]="knowMore" [models]="appServices" size="lg"></app-carousel>
     <h2 class="title">{{aboutUsTitle}}</h2>
 
     <hr>
 
     <p *ngFor="let para of aboutUsContent" class="lead">{{para}}</p>
-
-    <h2 *ngIf="lang === 'en'" class="title">Why Choose Us ?</h2>
-    <h2 *ngIf="lang === 'hi'" class="title">हमारा चयन क्यों ?</h2>
-
+    <h2 *ngIf="lang === 'en'" class="title">{{whyChooseUs}}</h2>
 
     <hr>
+
     <div class="tile-container">
-        <app-tile *ngFor="let tile of tileContent1" icon="{{tile.icon}}" heading="{{(lang == 'en') ? tile.title.en: tile.title.hi}}"></app-tile>
+        <app-tile *ngFor="let tile of tileContent1" icon="{{tile.icon}}" heading="{{tile.title}}"></app-tile>
     </div>
 
     <div class="tile-container">
-        <app-tile *ngFor="let tile of tileContent2" icon="{{tile.icon}}" heading="{{(lang == 'en') ? tile.title.en: tile.title.hi}}"></app-tile>
+        <app-tile *ngFor="let tile of tileContent2" icon="{{tile.icon}}" heading="{{tile.title}}"></app-tile>
     </div>
 
 </div>

@@ -6,17 +6,13 @@ import { AppService } from "../../app.service";
     templateUrl: './carousel.component.html',
     styleUrls: ['./carousel.component.scss']
 })
-export class CarouselComponent implements OnInit {
+export class CarouselComponent {
     @Input("models") models: [];
     @Input("size") size;
-    language: string;
+    @Input("button") buttonText;
 
-    constructor(private appService: AppService) {
+    constructor() {
 
-    }
-
-    ngOnInit(): void {
-        this.language = this.appService.getLanguage();
     }
 
     getImageUrl(model) {

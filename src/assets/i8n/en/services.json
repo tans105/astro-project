@@ -1,0 +1,42 @@
+[
+  {
+    "id": 0,
+    "name": "business",
+    "image": "business.jpg",
+    "scheme": "light",
+    "title": "Business",
+    "content": "Nature of business. Partnership. Hourly schedule to undertake different business activities (planning, touring, meeting, money dealing etc)."
+  },
+  {
+    "id": 1,
+    "name": "career",
+    "image": "money.jpg",
+    "scheme": "dark",
+    "title": "Career",
+    "content": "Which kind of career will benefit you in terms of money?"
+  },
+  {
+    "id": 2,
+    "name": "health",
+    "image": "covid.png",
+    "scheme": "light",
+    "title": "Health",
+    "content": "General nature & condition of health. Body Resistance. Color. What to Avoid. Routine. Discipline"
+  },
+  {
+    "id": 3,
+    "name": "knowyourself",
+    "image": "self.jpg",
+    "scheme": "dark",
+    "title": "Know yourself",
+    "content": "This is a condensed summary of all the different aspects in anyone’s life."
+  },
+  {
+    "id": 4,
+    "name": "horoscope",
+    "image": "indian-wedding.jpg",
+    "scheme": "dark",
+    "title": "Kundli",
+    "content": "The generalized tendency adopted these days is to compare the two horoscopes only on the merit of Nakshatra or Constellation matching"
+  }
+]

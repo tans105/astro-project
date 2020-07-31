@@ -8,8 +8,12 @@ import { AppService } from "../../app.service";
     styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+    brand: string;
 
     constructor(private appService: AppService) {
+        this.appService.readAssets("common").subscribe(data => {
+            this.brand = data.brand;
+        });
     }
 
     ngOnInit(): void {

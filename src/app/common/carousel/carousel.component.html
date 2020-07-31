@@ -10,20 +10,17 @@
              [ngStyle]="getImageUrl(model)" [ngClass]="{'active': model.id === 0}">
             <div class="carousel-content-container">
                 <div class="carousel-content-heading">
-                    <h1 *ngIf="language === 'en'" class="carousel-content-text" [ngStyle]="getTextScheme(model)">{{model.title.en}}</h1>
-                    <h1 *ngIf="language === 'hi'" class="carousel-content-text" [ngStyle]="getTextScheme(model)">{{model.title.hi}}</h1>
+                    <h1 class="carousel-content-text" [ngStyle]="getTextScheme(model)">{{model.title}}</h1>
                 </div>
 
                 <hr [ngStyle]="getBackgroundScheme(model)">
 
                 <div class="carousel-content-sub">
-                    <h5 style="word-spacing: 10px;" *ngIf="language === 'en'" class="carousel-subcontent-text" [ngStyle]="getTextScheme(model)">{{model.content.en}}</h5>
-                    <h5 style="word-spacing: 10px;" *ngIf="language === 'hi'" class="carousel-subcontent-text" [ngStyle]="getTextScheme(model)">{{model.content.hi}}</h5>
+                    <h5 style="word-spacing: 10px;" class="carousel-subcontent-text" [ngStyle]="getTextScheme(model)">{{model.content}}</h5>
                 </div>
             </div>
             <div class="know-link">
-                <a *ngIf="language === 'en'" class="btn btn-light btn-lg" href="#" role="button">Know more</a>
-                <a *ngIf="language === 'hi'" class="btn btn-light btn-lg" href="#" role="button">अधिक जानिए</a>
+                <a class="btn btn-light btn-lg" href="#" role="button">{{buttonText}}</a>
             </div>
 
         </div>
