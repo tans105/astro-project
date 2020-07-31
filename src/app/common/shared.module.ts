@@ -4,13 +4,15 @@ import { FooterComponent } from "./footer/footer.component";
 import { AppCardComponent } from "./app-card/app-card.component";
 import { AppTileComponent } from "./app-tile/app-tile.component";
 import { CommonModule } from "@angular/common";
+import { CarouselComponent } from './carousel/carousel.component';
 
 @NgModule({
     declarations: [
         HeaderComponent,
         FooterComponent,
         AppCardComponent,
-        AppTileComponent
+        AppTileComponent,
+        CarouselComponent
     ],
     imports: [
         CommonModule
@@ -19,7 +21,8 @@ import { CommonModule } from "@angular/common";
         HeaderComponent,
         FooterComponent,
         AppCardComponent,
-        AppTileComponent
+        AppTileComponent,
+        CarouselComponent
     ]
 })
 export class SharedModule {

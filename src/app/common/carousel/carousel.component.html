@@ -1,0 +1,23 @@
+<div id="demo" class="carousel slide" data-ride="carousel">
+
+    <ul class="carousel-indicators">
+        <li data-target="#demo" *ngFor="let model of models; let i = index" [attr.data-slide-to]="i" ngClass="i == 0 ? 'active' : ''"></li>
+    </ul>
+
+    <div class="carousel-inner">
+
+        <div *ngFor="let model of models" style="height: 500px;" class="carousel-item" [ngClass]="{'active': model.id === 0}">
+            <img src="assets/images/modules/{{model.image}}" alt=""/>
+        </div>
+
+
+        <!-- Left and right controls -->
+        <a class="carousel-control-prev" href="#demo" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#demo" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </a>
+    </div>
+</div>
+

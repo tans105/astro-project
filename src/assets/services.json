@@ -1,8 +1,8 @@
 [
   {
-    "id": 1,
+    "id": 0,
     "name": "business",
-    "image": "business.jpeg",
+    "image": "money.jpg",
     "title": {
       "en": "Business",
       "hi": "व्यापार"
@@ -13,7 +13,7 @@
     }
   },
   {
-    "id": 3,
+    "id": 1,
     "name": "career",
     "image": "career.jpeg",
     "title": {
@@ -26,22 +26,9 @@
     }
   },
   {
-    "id": 4,
-    "name": "love",
-    "image": "love.jpg",
-    "title": {
-      "en": "Love",
-      "hi": ""
-    },
-    "content": {
-      "en": "What kind of person or the life partner you are likely to get married to?",
-      "hi": ""
-    }
-  },
-  {
-    "id": 5,
+    "id": 2,
     "name": "health",
-    "image": "health.jpg",
+    "image": "covid.png",
     "title": {
       "en": "Health",
       "hi": ""
@@ -52,33 +39,7 @@
     }
   },
   {
-    "id": 6,
-    "name": "marriage",
-    "image": "marriage.jpg",
-    "title": {
-      "en": "Marriage",
-      "hi": ""
-    },
-    "content": {
-      "en": "What kind of person or the life partner you are likely to get married to? His/her nature, personality, education, health etc.",
-      "hi": ""
-    }
-  },
-  {
-    "id": 7,
-    "name": "education",
-    "image": "education.jpeg",
-    "title": {
-      "en": "Education",
-      "hi": ""
-    },
-    "content": {
-      "en": "Science, commerce, arts, bio, math, medical, engineering, computer, administration, business etc, the choices are numerous",
-      "hi": ""
-    }
-  },
-  {
-    "id": 8,
+    "id": 3,
     "name": "knowyourself",
     "image": "self.jpg",
     "title": {
@@ -91,28 +52,15 @@
     }
   },
   {
-    "id": 9,
+    "id": 4,
     "name": "horoscope",
-    "image": "kundli.jpg",
+    "image": "indian-wedding.jpg",
     "title": {
       "en": "Horoscope Matching",
       "hi": ""
     },
     "content": {
       "en": " The generalized tendency adopted these days is to compare the two horoscopes only on the merit of Nakshatra or Constellation matching",
-      "hi": ""
-    }
-  },
-  {
-    "id": 10,
-    "name": "remedies",
-    "image": "remedies.jpg",
-    "title": {
-      "en": "Remedies",
-      "hi": ""
-    },
-    "content": {
-      "en": "Improve the planetary effects by fasting, donating, daan, pooja, wearing of supporting metal & gem etc.",
       "hi": ""
     }
   }

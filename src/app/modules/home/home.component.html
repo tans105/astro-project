@@ -1,4 +1,7 @@
 <div>
+    <!-- The slideshow -->
+    <app-carousel [models]="appServices"></app-carousel>
+
     <h2 style="text-align: center; margin: 30px;">About Us</h2>
     <hr>
     <p class="lead">
@@ -19,7 +22,6 @@
     </p>
 
 
-
     <h2 style="text-align: center; margin: 30px;">Why Choose Us ?</h2>
     <hr>
     <div style="display:flex; justify-content: space-evenly">
@@ -34,13 +36,4 @@
         <app-tile icon="fa fa-check" heading="Field Expertise"></app-tile>
     </div>
 
-    <h2 style="text-align: center; margin: 80px 0 30px 0;">Our Services</h2>
-    <hr>
-    <div class="row">
-        <div class="col-sm-12 col-md-4 mb-4" *ngFor="let service of appServices">
-            <app-card class="app-card" title="{{service.title.en}}" content="{{service.content.en}}"
-                      cardImage="{{service.image}}"
-                      (click)="loadService(service)"></app-card>
-        </div>
-    </div>
 </div>
