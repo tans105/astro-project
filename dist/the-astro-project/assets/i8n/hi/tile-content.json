@@ -1,0 +1,36 @@
+{
+  "set1": [
+    {
+      "title": "प्राइवेसी ग्वारेंटेड",
+      "icon": "fa fa-lock",
+      "set": "1"
+    },
+    {
+      "title": "त्वरित पहुँच दुनिया भर में",
+      "icon": "fa fa-globe",
+      "set": "1"
+    },
+    {
+      "title": "सटीक परिणाम",
+      "icon": "fa fa-handshake-o",
+      "set": "1"
+    }
+  ],
+  "set2": [
+    {
+      "title": "विश्वस्त",
+      "icon": "fa fa-users",
+      "set": "2"
+    },
+    {
+      "title": "व्यक्तिगत उपचार",
+      "icon": "fa fa-id-card",
+      "set": "2"
+    },
+    {
+      "title": "क्षेत्र विशेषज्ञ",
+      "icon": "fa fa-check",
+      "set": "2"
+    }
+  ]
+}
