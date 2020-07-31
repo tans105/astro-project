@@ -11,9 +11,6 @@ export class AppService {
     common: {};
 
     constructor(private cookieService: CookieService, private http: HttpClient) {
-        this.readAssets("common").subscribe(data => {
-            this.common = data;
-        });
     }
 
     getConfig() {

@@ -14,28 +14,38 @@ export class HomeComponent implements OnInit {
     tileContent1: {};
     tileContent2: {};
     lang: string;
-    knowMore: string;
-    whyChooseUs: string;
+    common: {
+        knowMore: "",
+        whyChooseUs: ""
+    };
+    contentLoaded: boolean;
 
 
     constructor(private appService: AppService, private router: Router) {
-        appService.readAssets("modules").subscribe(data => {
-            this.appServices = data;
-        });
         this.lang = this.appService.getLanguage();
-        this.getAboutContent();
-        this.getTileContent();
-        this.appService.readAssets("common").subscribe(data => {
-            this.knowMore = data.knowMore;
-            this.whyChooseUs =  data.whyChooseUs;
-        });
     }
 
     ngOnInit(): void {
+        this.populateContent();
     }
 
-    loadService(selectedService) {
-        this.router.navigateByUrl(selectedService.name).then(function () {
+    populateContent() {
+        this.getModules();
+        this.getAboutContent();
+        this.getTileContent();
+        this.getCommonContent();
+    }
+
+    getModules() {
+        this.appService.readAssets("modules").subscribe(data => {
+            this.appServices = data;
+        });
+    }
+
+    getCommonContent() {
+        this.appService.readAssets("common").subscribe(data => {
+            this.common = data;
+            this.contentLoaded = true;
         });
     }
 

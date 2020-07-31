@@ -1,7 +1,8 @@
-<nav class="navbar navbar-expand-lg">
-    <a class="navbar-brand" href="#"><h1>Astro Pundit</h1></a>
+<div *ngIf="contentLoaded">
+    <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand" href="#"><h1>{{common.brand}}</h1></a>
 
-    <!--    Uncomment the below snippet if navigation is needed -->
+        <!--    Uncomment the below snippet if navigation is needed -->
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
             <span class="navbar-toggler-icon"></span>
@@ -9,12 +10,12 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
-<!--                <li class="nav-item">-->
-<!--                    <a class="nav-link" href="#">Home</a>-->
-<!--                </li>-->
-<!--                <li class="nav-item">-->
-<!--                    <a class="nav-link" href="#">About</a>-->
-<!--                </li>-->
+                <!--                <li class="nav-item">-->
+                <!--                    <a class="nav-link" href="#">Home</a>-->
+                <!--                </li>-->
+                <!--                <li class="nav-item">-->
+                <!--                    <a class="nav-link" href="#">About</a>-->
+                <!--                </li>-->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown">
                         Language / भाषा
@@ -24,9 +25,10 @@
                         <a class="dropdown-item" (click)="chooseLanguage('hi')">हिन्दी</a>
                     </div>
                 </li>
-<!--                <li class="nav-item">-->
-<!--                    <a class="nav-link" href="#">Contact</a>-->
-<!--                </li>-->
+                <!--                <li class="nav-item">-->
+                <!--                    <a class="nav-link" href="#">Contact</a>-->
+                <!--                </li>-->
             </ul>
         </div>
-</nav>
+    </nav>
+</div>
