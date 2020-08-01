@@ -9,12 +9,16 @@
 
     <hr>
 
-    <div class="tile-container">
-        <app-tile *ngFor="let tile of tileContent1" icon="{{tile.icon}}" heading="{{tile.title}}"></app-tile>
+    <div class="row">
+        <div *ngFor="let tile of tileContent1" class="col-sm-4 col-xs-12 tile-container">
+            <app-tile icon="{{tile.icon}}" heading="{{tile.title}}"></app-tile>
+        </div>
     </div>
 
-    <div class="tile-container">
-        <app-tile *ngFor="let tile of tileContent2" icon="{{tile.icon}}" heading="{{tile.title}}"></app-tile>
+    <div class="row">
+        <div *ngFor="let tile of tileContent2" class="col-sm-4 col-xs-12 tile-container">
+            <app-tile icon="{{tile.icon}}" heading="{{tile.title}}"></app-tile>
+        </div>
     </div>
 
 </div>
