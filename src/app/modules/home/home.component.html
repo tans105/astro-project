@@ -1,22 +1,22 @@
 <div *ngIf="contentLoaded">
     <app-carousel [button]="common.knowMore" [models]="appServices" size="lg"></app-carousel>
-    <h2 class="title">{{aboutUsTitle}}</h2>
+    <h2 class="title">{{aboutUs.aboutUsTitle}}</h2>
 
     <hr>
 
-    <p *ngFor="let para of aboutUsContent" class="lead">{{para}}</p>
+    <p *ngFor="let para of aboutUs.aboutUsContent" class="lead">{{para}}</p>
     <h2 *ngIf="lang === 'en'" class="title">{{common.whyChooseUs}}</h2>
 
     <hr>
 
     <div class="row">
-        <div *ngFor="let tile of tileContent1" class="col-sm-4 col-xs-12 tile-container">
+        <div *ngFor="let tile of tileContent['set1']" class="col-sm-4 col-xs-12 tile-container">
             <app-tile icon="{{tile.icon}}" heading="{{tile.title}}"></app-tile>
         </div>
     </div>
 
     <div class="row">
-        <div *ngFor="let tile of tileContent2" class="col-sm-4 col-xs-12 tile-container">
+        <div *ngFor="let tile of tileContent['set2']" class="col-sm-4 col-xs-12 tile-container">
             <app-tile icon="{{tile.icon}}" heading="{{tile.title}}"></app-tile>
         </div>
     </div>

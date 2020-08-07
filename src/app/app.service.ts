@@ -17,27 +17,35 @@ export class AppService {
         return this.common;
     }
 
-    readAssets(content: string) {
+    readAssets(content: string, callback) {
         this.getLanguage();
-        let url;
+        let url, response;
         switch (content) {
             case "modules": {
                 url = (this.lang === 'en') ? "../assets/i8n/en/services.json" : "../assets/i8n/hi/services.json";
-                return this.getJSON(url);
+                response = this.getJSON(url);
+                break;
             }
             case "about": {
                 url = (this.lang === 'en') ? "../assets/i8n/en/about.json" : "../assets/i8n/hi/about.json";
-                return this.getJSON(url);
+                response = this.getJSON(url);
+                break;
             }
             case "tiles": {
                 url = (this.lang === 'en') ? "../assets/i8n/en/tile-content.json" : "../assets/i8n/hi/tile-content.json";
-                return this.getJSON(url);
+                response = this.getJSON(url);
+                break;
             }
             case "common": {
                 url = (this.lang === 'en') ? "../assets/i8n/en/common.json" : "../assets/i8n/hi/common.json";
-                return this.getJSON(url);
+                response = this.getJSON(url);
             }
         }
+
+        return response.then((data)=>{
+            callback(content, data);
+        });
+
     }
 
     setLanguage(lang) {
@@ -53,7 +61,7 @@ export class AppService {
         return this.lang;
     }
 
-    public getJSON(url): Observable<any> {
-        return this.http.get(url);
+    getJSON(url): Promise<any> {
+        return this.http.get(url).toPromise();
     }
 }

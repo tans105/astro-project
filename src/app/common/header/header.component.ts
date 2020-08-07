@@ -7,7 +7,7 @@ import { AppService } from "../../app.service";
     templateUrl: './header.component.html',
     styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
     common: {
         brand: ""
     };
@@ -18,21 +18,17 @@ export class HeaderComponent implements OnInit {
     }
 
     populateContent() {
-        this.getCommonContent();
-    }
-
-    getCommonContent() {
-        this.appService.readAssets("common").subscribe(data => {
-            this.common = data;
-            this.contentLoaded = true;
-        });
-    }
-
-    ngOnInit(): void {
+        this.appService.readAssets("common", this.assetCallback.bind(this));
     }
 
     chooseLanguage(lang) {
         this.appService.setLanguage(lang);
         location.reload();
+    }
+
+    assetCallback(type, data) {
+        var self = this;
+        self.common = data;
+        self.contentLoaded = true;
     }
 }

@@ -9,16 +9,18 @@ import { Router } from "@angular/router";
 })
 export class HomeComponent implements OnInit {
     appServices = [];
-    aboutUsTitle: {};
-    aboutUsContent: {};
-    tileContent1: {};
-    tileContent2: {};
+    aboutUs = {
+        aboutUsTitle: "",
+        aboutUsContent: ""
+    };
+    tileContent: any;
     lang: string;
     common: {
         knowMore: "",
         whyChooseUs: ""
     };
     contentLoaded: boolean;
+    moduleLoaded = 0;
 
 
     constructor(private appService: AppService, private router: Router) {
@@ -30,37 +32,33 @@ export class HomeComponent implements OnInit {
     }
 
     populateContent() {
-        this.getModules();
-        this.getAboutContent();
-        this.getTileContent();
-        this.getCommonContent();
+        this.appService.readAssets("modules", this.assetCallback.bind(this));
+        this.appService.readAssets("common", this.assetCallback.bind(this));
+        this.appService.readAssets("about", this.assetCallback.bind(this));
+        this.appService.readAssets("tiles", this.assetCallback.bind(this));
     }
 
-    getModules() {
-        this.appService.readAssets("modules").subscribe(data => {
-            this.appServices = data;
-        });
-    }
+    assetCallback(type, data) {
+        switch (type) {
+            case "modules": {
+                this.appServices = data;
+                break;
+            }
+            case "common" : {
+                this.common = data;
+                break;
+            }
+            case "about": {
+                this.aboutUs = data;
+                break;
+            }
+            case "tiles" : {
+                this.tileContent = data;
+            }
+        }
 
-    getCommonContent() {
-        this.appService.readAssets("common").subscribe(data => {
-            this.common = data;
-            this.contentLoaded = true;
-        });
-    }
-
-    getAboutContent() {
-        this.appService.readAssets("about").subscribe(data => {
-            this.aboutUsTitle = data.title;
-            this.aboutUsContent =  data.para;
-        });
-    }
-
-    getTileContent() {
-        this.appService.readAssets("tiles").subscribe(data => {
-            this.tileContent1 = data['set1'];
-            this.tileContent2 = data['set2'];
-        });
+        this.moduleLoaded++;
+        if (this.moduleLoaded === 4) this.contentLoaded = true;
     }
 
 }

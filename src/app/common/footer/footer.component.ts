@@ -18,13 +18,11 @@ export class FooterComponent {
     }
 
     populateContent() {
-        this.getCommonContent();
+        this.appService.readAssets("common", this.assetCallback.bind(this));
     }
 
-    getCommonContent() {
-        this.appService.readAssets("common").subscribe(data => {
-            this.common = data;
-            this.contentLoaded = true;
-        });
+    assetCallback(type, data) {
+        this.common = data;
+        this.contentLoaded = true;
     }
 }
