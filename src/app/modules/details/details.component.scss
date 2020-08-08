@@ -1,0 +1,10 @@
+@import "src/utilities/colorpalette";
+
+.title {
+  text-align: center;
+  margin: 30px;
+}
+
+form label{
+  color: $primary;
+}

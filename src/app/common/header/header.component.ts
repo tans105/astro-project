@@ -27,8 +27,7 @@ export class HeaderComponent {
     }
 
     assetCallback(type, data) {
-        var self = this;
-        self.common = data;
-        self.contentLoaded = true;
+        this.common = data;
+        this.contentLoaded = true;
     }
 }

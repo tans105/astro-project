@@ -39,10 +39,15 @@ export class AppService {
             case "common": {
                 url = (this.lang === 'en') ? "../assets/i8n/en/common.json" : "../assets/i8n/hi/common.json";
                 response = this.getJSON(url);
+                break;
+            }
+            case "detail-cards": {
+                url = (this.lang === 'en') ? "../assets/i8n/en/detail-cards.json" : "../assets/i8n/hi/detail-cards.json";
+                response = this.getJSON(url);
             }
         }
 
-        return response.then((data)=>{
+        return response.then((data) => {
             callback(content, data);
         });
 

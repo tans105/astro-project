@@ -3,8 +3,9 @@ import { HeaderComponent } from "./header/header.component";
 import { FooterComponent } from "./footer/footer.component";
 import { AppCardComponent } from "./app-card/app-card.component";
 import { AppTileComponent } from "./app-tile/app-tile.component";
-import { CommonModule } from "@angular/common";
 import { CarouselComponent } from './carousel/carousel.component';
+import { CommonModule } from "@angular/common";
+import { RouterModule } from "@angular/router";
 
 @NgModule({
     declarations: [
@@ -15,7 +16,8 @@ import { CarouselComponent } from './carousel/carousel.component';
         CarouselComponent
     ],
     imports: [
-        CommonModule
+        CommonModule,
+        RouterModule
     ],
     exports: [
         HeaderComponent,

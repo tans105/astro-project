@@ -1,29 +1,32 @@
 @import "src/utilities/colorpalette";
 
 .card-container {
-  height: 300px;
-
-  &:hover {
-    box-shadow: 5px 10px $gray-600;
-    -webkit-transition: all .2s linear;
-    -o-transition: all .2s linear;
-    transition: all .2s linear;
-    cursor: pointer;
-  }
-
-  .card-button {
-    position: absolute;
-    bottom: 0;
-    width: 100%
-  }
-
-  .card-image {
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-  }
+  height: 200px;
+  margin: 5px 0;
 
   .card-title {
     text-align: center;
+    border-bottom: 2px solid $primary;
+    border-top: 2px solid $primary;
+
+    @media only screen and (min-width: 768px) and (max-width: 1024px) {
+      font-size: large;
+    }
+
+    @media only screen and (min-width: 1024px) and (max-width: 1200px) {
+      font-size: large;
+    }
+  }
+
+  .card-text {
+    text-align: center;
+
+    @media only screen and (min-width: 768px) and (max-width: 1024px) {
+      font-size: small;
+    }
+
+    @media only screen and (min-width: 1024px) and (max-width: 1200px) {
+      font-size: medium;
+    }
   }
 }

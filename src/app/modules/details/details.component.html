@@ -1,0 +1,58 @@
+<hr>
+<div class="title"><h2>How it works ? </h2></div>
+<div *ngIf="contentLoaded" class="row">
+    <div *ngFor="let card of detailsContent" class="col-md-4">
+        <app-card title="{{card.title}}" content="{{card.subtitle}}"></app-card>
+    </div>
+</div>
+<hr>
+<div class="container-fluid">
+    <div class="title"><h2>Lets get started </h2></div>
+    <form>
+        <div class="form-group row">
+            <label for="email" class="col-md-2 col-form-label">Email</label>
+            <div class="col-md-10">
+                <input type="email" class="form-control" id="email">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="pob" class="col-md-2 col-form-label">Place of Birth</label>
+            <div class="col-md-10">
+                <input type="number" class="form-control" id="pob">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="primary" class="col-md-2 col-form-label">Primary Contact</label>
+            <div class="col-md-4">
+                <input type="number" class="form-control" id="primary">
+            </div>
+            <label for="secondary" class="col-md-2 col-form-label">Secondary Contact</label>
+            <div class="col-md-4">
+                <input type="number" class="form-control" id="secondary">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <!--TODO: Implement datepicker, localization, Questionairre text area, dropdowns-->
+            <label for="dob" class="col-md-2 col-form-label">Date of Birth</label>
+            <div class="col-md-4">
+                <input type="number" class="form-control" id="dob">
+            </div>
+            <label for="tob" class="col-md-2 col-form-label">Time of Birth</label>
+            <div class="col-md-4">
+                <input type="number" class="form-control" id="tob">
+            </div>
+
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-12 text-center">
+                <button type="submit" class="btn btn-primary">Submit Query</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<hr>
