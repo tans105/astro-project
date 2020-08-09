@@ -1,10 +1,10 @@
 <div *ngIf="contentLoaded">
     <app-carousel [button]="common.knowMore" [models]="appServices" size="lg"></app-carousel>
-    <h2 class="title">{{aboutUs.aboutUsTitle}}</h2>
+    <h2 class="title">{{aboutUs.title}}</h2>
 
     <hr>
 
-    <p *ngFor="let para of aboutUs.aboutUsContent" class="lead">{{para}}</p>
+    <p *ngFor="let para of aboutUs.para" class="lead">{{para}}</p>
     <h2 *ngIf="lang === 'en'" class="title">{{common.whyChooseUs}}</h2>
 
     <hr>

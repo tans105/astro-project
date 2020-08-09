@@ -10,8 +10,8 @@ import { Router } from "@angular/router";
 export class HomeComponent implements OnInit {
     appServices = [];
     aboutUs = {
-        aboutUsTitle: "",
-        aboutUsContent: ""
+        title: "",
+        para: ""
     };
     tileContent: any;
     lang: string;
