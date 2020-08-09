@@ -21,11 +21,13 @@ export class QueryComponent implements OnInit {
 
     onSubmit(f: NgForm) {
         this.user = f.form.value as User;
-        //TODO: Payment service initiation post validation
+        // TODO: Payment service initiation post validation
+        // TODO: localization, Questionairre text area, dropdowns
         this.appService.loader(true);
         this.emailService.send(this.user).then((data) => {
             this.toastr.success('Query sent, we will get back to you', 'Success');
             this.appService.loader(false);
+            f.reset();
         }, (err) => {
             console.log("Email Failed, " + err);
             this.toastr.warning('Something went wrong. Please try again!', 'Warning');
