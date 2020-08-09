@@ -1,0 +1,23 @@
+@import "src/utilities/colorpalette";
+
+form label{
+  color: $primary;
+}
+
+.error {
+  color: red;
+}
+
+.required::after {
+  content: "*";
+  color: red;
+}
+
+.time-input {
+  line-height: 100px;
+}
+
+.title {
+  text-align: center;
+  margin: 30px;
+}

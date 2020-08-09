@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from "../../app.service";
+import { NgForm } from "@angular/forms";
+import { User } from "../../model/user.model";
 
 @Component({
     selector: 'app-details',
@@ -25,5 +27,6 @@ export class DetailsComponent implements OnInit {
 
     ngOnInit(): void {
     }
+
 
 }
