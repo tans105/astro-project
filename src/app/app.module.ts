@@ -7,6 +7,9 @@ import { ServicesModule } from "./modules/services.module";
 import { SharedModule } from "./common/shared.module";
 import {CookieService} from "ngx-cookie-service";
 import { HttpClientModule } from "@angular/common/http";
+import { ToastrModule } from "ngx-toastr";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+
 
 @NgModule({
     declarations: [
@@ -17,7 +20,9 @@ import { HttpClientModule } from "@angular/common/http";
         ServicesModule,
         SharedModule,
         AppRoutingModule,
-        HttpClientModule
+        HttpClientModule,
+        BrowserAnimationsModule,
+        ToastrModule.forRoot()
     ],
     providers: [CookieService],
     bootstrap: [AppComponent]

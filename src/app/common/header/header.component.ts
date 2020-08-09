@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CookieService } from "ngx-cookie-service";
-import { AppService } from "../../app.service";
+import { AppService } from "../../services/app.service";
 
 @Component({
     selector: 'app-header',

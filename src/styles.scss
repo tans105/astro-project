@@ -1,4 +1,5 @@
 @import "src/utilities/colorpalette";
+@import '~ngx-toastr/toastr';
 
 $theme-colors: (
         primary: $primary,
@@ -23,7 +24,6 @@ body {
 h1 {
   color: $primary;
 }
-
 
 
 h2 {
