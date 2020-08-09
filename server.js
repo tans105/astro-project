@@ -112,7 +112,7 @@ app.post('/api/sendEmail', function (req, res) {
 
     const mailOptions = {
         from: 'tanmayawasthi105@yahoo.com',
-        to: 'sandhya_awasthi2005@yahoo.com',
+        to: 'sandhya_awasthi2005@yahoo.co.in',
         cc: 'tanmayawasthi105@yahoo.com',
         subject: `AstroPundit - New Query - ${fname}`,
         html: template

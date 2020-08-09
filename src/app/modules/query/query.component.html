@@ -73,7 +73,7 @@
             <label for="dob" class="col-md-2 col-form-label required">Date of Birth</label>
             <div class="col-md-4">
                 <div class="input-group">
-                    <input class="form-control" required name="dob" id="dob" ngModel #dob="ngModel" ngbDatepicker
+                    <input class="form-control" required name="dob" id="dob" ngModel #dob="ngModel" ngbDatepicker [minDate]="{year: 1900, month: 1, day: 1}"
                            #d="ngbDatepicker">
                     <div class="input-group-append">
                         <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button">
