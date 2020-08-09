@@ -6,13 +6,13 @@ import { HttpClient } from "@angular/common/http";
     providedIn: 'root'
 })
 export class EmailService {
+    private baseUrl = '';
+    private emailAPI = '/api/sendEmail';
 
     constructor(private http: HttpClient) {
     }
 
-    send(user: User) {
-        return this.http.post('http://localhost:8080/sendEmail', user).subscribe((response: Response) => {
-            console.log(response);
-        })
+    send(user: User): Promise<any>{
+        return this.http.post(this.baseUrl + this.emailAPI, user).toPromise();
     }
 }

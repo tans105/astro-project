@@ -5,4 +5,7 @@ export interface User {
     secondary: string;
     primary: string;
     email: string;
+    latitude: string;
+    longitude: string;
+    fname: string;
 }

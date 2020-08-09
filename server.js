@@ -1,64 +1,130 @@
-const path = require('path');
 const express = require('express');
 const app = express();
 const nodemailer = require('nodemailer');
+const cors = require('cors');
+const bodyParser = require('body-parser');
 
-console.log("Staring server");
-// Run the app by serving the static files
-// in the dist directory
+console.log("<--------------Starting server---------------->");
+
 app.use(express.static(__dirname + '/dist'));
-
-// Add headers
-app.use(function (req, res, next) {
-    // Website you wish to allow to connect
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
-    // Request methods you wish to allow
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-    // Request headers you wish to allow
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-    // Set to true if you need the website to include cookies in the requests sent
-    // to the API (e.g. in case you use sessions)
-    res.setHeader('Access-Control-Allow-Credentials', true);
-    // Pass to next layer of middleware
-    next();
-});
+app.use(cors());
+app.options('*', cors());
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
+app.use(bodyParser.raw());
 
 // For all GET requests, send back index.html
-// so that PathLocationStrategy can be used
 app.get('/*', function (req, res) {
     res.sendFile('index.html', {root: 'dist/the-astro-project/'}
     );
 });
 
-app.post('/sendEmail', function (req, res) {
-    var transporter = nodemailer.createTransport({
-        service: 'yahoo',
-        auth: {
-            user: 'tanmayawasthi105@yahoo.com',
-            pass: 'kictppfrqtlrfjwi'
-        }
-    });
+//send email endpoint
+app.post('/api/sendEmail', function (req, res) {
+    const transporter = nodemailer.createTransport({
+            service: 'yahoo',
+            auth: {
+                user: 'tanmayawasthi105@yahoo.com',
+                pass: 'kictppfrqtlrfjwi'
+            }
+        }),
+        data = req.body,
+        email = data['email'],
+        primary = data['primary'],
+        secondary = data['secondary'],
+        latitude = data['latitude'],
+        longitude = data['longitude'],
+        dob = JSON.stringify(data['dob']),
+        pob = data['pob'],
+        tob = JSON.stringify(data['tob']),
+        fname = data['fname'],
+        template = `
+            <!DOCTYPE html>
+            <html>
+            <head>
+            <style>
+            table {
+              font-family: arial, sans-serif;
+              border-collapse: collapse;
+              width: 100%;
+            }
+            
+            td, th {
+              border: 1px solid #dddddd;
+              text-align: left;
+              padding: 8px;
+            }
+            
+            tr:nth-child(even) {
+              background-color: #dddddd;
+            }
+            </style>
+            </head>
+            <body>
+            
+            <h2>Query</h2>
+            <br>
+            
+            <table>
+              <tr>
+                <td>Full Name</td>
+                <td>${fname}</td>
+              </tr>
+              <tr>
+                <td>Email</td>
+                <td>${email}</td>
+              </tr>
+              <tr>
+                <td>Primary Contact</td>
+                <td>${primary}</td>
+              </tr>
+              <tr>
+                <td>Secondary Contact</td>
+                <td>${secondary}</td>
+              </tr>
+              <tr>
+                <td>Place of Birth</td>
+                <td>${pob}</td>
+              </tr>
+              <tr>
+                <td>Latitude</td>
+                <td>${latitude}</td>
+              </tr>
+              <tr>
+                <td>Longitude</td>
+                <td>${longitude}</td>
+              </tr>
+              <tr>
+                <td>Date of Birth</td>
+                <td>${dob}</td>
+              </tr>
+              <tr>
+                <td>Time of Birth</td>
+                <td>${tob}</td>
+              </tr>
+            </table>
+            
+            </body>
+            </html>
 
-    var mailOptions = {
+            `;
+
+
+    const mailOptions = {
         from: 'tanmayawasthi105@yahoo.com',
         to: 'tanmayawasthi105@yahoo.com',
-        subject: 'Sending Email using Node.js',
-        text: 'That was easy!'
+        subject: `AstroPundit - New Query - ${fname}`,
+        html: template
     };
 
-    transporter.sendMail(mailOptions, function(error, info){
+    transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
             console.log(error);
         } else {
-            console.log('Email sent: ' + info.response);
+            res.status(201).send({message: 'Updated successfully ' + info.message});
         }
     });
-
-
-
-    res.status(201).send({message: 'Updated successfully'});
 });
 
-// Start the app by listening on the default
-// Heroku port
+
 app.listen(process.env.PORT || 8080);
