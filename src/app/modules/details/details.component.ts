@@ -17,16 +17,12 @@ export class DetailsComponent implements OnInit {
     }
 
     populateContent() {
-        this.appService.readAssets("detail-cards", this.assetCallback.bind(this));
-    }
-
-    assetCallback(type, data) {
-        this.detailsContent = data;
-        this.contentLoaded = true;
+        this.appService.readAssets("detail-cards", false, (content, data) => {
+            this.detailsContent = data;
+            this.contentLoaded = true;
+        });
     }
 
     ngOnInit(): void {
     }
-
-
 }

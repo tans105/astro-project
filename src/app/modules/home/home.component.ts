@@ -32,10 +32,10 @@ export class HomeComponent implements OnInit {
     }
 
     populateContent() {
-        this.appService.readAssets("modules", this.assetCallback.bind(this));
-        this.appService.readAssets("common", this.assetCallback.bind(this));
-        this.appService.readAssets("about", this.assetCallback.bind(this));
-        this.appService.readAssets("tiles", this.assetCallback.bind(this));
+        this.appService.readAssets("modules", false, this.assetCallback.bind(this));
+        this.appService.readAssets("common", false, this.assetCallback.bind(this));
+        this.appService.readAssets("about", false, this.assetCallback.bind(this));
+        this.appService.readAssets("tiles", false, this.assetCallback.bind(this));
     }
 
     assetCallback(type, data) {

@@ -23,14 +23,15 @@ export class QueryComponent implements OnInit {
         this.user = f.form.value as User;
         // TODO: Payment service initiation post validation
         // TODO: localization, Questionairre text area, dropdowns
+        // TODO: DB connection and code cleanup on server ( migrate to JAVA ? )
         this.appService.loader(true);
         this.emailService.send(this.user).then((data) => {
-            this.toastr.success('Query sent, we will get back to you', 'Success');
+            this.toastr.success(this.appService.getMessage('emailSuccess'), 'Success');
             this.appService.loader(false);
             f.reset();
         }, (err) => {
             console.log("Email Failed, " + err);
-            this.toastr.warning('Something went wrong. Please try again!', 'Warning');
+            this.toastr.warning(this.appService.getMessage('emailFailed'), 'Warning');
             this.appService.loader(false);
         });
     }

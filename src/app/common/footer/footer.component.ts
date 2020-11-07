@@ -18,7 +18,7 @@ export class FooterComponent {
     }
 
     populateContent() {
-        this.appService.readAssets("common", this.assetCallback.bind(this));
+        this.appService.readAssets("common", false, this.assetCallback.bind(this));
     }
 
     assetCallback(type, data) {
