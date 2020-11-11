@@ -6,7 +6,8 @@ import { HttpClient } from "@angular/common/http";
     providedIn: 'root'
 })
 export class EmailService {
-    private baseUrl = '';
+    //TODO: Make this generic based on the environment
+    private baseUrl = 'http://localhost:8000';
     private emailAPI = '/api/sendEmail';
 
     constructor(private http: HttpClient) {
