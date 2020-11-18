@@ -8,4 +8,5 @@ export interface User {
     latitude: string;
     longitude: string;
     fname: string;
+    questions: [];
 }

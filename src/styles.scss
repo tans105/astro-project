@@ -37,3 +37,21 @@ p {
 hr {
   background-color: white;
 }
+
+
+//Other utlity classes
+.color-light {
+  color: $light;
+}
+
+.text-align-right {
+  text-align: right;
+}
+
+.text-align-center {
+  text-align: center;
+}
+
+.text-align-left {
+  text-align: left;
+}

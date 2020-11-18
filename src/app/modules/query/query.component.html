@@ -89,7 +89,7 @@
         </div>
 
         <div class="form-group row">
-            <label for="tob" class="col-md-2 col-form-label required time-input">Time of Birth</label>
+            <label class="col-md-2" for="tob" class="col-md-2 col-form-label required time-input">Time of Birth</label>
             <div class="col-md-10">
                 <ngb-timepicker required name="tob" id="tob" formControlName="tob"
                                 [meridian]="true"></ngb-timepicker>
@@ -99,6 +99,29 @@
             </div>
         </div>
 
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-11">
+                    <label class="required">Questions</label>
+                </div>
+                <div class="col-sm-1 text-align-right">
+                    <button type="button" class="btn btn-md btn-info" (click)="addQuestion()"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                </div>
+            </div>
+            <div formArrayName="questions">
+                <div class="row" *ngFor="let item of questions.controls; let pointIndex=index" [formGroupName]="pointIndex">
+                    <div class="col-sm-1 pt-2">
+                        <span class="color-light"><strong>{{pointIndex + 1}}</strong></span>
+                    </div>
+                    <div class="col-sm-10">
+                        <input type="text" formControlName="question" class="form-control">
+                    </div>
+                    <div class="col-sm-1 text-align-right mt-1">
+                        <button type="button" class="btn btn-md btn-danger" (click)="removeQuestion(pointIndex)"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="form-group row">
             <div class="col-sm-12 text-center">
