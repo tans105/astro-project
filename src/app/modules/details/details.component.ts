@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from "../../services/app.service";
-import { NgForm } from "@angular/forms";
-import { User } from "../../model/user.model";
 
 @Component({
     selector: 'app-details',
@@ -9,7 +7,11 @@ import { User } from "../../model/user.model";
     styleUrls: ['./details.component.scss']
 })
 export class DetailsComponent implements OnInit {
-    detailsContent = [];
+    detailsContent: {
+        getStarted: any;
+        title: any;
+        cards: any;
+    };
     contentLoaded = false;
 
     constructor(private appService: AppService) {

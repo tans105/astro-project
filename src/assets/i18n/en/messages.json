@@ -1,0 +1,12 @@
+{
+  "emailSuccess": "Query sent, we will get back to you",
+  "emailFailed": "Something went wrong. Please try again!",
+  "emailRequired": "Email is a required!",
+  "invalidEmail": "This is not a valid Email!!!",
+  "fnameRequired": "Full name is required!",
+  "pobRequired": "Place of birth is required!",
+  "primaryRequired": "Primary Contact is required!",
+  "invalidNumber": "This is not a valid Phone Number!!!",
+  "dobRequired": "Date of birth is required!",
+  "tobRequired": "Time of birth is required!"
+}

@@ -1,13 +1,13 @@
 <div *ngIf="contentLoaded">
-    <div class="title"><h2>How it works ? </h2></div>
+    <div class="title"><h2>{{detailsContent.title}} </h2></div>
     <div class="row">
-        <div *ngFor="let card of detailsContent" class="col-md-4">
+        <div *ngFor="let card of detailsContent.cards" class="col-md-4">
             <app-card title="{{card.title}}" content="{{card.subtitle}}"></app-card>
         </div>
     </div>
 
     <div class="text-center mt-5 mb-5">
-        <a class="btn btn-primary btn-lg" routerLink="/submit-query" role="button">Get Started</a>
+        <a class="btn btn-primary btn-lg" routerLink="/submit-query" role="button">{{detailsContent.getStarted}}</a>
     </div>
     <hr>
 </div>
