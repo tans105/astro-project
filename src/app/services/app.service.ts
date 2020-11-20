@@ -29,32 +29,37 @@ export class AppService {
 
         switch (content) {
             case "modules": {
-                url = (this.lang === 'en') ? "../assets/i8n/en/services.json" : "../assets/i8n/hi/services.json";
+                url = (this.lang === 'en') ? "../assets/i18n/en/services.json" : "../assets/i18n/hi/services.json";
                 response = this.getJSON(url, content, forced);
                 break;
             }
             case "about": {
-                url = (this.lang === 'en') ? "../assets/i8n/en/about.json" : "../assets/i8n/hi/about.json";
+                url = (this.lang === 'en') ? "../assets/i18n/en/about.json" : "../assets/i18n/hi/about.json";
                 response = this.getJSON(url, content, forced);
                 break;
             }
             case "tiles": {
-                url = (this.lang === 'en') ? "../assets/i8n/en/tile-content.json" : "../assets/i8n/hi/tile-content.json";
+                url = (this.lang === 'en') ? "../assets/i18n/en/tile-content.json" : "../assets/i18n/hi/tile-content.json";
                 response = this.getJSON(url, content, forced);
                 break;
             }
             case "common": {
-                url = (this.lang === 'en') ? "../assets/i8n/en/common.json" : "../assets/i8n/hi/common.json";
+                url = (this.lang === 'en') ? "../assets/i18n/en/common.json" : "../assets/i18n/hi/common.json";
                 response = this.getJSON(url, content, forced);
                 break;
             }
             case "detail-cards": {
-                url = (this.lang === 'en') ? "../assets/i8n/en/detail-cards.json" : "../assets/i8n/hi/detail-cards.json";
+                url = (this.lang === 'en') ? "../assets/i18n/en/detail-cards.json" : "../assets/i18n/hi/detail-cards.json";
                 response = this.getJSON(url, content, forced);
                 break;
             }
             case "messages": {
-                url = (this.lang === 'en') ? "../assets/i8n/en/messages.json" : "../assets/i8n/hi/messages.json";
+                url = (this.lang === 'en') ? "../assets/i18n/en/messages.json" : "../assets/i18n/hi/messages.json";
+                response = this.getJSON(url, content, forced);
+                break;
+            }
+            case "query-form": {
+                url = (this.lang === 'en') ? "../assets/i18n/en/query-form.json" : "../assets/i18n/hi/query-form.json";
                 response = this.getJSON(url, content, forced);
             }
         }
@@ -120,6 +125,10 @@ export class AppService {
             });
 
             this.readAssets("messages", true, (content, data) => {
+                this.assets[content] = data;
+            });
+
+            this.readAssets("query-form", true, (content, data) => {
                 this.assets[content] = data;
             });
             resolve(true);

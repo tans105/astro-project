@@ -1,0 +1,14 @@
+{
+  "title": "Lets get started",
+  "email": "Email",
+  "fname": "Full Name",
+  "pob": "Place of Birth",
+  "latitude": "Latitude",
+  "longitude": "Longitude",
+  "primary": "Primary",
+  "secondary": "Secondary",
+  "dob": "Date of Birth",
+  "tob": "Time of Birth",
+  "questions": "Questions",
+  "submitQuery": "Submit Query"
+}

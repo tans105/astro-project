@@ -1,46 +1,46 @@
-<div class="container-fluid">
-    <div class="title"><h2>Lets get started </h2></div>
+<div class="container-fluid" *ngIf="contentLoaded">
+    <div class="title"><h2>{{formContent.title}} </h2></div>
     <form [formGroup]="queryForm" (ngSubmit)="onSubmit()">
 
         <div class="form-group row">
-            <label for="email" class="col-md-2 col-form-label required">Email</label>
+            <label for="email" class="col-md-2 col-form-label required">{{formContent.email}}</label>
             <div class="col-md-10">
                 <input required type="text" formControlName="email" class="form-control" id="email" name="email">
                 <div *ngIf="formControls.email.touched">
-                    <p class="error" *ngIf="formControls.email.errors?.required">Email is a required!</p>
-                    <p class="error" *ngIf="formControls.email.errors?.pattern">This is not a valid Email!!!</p>
+                    <p class="error" *ngIf="formControls.email.errors?.required">{{appService.getMessage('emailRequired')}}</p>
+                    <p class="error" *ngIf="formControls.email.errors?.pattern">{{appService.getMessage('invalidEmail')}}</p>
                 </div>
             </div>
         </div>
 
         <div class="form-group row">
-            <label for="fname" class="col-md-2 col-form-label required">Full Name</label>
+            <label for="fname" class="col-md-2 col-form-label required">{{formContent.fname}}</label>
             <div class="col-md-10">
                 <input required formControlName="fname" type="text" class="form-control" id="fname" name="fname">
                 <div *ngIf="formControls.fname.touched">
-                    <p class="error" *ngIf="formControls.fname.errors?.required">Full name is required!</p>
+                    <p class="error" *ngIf="formControls.fname.errors?.required">{{appService.getMessage('fnameRequired')}}</p>
                 </div>
             </div>
         </div>
 
         <div class="form-group row">
-            <label for="pob" class="col-md-2 col-form-label required">Place of Birth</label>
+            <label for="pob" class="col-md-2 col-form-label required">{{formContent.pob}}</label>
             <div class="col-md-10">
                 <input required formControlName="pob" type="text" class="form-control" id="pob" name="pob">
                 <div *ngIf="formControls.pob.touched">
-                    <p class="error" *ngIf="formControls.pob.errors?.required">Place of birth is required!</p>
+                    <p class="error" *ngIf="formControls.pob.errors?.required">{{appService.getMessage('pobRequired')}}</p>
                 </div>
             </div>
         </div>
 
         <div class="form-group row">
-            <label for="latitude" class="col-md-2 col-form-label">Latitude</label>
+            <label for="latitude" class="col-md-2 col-form-label">{{formContent.latitude}}</label>
             <div class="col-md-4">
                 <input formControlName="latitude" type="text" class="form-control" name="latitude"
                        id="latitude">
             </div>
 
-            <label for="longitude" class="col-md-2 col-form-label">Longitude</label>
+            <label for="longitude" class="col-md-2 col-form-label">{{formContent.longitude}}</label>
             <div class="col-md-4">
                 <input formControlName="longitude" type="text" class="form-control" name="longitude" id="longitude">
             </div>
@@ -48,28 +48,26 @@
 
 
         <div class="form-group row">
-            <label for="primary" class="col-md-2 col-form-label required">Primary Contact</label>
+            <label for="primary" class="col-md-2 col-form-label required">{{formContent.primary}}</label>
             <div class="col-md-4">
                 <input formControlName="primary" type="text" class="form-control" name="primary" id="primary">
                 <div *ngIf="formControls.primary.touched">
-                    <p class="error" *ngIf="formControls.primary.errors?.required">Primary Contact is required!</p>
-                    <p class="error" *ngIf="formControls.primary.errors?.pattern">This is not a valid Phone
-                        Number!!!</p>
+                    <p class="error" *ngIf="formControls.primary.errors?.required">{{appService.getMessage('primaryRequired')}}</p>
+                    <p class="error" *ngIf="formControls.primary.errors?.pattern">{{appService.getMessage('invalidNumber')}}</p>
                 </div>
             </div>
 
-            <label for="secondary" class="col-md-2 col-form-label">Secondary Contact</label>
+            <label for="secondary" class="col-md-2 col-form-label">{{formContent.secondary}}</label>
             <div class="col-md-4">
                 <input formControlName="secondary" type="text" class="form-control" name="secondary" id="secondary">
                 <div *ngIf="formControls.secondary.touched">
-                    <p class="error" *ngIf="formControls.secondary.errors?.pattern">This is not a valid Phone
-                        Number!!!</p>
+                    <p class="error" *ngIf="formControls.secondary.errors?.pattern">{{appService.getMessage('invalidNumber')}}</p>
                 </div>
             </div>
         </div>
 
         <div class="form-group row">
-            <label for="dob" class="col-md-2 col-form-label required">Date of Birth</label>
+            <label for="dob" class="col-md-2 col-form-label required">{{formContent.dob}}</label>
             <div class="col-md-4">
                 <div class="input-group">
                     <input class="form-control" required name="dob" id="dob" formControlName="dob" ngbDatepicker
@@ -81,20 +79,18 @@
                         </button>
                     </div>
                 </div>
-                <div *ngIf="formControls.dob.touched"><p class="error" *ngIf="formControls.dob.errors?.required">Date of
-                    birth is
-                    required!</p>
+                <div *ngIf="formControls.dob.touched"><p class="error" *ngIf="formControls.dob.errors?.required">{{appService.getMessage('dobRequired')}}</p>
                 </div>
             </div>
         </div>
 
         <div class="form-group row">
-            <label class="col-md-2" for="tob" class="col-md-2 col-form-label required time-input">Time of Birth</label>
+            <label class="col-md-2" for="tob" class="col-md-2 col-form-label required time-input">{{formContent.tob}}</label>
             <div class="col-md-10">
                 <ngb-timepicker required name="tob" id="tob" formControlName="tob"
                                 [meridian]="true"></ngb-timepicker>
                 <div *ngIf="formControls.tob.touched">
-                    <p class="error" *ngIf="formControls.tob.errors?.required">Time of birth is required!</p>
+                    <p class="error" *ngIf="formControls.tob.errors?.required">{{appService.getMessage('tobRequired')}}</p>
                 </div>
             </div>
         </div>
@@ -102,7 +98,7 @@
         <div class="form-group">
             <div class="row">
                 <div class="col-sm-11">
-                    <label class="required">Questions</label>
+                    <label class="required">{{formContent.questions}}</label>
                 </div>
                 <div class="col-sm-1 text-align-right">
                     <button type="button" class="btn btn-md btn-info" (click)="addQuestion()"><i class="fa fa-plus" aria-hidden="true"></i></button>
@@ -125,7 +121,7 @@
 
         <div class="form-group row">
             <div class="col-sm-12 text-center">
-                <button type="submit" [disabled]="!queryForm.valid" class="btn btn-primary">Submit Query</button>
+                <button type="submit" [disabled]="!queryForm.valid" class="btn btn-primary">{{formContent.submitQuery}}</button>
             </div>
         </div>
     </form>
