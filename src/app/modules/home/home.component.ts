@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit {
     tileContent: any;
     lang: string;
     common: {
+        getStarted: any;
         knowMore: "",
         whyChooseUs: ""
     };
