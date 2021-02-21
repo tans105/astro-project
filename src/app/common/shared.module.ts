@@ -6,6 +6,7 @@ import { AppTileComponent } from "./app-tile/app-tile.component";
 import { CarouselComponent } from './carousel/carousel.component';
 import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
+import { LanguageWidgetComponent } from './language-widget/language-widget.component';
 
 @NgModule({
     declarations: [
@@ -13,7 +14,8 @@ import { RouterModule } from "@angular/router";
         FooterComponent,
         AppCardComponent,
         AppTileComponent,
-        CarouselComponent
+        CarouselComponent,
+        LanguageWidgetComponent
     ],
     imports: [
         CommonModule,

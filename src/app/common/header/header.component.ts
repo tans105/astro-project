@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CookieService } from "ngx-cookie-service";
 import { AppService } from "../../services/app.service";
 
 @Component({
@@ -19,11 +18,6 @@ export class HeaderComponent {
 
     populateContent() {
         this.appService.readAssets("common", false, this.assetCallback.bind(this));
-    }
-
-    chooseLanguage(lang) {
-        this.appService.setLanguage(lang);
-        location.reload();
     }
 
     assetCallback(type, data) {
