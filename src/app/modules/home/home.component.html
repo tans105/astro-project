@@ -1,14 +1,21 @@
 <div *ngIf="contentLoaded">
     <app-carousel [button]="common.knowMore" [models]="appServices" size="lg"></app-carousel>
+
+    <div class="text-center mt-5 mb-5">
+        <a class="btn btn-primary btn-lg" routerLink="/submit-query" role="button">{{common.getStarted}}</a>
+    </div>
+
+    <!--  About Us  -->
     <h2 class="title">{{aboutUs.title}}</h2>
-
     <hr>
-
     <p *ngFor="let para of aboutUs.para" class="lead">{{para}}</p>
+
+    <!--  How we work  -->
+    <app-details></app-details>
+
+    <!-- Why Choose Us   -->
     <h2 *ngIf="lang === 'en'" class="title">{{common.whyChooseUs}}</h2>
-
     <hr>
-
     <div class="row">
         <div *ngFor="let tile of tileContent['set1']" class="col-sm-4 col-xs-12 tile-container">
             <app-tile icon="{{tile.icon}}" heading="{{tile.title}}"></app-tile>
@@ -20,6 +27,5 @@
             <app-tile icon="{{tile.icon}}" heading="{{tile.title}}"></app-tile>
         </div>
     </div>
-
     <hr>
 </div>
