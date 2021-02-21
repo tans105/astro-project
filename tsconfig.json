@@ -23,6 +23,7 @@
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
     "strictInjectionParameters": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "enableIvy": false
   }
 }
