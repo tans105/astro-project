@@ -1,8 +1,10 @@
 <div *ngIf="contentLoaded">
-    <app-carousel [button]="common.knowMore" [models]="appServices" size="lg"></app-carousel>
+    <div class="home-carousal">
+        <app-carousel [button]="common.knowMore" [models]="appServices" size="lg"></app-carousel>
+    </div>
 
     <div class="text-center mt-5 mb-5">
-        <a class="btn btn-primary btn-lg" routerLink="/submit-query" role="button">{{common.getStarted}}</a>
+        <a class="btn btn-primary btn-lg my-btn" routerLink="/submit-query" role="button">{{common.getStarted}}</a>
     </div>
 
     <!--  About Us  -->
@@ -16,14 +18,14 @@
     <!-- Why Choose Us   -->
     <h2 *ngIf="lang === 'en'" class="title">{{common.whyChooseUs}}</h2>
     <hr>
-    <div class="row">
-        <div *ngFor="let tile of tileContent['set1']" class="col-sm-4 col-xs-12 tile-container">
+    <div class="row tile-container">
+        <div *ngFor="let tile of tileContent['set1']">
             <app-tile icon="{{tile.icon}}" heading="{{tile.title}}"></app-tile>
         </div>
     </div>
 
-    <div class="row">
-        <div *ngFor="let tile of tileContent['set2']" class="col-sm-4 col-xs-12 tile-container">
+    <div class="row tile-container">
+        <div *ngFor="let tile of tileContent['set2']">
             <app-tile icon="{{tile.icon}}" heading="{{tile.title}}"></app-tile>
         </div>
     </div>

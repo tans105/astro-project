@@ -2,4 +2,14 @@
   text-decoration: none;
   outline: none;
   font-family: lovely_font;
+
+  @media only screen and (max-device-width: 600px) {
+    font-size: smaller;
+  }
+}
+
+.lang-screen-size {
+  @media (max-width: 767px) {
+    display: none;
+  }
 }

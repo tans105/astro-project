@@ -1,11 +1,13 @@
 <div *ngIf="contentLoaded">
-    <div class="row" style="border-bottom: 2px solid white">
+    <div class="row">
         <div class="col-md-10 col-sm-10 col-xs-10">
             <h1><a href="#" class="brand"> {{common.brand}}</a></h1>
         </div>
 
         <div class="col-md-2 col-sm-2 col-xs-2">
-            <app-language-widget></app-language-widget>
+            <div class="lang-screen-size">
+                <app-language-widget></app-language-widget>
+            </div>
         </div>
     </div>
 </div>
