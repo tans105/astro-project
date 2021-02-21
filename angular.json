@@ -29,7 +29,8 @@
             ],
             "styles": [
               "src/styles.scss",
-              "node_modules/ngx-toastr/toastr.css"
+              "node_modules/ngx-toastr/toastr.css",
+              "src/assets/fonts/font-file.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
