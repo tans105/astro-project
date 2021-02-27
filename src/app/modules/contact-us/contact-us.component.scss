@@ -1,0 +1,15 @@
+@import "src/utilities/colorpalette";
+
+form label {
+  color: $primary;
+}
+
+.error {
+  color: red;
+}
+
+.required::after {
+  content: "*";
+  color: red;
+}
+

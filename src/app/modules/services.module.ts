@@ -7,12 +7,22 @@ import { QueryComponent } from './query/query.component';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { NgbDatepickerModule, NgbTimepickerModule } from "@ng-bootstrap/ng-bootstrap";
 import { RouterModule } from "@angular/router";
+import { ContactUsComponent } from './contact-us/contact-us.component';
+import { DisclaimerComponent } from './disclaimer/disclaimer.component';
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
+import { ContributeComponent } from './contribute/contribute.component';
+import { TermsAndConditionComponent } from './terms-and-condition/terms-and-condition.component';
 
 @NgModule({
     declarations: [
         HomeComponent,
         DetailsComponent,
-        QueryComponent
+        QueryComponent,
+        ContactUsComponent,
+        DisclaimerComponent,
+        PrivacyPolicyComponent,
+        ContributeComponent,
+        TermsAndConditionComponent
     ],
     imports: [
         CommonModule,

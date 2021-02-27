@@ -7,6 +7,8 @@ import { CarouselComponent } from './carousel/carousel.component';
 import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
 import { LanguageWidgetComponent } from './language-widget/language-widget.component';
+import { PageTitleComponent } from './page-title/page-title.component';
+import { MessageBoxComponent } from './message-box/message-box.component';
 
 @NgModule({
     declarations: [
@@ -15,7 +17,9 @@ import { LanguageWidgetComponent } from './language-widget/language-widget.compo
         AppCardComponent,
         AppTileComponent,
         CarouselComponent,
-        LanguageWidgetComponent
+        LanguageWidgetComponent,
+        PageTitleComponent,
+        MessageBoxComponent
     ],
     imports: [
         CommonModule,
@@ -26,7 +30,9 @@ import { LanguageWidgetComponent } from './language-widget/language-widget.compo
         FooterComponent,
         AppCardComponent,
         AppTileComponent,
-        CarouselComponent
+        CarouselComponent,
+        PageTitleComponent,
+        MessageBoxComponent
     ]
 })
 export class SharedModule {
