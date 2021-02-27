@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, NgForm, Validators } from "@angular/forms";
-import { User } from "../../model/user.model";
 import { EmailService } from "../../services/email.service";
 import { AppService } from "../../services/app.service";
 import { ToastrService } from "ngx-toastr";
+import { QueryEmail } from "../../model/user.model";
 
 @Component({
     selector: 'app-query',
@@ -11,7 +11,7 @@ import { ToastrService } from "ngx-toastr";
     styleUrls: ['./query.component.scss']
 })
 export class QueryComponent implements OnInit {
-    user: User;
+    user: QueryEmail;
     queryForm: FormGroup;
     formContent: {
         title: any;
@@ -83,7 +83,8 @@ export class QueryComponent implements OnInit {
     }
 
     onSubmit() {
-        this.user = this.queryForm.value as User;
+        this.user = this.queryForm.value as QueryEmail;
+        this.user.emailType = 'query';
         this.appService.loader(true);
         this.emailService.send(this.user).then((data) => {
             this.toastr.success(this.appService.getMessage('emailSuccess'), 'Success');
