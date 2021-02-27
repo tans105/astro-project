@@ -1,10 +1,10 @@
-export interface User {
-    name: string;
+import {Email} from "./email.model";
+
+export interface QueryEmail extends Email{
     dob: string;
     pob: string;
     secondary: string;
     primary: string;
-    email: string;
     latitude: string;
     longitude: string;
     fname: string;

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { User } from "../model/user.model";
 import { HttpClient } from "@angular/common/http";
 import { environment } from '../../environments/environment';
+import {Email} from "../model/email.model";
 
 @Injectable({
     providedIn: 'root'
@@ -13,8 +13,7 @@ export class EmailService {
     constructor(private http: HttpClient) {
     }
 
-    send(user: User): Promise<any>{
-        console.log(environment);
-        return this.http.post(this.baseUrl + this.emailAPI, user).toPromise();
+    send(emailPayload: Email): Promise<any>{
+        return this.http.post(this.baseUrl + this.emailAPI, emailPayload).toPromise();
     }
 }
