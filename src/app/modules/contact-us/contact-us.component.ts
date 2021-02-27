@@ -16,17 +16,23 @@ export class ContactUsComponent {
     messageBoxContent: string = 'Anything you wish to ask us OR say to us any suggestions, ' +
         'comments doubts or problem about the website can be posted here. ' +
         'We will be glad to respond to your feedback at your email address as soon as possible.';
+    disableForm: boolean = false;
 
     constructor(private emailService: EmailService, private toastr: ToastrService, private appService: AppService) {
     }
 
     onSubmit(f: NgForm) {
+        this.disableForm = true;
         this.userFeedback = f.value as ContactUsEmail;
         this.userFeedback.emailType = 'feedback';
         this.emailService.send(this.userFeedback).then((data) => {
             this.toastr.success(this.appService.getMessage('emailSuccess'), 'Success');
+            this.disableForm = false;
+            f.reset();
         }, (err) => {
-            this.toastr.success(this.appService.getMessage('emailSuccess'), 'Success');
+            console.log("Email Failed, " + err);
+            this.toastr.warning(this.appService.getMessage('emailFailed'), 'Warning');
+            this.disableForm = false;
         });
     }
 }

@@ -28,6 +28,7 @@ export class QueryComponent implements OnInit {
         email: any;
     };
     contentLoaded = false;
+    disableForm = false;
 
     constructor(private fb: FormBuilder, private emailService: EmailService, public appService: AppService, private toastr: ToastrService) {
         this.initForm();
@@ -83,17 +84,17 @@ export class QueryComponent implements OnInit {
     }
 
     onSubmit() {
+        this.disableForm = true;
         this.user = this.queryForm.value as QueryEmail;
         this.user.emailType = 'query';
-        this.appService.loader(true);
         this.emailService.send(this.user).then((data) => {
             this.toastr.success(this.appService.getMessage('emailSuccess'), 'Success');
-            this.appService.loader(false);
+            this.disableForm = false;
             this.queryForm.reset();
         }, (err) => {
             console.log("Email Failed, " + err);
+            this.disableForm = false;
             this.toastr.warning(this.appService.getMessage('emailFailed'), 'Warning');
-            this.appService.loader(false);
         });
     }
 

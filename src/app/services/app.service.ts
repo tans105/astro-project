@@ -1,7 +1,6 @@
-import { EventEmitter, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { CookieService } from "ngx-cookie-service";
 import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
 
 @Injectable({
     providedIn: 'root'
@@ -9,10 +8,8 @@ import { Observable } from "rxjs";
 export class AppService {
     lang: string = 'en';
     assets: {};
-    loadingStarts: EventEmitter<boolean>;
 
     constructor(private cookieService: CookieService, private http: HttpClient) {
-        this.loadingStarts = new EventEmitter<boolean>();
     }
 
     getConfig() {
@@ -95,10 +92,6 @@ export class AppService {
                 return this.http.get(url).toPromise();
             }
         }
-    }
-
-    loader(status): void {
-        this.loadingStarts.emit(status);
     }
 
     loadAssets(): Promise<any> {
