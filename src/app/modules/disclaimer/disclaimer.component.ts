@@ -7,8 +7,8 @@ import {AppService} from "../../services/app.service";
     styleUrls: ['./disclaimer.component.scss']
 })
 export class DisclaimerComponent {
-    private contentLoaded: boolean;
-    private brand: any;
+    contentLoaded: boolean;
+    brand: any;
 
     constructor(private appService: AppService) {
         this.populateContent();

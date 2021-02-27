@@ -7,8 +7,8 @@ import {AppService} from "../../services/app.service";
   styleUrls: ['./terms-and-condition.component.scss']
 })
 export class TermsAndConditionComponent {
-  private contentLoaded: boolean;
-  private brand: any;
+  contentLoaded: boolean;
+  brand: any;
 
   constructor(private appService: AppService) {
     this.populateContent();

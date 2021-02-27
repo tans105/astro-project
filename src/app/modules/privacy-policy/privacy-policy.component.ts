@@ -8,8 +8,8 @@ import {AppService} from "../../services/app.service";
 })
 export class PrivacyPolicyComponent {
 
-  private brand: any;
-  private contentLoaded: boolean;
+  brand: any;
+  contentLoaded: boolean;
 
   constructor(private appService: AppService) {
     this.populateContent();
