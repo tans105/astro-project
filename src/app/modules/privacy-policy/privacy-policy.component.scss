@@ -1,0 +1,13 @@
+@import "src/utilities/colorpalette";
+
+li {
+  color: white;
+}
+
+.section {
+  font-weight: 600;
+  margin-bottom: 10px;
+  font-size: 18px;
+  text-decoration: underline;
+  color: $primary;
+}

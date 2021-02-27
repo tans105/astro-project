@@ -11,6 +11,7 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
 import { DisclaimerComponent } from './disclaimer/disclaimer.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { ContributeComponent } from './contribute/contribute.component';
+import { TermsAndConditionComponent } from './terms-and-condition/terms-and-condition.component';
 
 @NgModule({
     declarations: [
@@ -20,7 +21,8 @@ import { ContributeComponent } from './contribute/contribute.component';
         ContactUsComponent,
         DisclaimerComponent,
         PrivacyPolicyComponent,
-        ContributeComponent
+        ContributeComponent,
+        TermsAndConditionComponent
     ],
     imports: [
         CommonModule,

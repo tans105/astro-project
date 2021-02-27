@@ -2,14 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import {AppService} from "../../services/app.service";
 
 @Component({
-  selector: 'app-privacy-policy',
-  templateUrl: './privacy-policy.component.html',
-  styleUrls: ['./privacy-policy.component.scss']
+  selector: 'app-terms-and-condition',
+  templateUrl: './terms-and-condition.component.html',
+  styleUrls: ['./terms-and-condition.component.scss']
 })
-export class PrivacyPolicyComponent {
-
-  private brand: any;
+export class TermsAndConditionComponent {
   private contentLoaded: boolean;
+  private brand: any;
 
   constructor(private appService: AppService) {
     this.populateContent();
@@ -21,5 +20,4 @@ export class PrivacyPolicyComponent {
       this.contentLoaded = true;
     });
   }
-
 }

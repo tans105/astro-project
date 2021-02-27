@@ -6,6 +6,7 @@ import {ContactUsComponent} from "./modules/contact-us/contact-us.component";
 import {DisclaimerComponent} from "./modules/disclaimer/disclaimer.component";
 import {PrivacyPolicyComponent} from "./modules/privacy-policy/privacy-policy.component";
 import {ContributeComponent} from "./modules/contribute/contribute.component";
+import {TermsAndConditionComponent} from "./modules/terms-and-condition/terms-and-condition.component";
 
 
 const routes: Routes = [
@@ -13,7 +14,7 @@ const routes: Routes = [
     {path: "contact-us", component: ContactUsComponent},
     {path: "disclaimer", component: DisclaimerComponent},
     {path: "privacy-policy", component: PrivacyPolicyComponent},
-    {path: "contribute", component: ContributeComponent},
+    {path: "terms-and-conditions", component: TermsAndConditionComponent},
     {path: '**', component: HomeComponent}
 ];
 
