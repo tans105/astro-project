@@ -9,7 +9,9 @@
 }
 
 .lang-screen-size {
-  @media (max-width: 767px) {
-    display: none;
-  }
+  text-align: right;
+}
+
+img {
+  width: 300px;
 }

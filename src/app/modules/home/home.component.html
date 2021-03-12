@@ -1,12 +1,12 @@
 <div *ngIf="contentLoaded">
-    <div class="home-carousal">
-        <app-carousel [button]="common.knowMore" [models]="appServices" size="lg"></app-carousel>
-    </div>
-
     <!--  About Us  -->
     <h2 class="title">{{aboutUs.title}}</h2>
     <hr>
     <p *ngFor="let para of aboutUs.para" class="lead">{{para}}</p>
+
+<!--    <div class="home-carousal">-->
+<!--        <app-carousel [button]="common.knowMore" [models]="appServices" size="lg"></app-carousel>-->
+<!--    </div>-->
 
     <!--  How we work  -->
     <app-details></app-details>
