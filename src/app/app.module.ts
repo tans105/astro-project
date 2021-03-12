@@ -9,6 +9,7 @@ import {CookieService} from "ngx-cookie-service";
 import { HttpClientModule } from "@angular/common/http";
 import { ToastrModule } from "ngx-toastr";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import {AuthGuard} from "./guard/auth.guard";
 
 
 @NgModule({
@@ -24,7 +25,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
         BrowserAnimationsModule,
         ToastrModule.forRoot()
     ],
-    providers: [CookieService],
+    providers: [CookieService, AuthGuard],
     bootstrap: [AppComponent]
 })
 export class AppModule {
