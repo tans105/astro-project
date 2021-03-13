@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {Login} from "../../model/login.model";
-import {AuthService} from "../../services/auth.service";
+import {AuthenticateService} from "../../services/auth.service";
 import {Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
 import {AppService} from "../../services/app.service";
+import {SocialAuthService, SocialUser} from "angularx-social-login";
 
 @Component({
     selector: 'app-admin',
@@ -13,8 +14,10 @@ import {AppService} from "../../services/app.service";
 })
 export class LoginComponent implements OnInit {
     loginForm: Login;
+    user: SocialUser;
+    loggedIn;
 
-    constructor(private authService: AuthService,
+    constructor(private authenticateService: AuthenticateService,
                 private router: Router,
                 private toastr: ToastrService,
                 private appService: AppService) {
@@ -25,7 +28,7 @@ export class LoginComponent implements OnInit {
 
     onSubmit(f: NgForm) {
         this.loginForm = f.value as Login;
-        this.authService.authenticate(this.loginForm)
+        this.authenticateService.authenticate(this.loginForm)
             .then((loginSuccess) => {
                 if (loginSuccess) {
                     this.router.navigate(['/admin']);
@@ -35,4 +38,11 @@ export class LoginComponent implements OnInit {
             });
     }
 
+    socialLogin() {
+        this.authenticateService.socialAuthenticate().then(res => {
+            this.router.navigate(['/admin']);
+        }, err => {
+            this.toastr.warning(this.appService.getMessage('unauthorizedUser'), 'Warning');
+        });
+    }
 }
