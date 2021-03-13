@@ -5,8 +5,7 @@ export interface QueryEmail extends Email{
     pob: string;
     secondary: string;
     primary: string;
-    latitude: string;
-    longitude: string;
+    sob: string;
     fname: string;
     questions: [];
 }

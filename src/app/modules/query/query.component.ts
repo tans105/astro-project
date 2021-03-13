@@ -21,11 +21,12 @@ export class QueryComponent implements OnInit {
         dob: any;
         secondary: any;
         primary: any;
-        longitude: any;
-        latitude: any;
+        sob: any,
         pob: any;
         fname: any;
         email: any;
+        states: [];
+        downloadSampleReport: any;
     };
     contentLoaded = false;
     disableForm = false;
@@ -56,8 +57,7 @@ export class QueryComponent implements OnInit {
             ]),
             'fname': new FormControl('', Validators.required),
             'pob': new FormControl('', Validators.required),
-            'latitude': new FormControl(''),
-            'longitude': new FormControl(''),
+            'sob': new FormControl('', Validators.required),
             'primary': new FormControl('', [
                 Validators.required,
                 Validators.pattern('^\\s*(?:\\+?(\\d{1,3}))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?\\s*$')]),

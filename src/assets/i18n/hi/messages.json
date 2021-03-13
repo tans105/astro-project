@@ -5,6 +5,7 @@
   "invalidEmail": "यह एक मान्य ईमेल नहीं है!!!",
   "fnameRequired": "पूरा नाम आवश्यक है!",
   "pobRequired": "जन्म स्थान की आवश्यकता है!",
+  "sobRequired": "जन्म स्थान की आवश्यकता है!",
   "primaryRequired": "Primary Contact is required!",
   "invalidNumber": "प्राथमिक संपर्क आवश्यक है!!!",
   "dobRequired": "जन्म तिथि की आवश्यकता है!",

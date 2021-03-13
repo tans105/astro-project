@@ -1,6 +1,5 @@
-<hr>
 <div class="container-fluid" *ngIf="contentLoaded">
-    <div class="title"><h2>{{formContent.title}} </h2></div>
+    <app-page-title title="{{formContent.title}}"></app-page-title>
     <form [formGroup]="queryForm" (ngSubmit)="onSubmit()">
         <fieldset [disabled]="disableForm">
             <div class="form-group row">
@@ -26,24 +25,21 @@
 
             <div class="form-group row">
                 <label for="pob" class="col-md-2 col-form-label required">{{formContent.pob}}</label>
-                <div class="col-md-10">
+                <div class="col-md-4">
                     <input required formControlName="pob" type="text" class="form-control" id="pob" name="pob">
                     <div *ngIf="formControls.pob.touched">
                         <p class="error" *ngIf="formControls.pob.errors?.required">{{appService.getMessage('pobRequired')}}</p>
                     </div>
                 </div>
-            </div>
 
-            <div class="form-group row">
-                <label for="latitude" class="col-md-2 col-form-label">{{formContent.latitude}}</label>
+                <label for="sob" class="col-md-2 col-form-label required">{{formContent.sob}}</label>
                 <div class="col-md-4">
-                    <input formControlName="latitude" type="text" class="form-control" name="latitude"
-                           id="latitude">
-                </div>
-
-                <label for="longitude" class="col-md-2 col-form-label">{{formContent.longitude}}</label>
-                <div class="col-md-4">
-                    <input formControlName="longitude" type="text" class="form-control" name="longitude" id="longitude">
+                    <select class="form-control" id="sob" name="sob" required formControlName="sob">
+                        <option *ngFor="let state of formContent.states;let i = index" value="{{state}}">{{state}}</option>
+                    </select>
+                    <div *ngIf="formControls.sob.touched">
+                        <p class="error" *ngIf="formControls.sob.errors?.required">{{appService.getMessage('sobRequired')}}</p>
+                    </div>
                 </div>
             </div>
 
@@ -126,6 +122,9 @@
                         <span *ngIf="!disableForm">{{formContent.submitQuery}}</span>
                         <span *ngIf="disableForm"><span class="fa fa-spinner fa-spin"></span></span>
                     </button>
+                    <a class="btn btn-info ml-1" target="_self" href="assets/report/report.pdf" download="Report.pdf">
+                        <span>{{formContent.downloadSampleReport}}&nbsp;&nbsp;<span class="fa fa-download"></span></span>
+                    </a>
                 </div>
             </div>
         </fieldset>
