@@ -8,5 +8,7 @@
   "primaryRequired": "Primary Contact is required!",
   "invalidNumber": "This is not a valid Phone Number!!!",
   "dobRequired": "Date of birth is required!",
-  "tobRequired": "Time of birth is required!"
+  "tobRequired": "Time of birth is required!",
+  "invalidCredentials": "Invalid Credentials.. Try Again",
+  "unauthorizedUser": "Pop closed or the user is not Authorized User"
 }

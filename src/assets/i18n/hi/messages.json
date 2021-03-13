@@ -8,5 +8,7 @@
   "primaryRequired": "Primary Contact is required!",
   "invalidNumber": "प्राथमिक संपर्क आवश्यक है!!!",
   "dobRequired": "जन्म तिथि की आवश्यकता है!",
-  "tobRequired": "जन्म का समय आवश्यक है!"
+  "tobRequired": "जन्म का समय आवश्यक है!",
+  "invalidCredentials": "Invalid Credentials.. Try Again",
+  "unauthorizedUser": "Pop closed or the user is not Authorized User"
 }

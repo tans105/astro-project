@@ -1,0 +1,30 @@
+<app-page-title title="Admin Panel"></app-page-title>
+<div id="login">
+    <div class="container">
+        <div id="login-row" class="row justify-content-center align-items-center">
+            <div id="login-column" class="col-md-6">
+                <div id="login-box" class="col-md-12">
+                    <form id="login-form" class="form" #f="ngForm" (ngSubmit)="onSubmit(f)">
+                        <div class="form-group">
+                            <label for="userid" class="text-primary">Username:</label><br>
+                            <input ngModel type="text" name="userid" id="userid" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="text-primary">Password:</label><br>
+                            <input ngModel type="password" name="password" id="password" class="form-control">
+                        </div>
+                        <div class="form-group text-align-center">
+                            <input type="submit" name="submit" class="btn btn-primary btn-md" value="submit">
+                        </div>
+                        <div class="form-group text-align-center" (click)="socialLogin()">
+                            <a class="btn btn-outline-dark" role="button">
+                                <img alt="Google sign-in" class="login-social-btn" src="assets/images/logo/Google.png"/>
+                                Login with Google
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

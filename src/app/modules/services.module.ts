@@ -12,6 +12,8 @@ import { DisclaimerComponent } from './disclaimer/disclaimer.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { ContributeComponent } from './contribute/contribute.component';
 import { TermsAndConditionComponent } from './terms-and-condition/terms-and-condition.component';
+import { LoginComponent } from './login/login.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
     declarations: [
@@ -22,7 +24,9 @@ import { TermsAndConditionComponent } from './terms-and-condition/terms-and-cond
         DisclaimerComponent,
         PrivacyPolicyComponent,
         ContributeComponent,
-        TermsAndConditionComponent
+        TermsAndConditionComponent,
+        LoginComponent,
+        AdminComponent
     ],
     imports: [
         CommonModule,

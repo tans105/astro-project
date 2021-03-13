@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, NgForm, Validators } from "@angular/forms";
-import { EmailService } from "../../services/email.service";
-import { AppService } from "../../services/app.service";
-import { ToastrService } from "ngx-toastr";
-import { QueryEmail } from "../../model/user.model";
+import {Component, OnInit} from '@angular/core';
+import {FormArray, FormBuilder, FormControl, FormGroup, NgForm, Validators} from "@angular/forms";
+import {EmailService} from "../../services/email.service";
+import {AppService} from "../../services/app.service";
+import {ToastrService} from "ngx-toastr";
+import {QueryEmail} from "../../model/user.model";
 
 @Component({
     selector: 'app-query',
@@ -30,7 +30,10 @@ export class QueryComponent implements OnInit {
     contentLoaded = false;
     disableForm = false;
 
-    constructor(private fb: FormBuilder, private emailService: EmailService, public appService: AppService, private toastr: ToastrService) {
+    constructor(private fb: FormBuilder,
+                private emailService: EmailService,
+                public appService: AppService,
+                private toastr: ToastrService) {
         this.initForm();
         this.populateContent();
     }
