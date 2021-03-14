@@ -27,6 +27,7 @@ export class QueryComponent implements OnInit {
         email: any;
         states: [];
         downloadSampleReport: any;
+        noteConditions: [];
     };
     contentLoaded = false;
     disableForm = false;
@@ -47,6 +48,7 @@ export class QueryComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        window.scrollTo(0, 0)
     }
 
     initForm() {

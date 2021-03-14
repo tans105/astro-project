@@ -1,17 +1,5 @@
 @import "src/utilities/colorpalette";
 @import '~ngx-toastr/toastr';
-
-$theme-colors: (
-        primary: $primary,
-        secondary: $gray-600,
-        success: $green,
-        info: $cyan,
-        warning: $yellow,
-        danger: $red,
-        light: $gray-100,
-        dark: $gray-800
-);
-
 @import '../node_modules/bootstrap/scss/bootstrap.scss';
 $fa-font-path: "../node_modules/font-awesome/fonts";
 @import "../node_modules/font-awesome/scss/font-awesome.scss";
@@ -22,11 +10,15 @@ body {
 }
 
 h1 {
-  color: $primary;
+  color: $light;
 }
 
 
 h2 {
+  color: $light;
+}
+
+h3 {
   color: $light;
 }
 

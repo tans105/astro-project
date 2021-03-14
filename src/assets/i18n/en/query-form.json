@@ -9,8 +9,8 @@
   "dob": "Date of Birth",
   "tob": "Time of Birth",
   "questions": "Questions",
-  "submitQuery": "Submit Query",
-  "downloadSampleReport": "Sample Report",
+  "submitQuery": "Post Query",
+  "downloadSampleReport": "Download Sample Report",
   "states": [
     "Outside India",
     "Andhra Pradesh",
@@ -49,5 +49,13 @@
     "Delhi",
     "Lakshadweep",
     "Puducherry"
+  ],
+  "noteConditions": [
+    "We make sure to take minimal personal details.",
+    "These details are needed for contact and to map your 'Janampatri'. So please make sure the details are correct.",
+    "When posting questions please ensure to be elaborate and specific.",
+    "Questions once posted cannot be reversed.",
+    "You can ask as many questions as you want.",
+    "Fields with '*' are mandatory"
   ]
 }

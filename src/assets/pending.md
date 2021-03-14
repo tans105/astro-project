@@ -5,4 +5,4 @@
 - recaptchta
 - let user know how we will reach out to him.
 - Session management for login
-
+- Edit page content from admin page
