@@ -1,6 +1,7 @@
-import { Injectable } from '@angular/core';
-import { CookieService } from "ngx-cookie-service";
-import { HttpClient } from "@angular/common/http";
+import {Injectable} from '@angular/core';
+import {CookieService} from "ngx-cookie-service";
+import {HttpClient} from "@angular/common/http";
+import {environment} from "../../environments/environment";
 
 @Injectable({
     providedIn: 'root'
@@ -8,6 +9,8 @@ import { HttpClient } from "@angular/common/http";
 export class AppService {
     lang: string = 'en';
     assets: {};
+    private baseUrlContentService = (environment.production) ? 'https://astroproject-server.herokuapp.com' : 'http://localhost:8001';
+    private contentAPI = '/api/content';
 
     constructor(private cookieService: CookieService, private http: HttpClient) {
     }
@@ -46,8 +49,7 @@ export class AppService {
                 break;
             }
             case "detail-cards": {
-                url = (this.lang === 'en') ? "../assets/i18n/en/detail-cards.json" : "../assets/i18n/hi/detail-cards.json";
-                response = this.getJSON(url, content, forced);
+                response = this.getJSONFromContentService(content, forced, this.lang);
                 break;
             }
             case "messages": {
@@ -61,8 +63,11 @@ export class AppService {
             }
         }
 
-        return response.then((data) => {
-            callback(content, data);
+        return response.then((res) => {
+            if(res.isContentService) {
+                callback(content, res.data);
+            }
+            else callback(content, res);
         });
 
     }
@@ -92,6 +97,12 @@ export class AppService {
                 return this.http.get(url).toPromise();
             }
         }
+    }
+
+    getJSONFromContentService(content, forced, lang): Promise<any> {
+        let url = this.baseUrlContentService + this.contentAPI;
+        let query = `?id=${content}&lang=${lang}`
+        return this.http.get(url + query).toPromise();
     }
 
     loadAssets(): Promise<any> {
