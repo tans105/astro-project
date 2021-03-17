@@ -106,7 +106,6 @@ export class AppService {
     }
 
     loadAssets(): Promise<any> {
-        this.assets = {};
         return new Promise((resolve) => {
             this.readAssets("modules", true, (content, data) => {
                 this.assets[content] = data;

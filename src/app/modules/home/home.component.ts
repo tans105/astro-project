@@ -21,7 +21,9 @@ export class HomeComponent implements OnInit {
         whyChooseUs: ""
     };
     contentLoaded: boolean;
+    detailsContent = {};
     moduleLoaded = 0;
+    modulesToLoad = 5;
 
 
     constructor(private appService: AppService, private router: Router) {
@@ -37,6 +39,7 @@ export class HomeComponent implements OnInit {
         this.appService.readAssets("common", false, this.assetCallback.bind(this));
         this.appService.readAssets("about", false, this.assetCallback.bind(this));
         this.appService.readAssets("tiles", false, this.assetCallback.bind(this));
+        this.appService.readAssets("detail-cards", false, this.assetCallback.bind(this));
     }
 
     assetCallback(type, data) {
@@ -55,11 +58,15 @@ export class HomeComponent implements OnInit {
             }
             case "tiles" : {
                 this.tileContent = data;
+                break;
+            }
+            case "detail-cards" : {
+                this.detailsContent = data;
             }
         }
 
         this.moduleLoaded++;
-        if (this.moduleLoaded === 4) this.contentLoaded = true;
+        if (this.moduleLoaded === this.modulesToLoad) this.contentLoaded = true;
     }
 
 }

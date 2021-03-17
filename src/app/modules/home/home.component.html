@@ -9,7 +9,7 @@
 <!--    </div>-->
 
     <!--  How we work  -->
-    <app-details></app-details>
+    <app-details [detailsContent]=detailsContent></app-details>
 
     <div class="text-center mt-5 mb-5">
         <a class="btn btn-primary btn-lg my-btn" routerLink="/submit-query" role="button">{{common.getStarted}}</a>
@@ -29,4 +29,7 @@
             <app-tile icon="{{tile.icon}}" heading="{{tile.title}}"></app-tile>
         </div>
     </div>
+</div>
+<div *ngIf="!contentLoaded">
+    <app-loading></app-loading>
 </div>

@@ -9,6 +9,7 @@ import { RouterModule } from "@angular/router";
 import { LanguageWidgetComponent } from './language-widget/language-widget.component';
 import { PageTitleComponent } from './page-title/page-title.component';
 import { MessageBoxComponent } from './message-box/message-box.component';
+import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
     declarations: [
@@ -19,7 +20,8 @@ import { MessageBoxComponent } from './message-box/message-box.component';
         CarouselComponent,
         LanguageWidgetComponent,
         PageTitleComponent,
-        MessageBoxComponent
+        MessageBoxComponent,
+        LoadingComponent
     ],
     imports: [
         CommonModule,
@@ -32,7 +34,8 @@ import { MessageBoxComponent } from './message-box/message-box.component';
         AppTileComponent,
         CarouselComponent,
         PageTitleComponent,
-        MessageBoxComponent
+        MessageBoxComponent,
+        LoadingComponent
     ]
 })
 export class SharedModule {
