@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { AppService } from "../../services/app.service";
 
 @Component({
@@ -6,25 +6,7 @@ import { AppService } from "../../services/app.service";
     templateUrl: './details.component.html',
     styleUrls: ['./details.component.scss']
 })
-export class DetailsComponent implements OnInit {
-    detailsContent: {
-        getStarted: any;
-        title: any;
-        cards: any;
-    };
+export class DetailsComponent {
+    @Input() detailsContent;
     contentLoaded = false;
-
-    constructor(private appService: AppService) {
-        this.populateContent();
-    }
-
-    populateContent() {
-        this.appService.readAssets("detail-cards", false, (content, data) => {
-            this.detailsContent = data;
-            this.contentLoaded = true;
-        });
-    }
-
-    ngOnInit(): void {
-    }
 }

@@ -1,13 +1,16 @@
-import { Injectable } from '@angular/core';
-import { CookieService } from "ngx-cookie-service";
-import { HttpClient } from "@angular/common/http";
+import {Injectable} from '@angular/core';
+import {CookieService} from "ngx-cookie-service";
+import {HttpClient} from "@angular/common/http";
+import {environment} from "../../environments/environment";
 
 @Injectable({
     providedIn: 'root'
 })
 export class AppService {
     lang: string = 'en';
-    assets: {};
+    assets: any = {};
+    private baseUrlContentService = (environment.production) ? 'https://astroproject-server.herokuapp.com' : 'http://localhost:8001';
+    private contentAPI = '/api/content';
 
     constructor(private cookieService: CookieService, private http: HttpClient) {
     }
@@ -46,8 +49,7 @@ export class AppService {
                 break;
             }
             case "detail-cards": {
-                url = (this.lang === 'en') ? "../assets/i18n/en/detail-cards.json" : "../assets/i18n/hi/detail-cards.json";
-                response = this.getJSON(url, content, forced);
+                response = this.getJSONFromContentService(content, forced, this.lang);
                 break;
             }
             case "messages": {
@@ -61,8 +63,9 @@ export class AppService {
             }
         }
 
-        return response.then((data) => {
-            callback(content, data);
+        return response.then((res) => {
+            this.assets[content] = res;
+            callback(content, res);
         });
 
     }
@@ -94,29 +97,24 @@ export class AppService {
         }
     }
 
-    loadAssets(): Promise<any> {
-        this.assets = {};
+    getJSONFromContentService(content, forced, lang): Promise<any> {
+        let url = this.baseUrlContentService + this.contentAPI;
+        let query = `?id=${content}&lang=${lang}`
+        if (forced) {
+            return this.http.get(url + query).toPromise();
+        } else {
+            if (this.assets && this.assets[content]) {
+                return new Promise<any>((res) => {
+                    res(this.assets[content]);
+                });
+            } else {
+                return this.http.get(url + query).toPromise();
+            }
+        }
+    }
+
+    loadAOT(): Promise<any> {
         return new Promise((resolve) => {
-            this.readAssets("modules", true, (content, data) => {
-                this.assets[content] = data;
-            });
-
-            this.readAssets("about", true, (content, data) => {
-                this.assets[content] = data;
-            });
-
-            this.readAssets("tiles", true, (content, data) => {
-                this.assets[content] = data;
-            });
-
-            this.readAssets("common", true, (content, data) => {
-                this.assets[content] = data;
-            });
-
-            this.readAssets("detail-cards", true, (content, data) => {
-                this.assets[content] = data;
-            });
-
             this.readAssets("messages", true, (content, data) => {
                 this.assets[content] = data;
             });

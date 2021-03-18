@@ -1,0 +1,45 @@
+@import "src/utilities/colorpalette";
+
+.pageOverlay {
+  top: 0;
+  left: 0;
+  position: absolute;
+  height: 1000px;
+  width: 100%;
+  z-index: 1001;
+  display: block;
+}
+
+#loadingOverlay {
+  background: black url('../../../assets/images/logo/logo.png') no-repeat 50% 23px;
+}
+
+.loadingMessage {
+  padding: 25px 40px;
+  color: #999;
+}
+
+.img-left {
+  width: 50px;
+}
+
+.img-right {
+  width: 50px;
+  float: right;
+}
+
+.loading-text {
+  color: $primary;
+  text-align: center;
+  font-size: 24px;
+}
+
+@media only screen and (max-device-width: 600px) {
+  .img-left {
+    display: none;
+  }
+
+  .img-right {
+    display: none;
+  }
+}
