@@ -9,7 +9,7 @@ import {environment} from "../../environments/environment";
 export class AppService {
     lang: string = 'en';
     assets: any = {};
-    private baseUrlContentService = (environment.production) ? 'https://astroproject-server.herokuapp.com' : 'http://localhost:8001';
+    private baseUrlContentService = (environment.production) ? 'https://astro-content-service.herokuapp.com' : 'http://localhost:8001';
     private contentAPI = '/api/content';
 
     constructor(private cookieService: CookieService, private http: HttpClient) {
