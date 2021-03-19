@@ -1,17 +1,17 @@
 <div class="container-fluid" *ngIf="contentLoaded">
-    <app-page-title title="{{formContent.title}}"></app-page-title>
+    <app-page-title title="{{data.queryForm.title}}"></app-page-title>
     <form [formGroup]="queryForm" (ngSubmit)="onSubmit()">
         <fieldset [disabled]="disableForm">
             <div class="form-group row">
                 <label class="col-md-12 col-form-label">
                     <h3><u>Note :</u></h3>
                     <ol>
-                        <li *ngFor="let condition of formContent.noteConditions">{{condition}}</li>
+                        <li *ngFor="let condition of data.queryForm.noteConditions">{{condition}}</li>
                     </ol>
                 </label>
             </div>
             <div class="form-group row">
-                <label for="email" class="col-md-2 col-form-label required">{{formContent.email}}</label>
+                <label for="email" class="col-md-2 col-form-label required">{{data.queryForm.email}}</label>
                 <div class="col-md-10">
                     <input required type="text" formControlName="email" class="form-control" id="email" name="email">
                     <div *ngIf="formControls.email.touched">
@@ -22,7 +22,7 @@
             </div>
 
             <div class="form-group row">
-                <label for="fname" class="col-md-2 col-form-label required">{{formContent.fname}}</label>
+                <label for="fname" class="col-md-2 col-form-label required">{{data.queryForm.fname}}</label>
                 <div class="col-md-10">
                     <input required formControlName="fname" type="text" class="form-control" id="fname" name="fname">
                     <div *ngIf="formControls.fname.touched">
@@ -32,7 +32,7 @@
             </div>
 
             <div class="form-group row">
-                <label for="pob" class="col-md-2 col-form-label required">{{formContent.pob}}</label>
+                <label for="pob" class="col-md-2 col-form-label required">{{data.queryForm.pob}}</label>
                 <div class="col-md-4">
                     <input required formControlName="pob" type="text" class="form-control" id="pob" name="pob">
                     <div *ngIf="formControls.pob.touched">
@@ -40,10 +40,10 @@
                     </div>
                 </div>
 
-                <label for="sob" class="col-md-2 col-form-label required">{{formContent.sob}}</label>
+                <label for="sob" class="col-md-2 col-form-label required">{{data.queryForm.sob}}</label>
                 <div class="col-md-4">
                     <select class="form-control" id="sob" name="sob" required formControlName="sob">
-                        <option *ngFor="let state of formContent.states;let i = index" value="{{state}}">{{state}}</option>
+                        <option *ngFor="let state of data.queryForm.states;let i = index" value="{{state}}">{{state}}</option>
                     </select>
                     <div *ngIf="formControls.sob.touched">
                         <p class="error" *ngIf="formControls.sob.errors?.required">{{appService.getMessage('sobRequired')}}</p>
@@ -53,7 +53,7 @@
 
 
             <div class="form-group row">
-                <label for="primary" class="col-md-2 col-form-label required">{{formContent.primary}}</label>
+                <label for="primary" class="col-md-2 col-form-label required">{{data.queryForm.primary}}</label>
                 <div class="col-md-4">
                     <input formControlName="primary" type="text" class="form-control" name="primary" id="primary">
                     <div *ngIf="formControls.primary.touched">
@@ -62,7 +62,7 @@
                     </div>
                 </div>
 
-                <label for="secondary" class="col-md-2 col-form-label">{{formContent.secondary}}</label>
+                <label for="secondary" class="col-md-2 col-form-label">{{data.queryForm.secondary}}</label>
                 <div class="col-md-4">
                     <input formControlName="secondary" type="text" class="form-control" name="secondary" id="secondary">
                     <div *ngIf="formControls.secondary.touched">
@@ -72,7 +72,7 @@
             </div>
 
             <div class="form-group row">
-                <label for="dob" class="col-md-2 col-form-label required">{{formContent.dob}}</label>
+                <label for="dob" class="col-md-2 col-form-label required">{{data.queryForm.dob}}</label>
                 <div class="col-md-4">
                     <div class="input-group">
                         <input class="form-control" required name="dob" id="dob" formControlName="dob" ngbDatepicker
@@ -90,7 +90,7 @@
             </div>
 
             <div class="form-group row">
-                <label class="col-md-2" for="tob" class="col-md-2 col-form-label required time-input">{{formContent.tob}}</label>
+                <label class="col-md-2" for="tob" class="col-md-2 col-form-label required time-input">{{data.queryForm.tob}}</label>
                 <div class="col-md-10">
                     <ngb-timepicker required name="tob" id="tob" formControlName="tob"
                                     [meridian]="true"></ngb-timepicker>
@@ -103,7 +103,7 @@
             <div class="form-group">
                 <div class="row">
                     <div class="col-sm-11">
-                        <label class="required">{{formContent.questions}}</label>
+                        <label class="required">{{data.queryForm.questions}}</label>
                     </div>
                     <div class="col-sm-1 text-align-right">
                         <button type="button" class="btn btn-md btn-info" (click)="addQuestion()"><i class="fa fa-plus" aria-hidden="true"></i></button>
@@ -127,14 +127,17 @@
             <div class="form-group row">
                 <div class="col-sm-12 text-center">
                     <button type="submit" [disabled]="!queryForm.valid" class="btn btn-primary">
-                        <span *ngIf="!disableForm">{{formContent.submitQuery}}</span>
+                        <span *ngIf="!disableForm">{{data.queryForm.submitQuery}}</span>
                         <span *ngIf="disableForm"><span class="fa fa-spinner fa-spin"></span></span>
                     </button>
                     <a class="btn btn-info ml-1" target="_self" href="assets/report/report.pdf" download="Report.pdf">
-                        <span>{{formContent.downloadSampleReport}}&nbsp;&nbsp;<span class="fa fa-download"></span></span>
+                        <span>{{data.queryForm.downloadSampleReport}}&nbsp;&nbsp;<span class="fa fa-download"></span></span>
                     </a>
                 </div>
             </div>
         </fieldset>
     </form>
+</div>
+<div *ngIf="!contentLoaded">
+    <app-loading></app-loading>
 </div>

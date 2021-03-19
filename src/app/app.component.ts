@@ -7,12 +7,13 @@ import { AppService } from "./services/app.service";
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit{
+    data : any = {}
 
     constructor(private appService: AppService) {
     }
 
-    ngOnInit(): void {
+    async ngOnInit(): Promise<void> {
         this.appService.getLanguage();
-        this.appService.loadAOT();
+        this.data = await this.appService.getAssets();
     }
 }

@@ -7,7 +7,7 @@ import {AppService} from "../../services/app.service";
   styleUrls: ['./privacy-policy.component.scss']
 })
 export class PrivacyPolicyComponent {
-
+  data: any = {}
   brand: any;
   contentLoaded: boolean;
 
@@ -15,11 +15,9 @@ export class PrivacyPolicyComponent {
     this.populateContent();
   }
 
-  populateContent() {
-    this.appService.readAssets("common", false, (content, data) => {
-      this.brand = data.brand;
-      this.contentLoaded = true;
-    });
+  async populateContent() {
+    this.data = await this.appService.getAssets();
+    this.contentLoaded = true;
   }
 
 }

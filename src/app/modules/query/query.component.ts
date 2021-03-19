@@ -13,42 +13,21 @@ import {QueryEmail} from "../../model/user.model";
 export class QueryComponent implements OnInit {
     user: QueryEmail;
     queryForm: FormGroup;
-    formContent: {
-        title: any;
-        submitQuery: any;
-        questions: any;
-        tob: any;
-        dob: any;
-        secondary: any;
-        primary: any;
-        sob: any,
-        pob: any;
-        fname: any;
-        email: any;
-        states: [];
-        downloadSampleReport: any;
-        noteConditions: [];
-    };
     contentLoaded = false;
     disableForm = false;
+    data: any = {}
 
     constructor(private fb: FormBuilder,
                 private emailService: EmailService,
                 public appService: AppService,
                 private toastr: ToastrService) {
         this.initForm();
-        this.populateContent();
     }
 
-    populateContent() {
-        this.appService.readAssets("query-form", false, (content, data) => {
-            this.formContent = data;
-            this.contentLoaded = true;
-        });
-    }
-
-    ngOnInit(): void {
+    async ngOnInit(): Promise<void> {
         window.scrollTo(0, 0)
+        this.data = await this.appService.getAssets();
+        this.contentLoaded = true;
     }
 
     initForm() {

@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {CookieService} from "ngx-cookie-service";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
+import _ from "lodash";
 
 @Injectable({
     providedIn: 'root'
@@ -15,59 +16,24 @@ export class AppService {
     constructor(private cookieService: CookieService, private http: HttpClient) {
     }
 
-    getConfig() {
-        return this.assets["common"];
-    }
-
     getMessage(messageId) {
         return this.assets["messages"][messageId];
     }
 
-    readAssets(content: string, forced = false, callback) {
+    async readAssets(content: string, forced = false) {
         this.getLanguage();
-        let url, response;
+        let response;
 
         switch (content) {
-            case "modules": {
-                url = (this.lang === 'en') ? "../assets/i18n/en/services.json" : "../assets/i18n/hi/services.json";
-                response = this.getJSON(url, content, forced);
-                break;
-            }
-            case "about": {
-                url = (this.lang === 'en') ? "../assets/i18n/en/about.json" : "../assets/i18n/hi/about.json";
-                response = this.getJSON(url, content, forced);
-                break;
-            }
-            case "tiles": {
-                url = (this.lang === 'en') ? "../assets/i18n/en/tile-content.json" : "../assets/i18n/hi/tile-content.json";
-                response = this.getJSON(url, content, forced);
-                break;
-            }
-            case "common": {
-                url = (this.lang === 'en') ? "../assets/i18n/en/common.json" : "../assets/i18n/hi/common.json";
-                response = this.getJSON(url, content, forced);
-                break;
-            }
-            case "detail-cards": {
+            case "dynamic_content": {
                 response = this.getJSONFromContentService(content, forced, this.lang);
                 break;
             }
-            case "messages": {
-                url = (this.lang === 'en') ? "../assets/i18n/en/messages.json" : "../assets/i18n/hi/messages.json";
-                response = this.getJSON(url, content, forced);
-                break;
-            }
-            case "query-form": {
-                url = (this.lang === 'en') ? "../assets/i18n/en/query-form.json" : "../assets/i18n/hi/query-form.json";
-                response = this.getJSON(url, content, forced);
-            }
+            default:
+                response = this.getJSON(content, forced, this.lang);
         }
 
-        return response.then((res) => {
-            this.assets[content] = res;
-            callback(content, res);
-        });
-
+        return await response
     }
 
     setLanguage(lang) {
@@ -83,7 +49,9 @@ export class AppService {
         return this.lang;
     }
 
-    getJSON(url, content, forced): Promise<any> {
+    getJSON(content, forced, lang): Promise<any> {
+        let url = `../assets/i18n/${lang}/static_content.json`
+
         if (forced) {
             return this.http.get(url).toPromise();
         } else {
@@ -98,8 +66,9 @@ export class AppService {
     }
 
     getJSONFromContentService(content, forced, lang): Promise<any> {
-        let url = this.baseUrlContentService + this.contentAPI;
-        let query = `?id=${content}&lang=${lang}`
+        let url = this.baseUrlContentService + this.contentAPI,
+            query = `?id=${content}&lang=${lang}`
+
         if (forced) {
             return this.http.get(url + query).toPromise();
         } else {
@@ -113,16 +82,13 @@ export class AppService {
         }
     }
 
-    loadAOT(): Promise<any> {
-        return new Promise((resolve) => {
-            this.readAssets("messages", true, (content, data) => {
-                this.assets[content] = data;
-            });
+    async getAssets() {
+        if(!_.isEmpty(this.assets)) return this.assets
 
-            this.readAssets("query-form", true, (content, data) => {
-                this.assets[content] = data;
-            });
-            resolve(true);
-        });
+        let data = {};
+        data = {...await this.readAssets("dynamic_content", false), ...data};
+        data = {...await this.readAssets("static_content", false), ...data};
+        this.assets = data;
+        return data;
     }
 }

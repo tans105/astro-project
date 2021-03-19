@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AppService} from "../../services/app.service";
 
 @Component({
@@ -6,19 +6,18 @@ import {AppService} from "../../services/app.service";
     templateUrl: './disclaimer.component.html',
     styleUrls: ['./disclaimer.component.scss']
 })
-export class DisclaimerComponent {
+export class DisclaimerComponent{
     contentLoaded: boolean;
     brand: any;
+    data: any = {};
 
     constructor(private appService: AppService) {
         this.populateContent();
     }
 
-    populateContent() {
-        this.appService.readAssets("common", false, (content, data) => {
-            this.brand = data.brand;
-            this.contentLoaded = true;
-        });
+    async populateContent() {
+        this.data = await this.appService.getAssets();
+        this.contentLoaded = true;
     }
 
 }

@@ -8,16 +8,14 @@ import {AppService} from "../../services/app.service";
 })
 export class TermsAndConditionComponent {
   contentLoaded: boolean;
-  brand: any;
+  data: any = {}
 
   constructor(private appService: AppService) {
     this.populateContent();
   }
 
-  populateContent() {
-    this.appService.readAssets("common", false, (content, data) => {
-      this.brand = data.brand;
-      this.contentLoaded = true;
-    });
+  async populateContent() {
+    this.data = await this.appService.getAssets();
+    this.contentLoaded = true;
   }
 }
