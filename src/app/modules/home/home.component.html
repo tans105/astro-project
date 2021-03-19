@@ -1,31 +1,31 @@
 <div *ngIf="contentLoaded">
     <!--  About Us  -->
-    <h2 class="title">{{aboutUs.title}}</h2>
+    <h2 class="title">{{data.aboutUs}}</h2>
     <hr>
-    <p *ngFor="let para of aboutUs.para" class="lead">{{para}}</p>
+    <p *ngFor="let para of data.aboutUsPara" class="lead">{{para}}</p>
 
 <!--    <div class="home-carousal">-->
 <!--        <app-carousel [button]="common.knowMore" [models]="appServices" size="lg"></app-carousel>-->
 <!--    </div>-->
 
     <!--  How we work  -->
-    <app-details [detailsContent]=detailsContent></app-details>
+    <app-details [cards]=data.cards [title]=data.howItWorksButton></app-details>
 
     <div class="text-center mt-5 mb-5">
-        <a class="btn btn-primary btn-lg my-btn" routerLink="/submit-query" role="button">{{common.getStarted}}</a>
+        <a class="btn btn-primary btn-lg my-btn" routerLink="/submit-query" role="button">{{data.getStarted}}</a>
     </div>
 
     <!-- Why Choose Us   -->
-    <h2 *ngIf="lang === 'en'" class="title">{{common.whyChooseUs}}</h2>
+    <h2 *ngIf="lang === 'en'" class="title">{{data.whyChooseUs}}</h2>
     <hr>
     <div class="row tile-container">
-        <div *ngFor="let tile of tileContent['set1']">
+        <div *ngFor="let tile of data['tile-content'].set1">
             <app-tile icon="{{tile.icon}}" heading="{{tile.title}}"></app-tile>
         </div>
     </div>
 
     <div class="row tile-container">
-        <div *ngFor="let tile of tileContent['set2']">
+        <div *ngFor="let tile of data['tile-content'].set2">
             <app-tile icon="{{tile.icon}}" heading="{{tile.title}}"></app-tile>
         </div>
     </div>

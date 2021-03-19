@@ -1,45 +1,44 @@
-<div *ngIf="contentLoaded">
-    <hr>
-    <footer class="site-footer">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-xs-12 col-md-8">
-                    <h4 class="site-footer-header">About Us</h4>
-                    <p class="text-justify">'{{common.brand}}' is established to fullfil vision to eradicate the myths
-                        related to Astrology and Vastu . The Knowledge should bring light and prosperity in individual
-                        life..</p>
-                </div>
-
-                <div class="col-xs-6 col-md-4">
-                    <h6 class="site-footer-header">Site Links</h6>
-                    <ul class="footer-links">
-                        <li><a routerLink="/submit-query" role="button">Post Query</a></li>
-                        <li><a routerLink="/contact-us">Contact Us</a></li>
-                        <li><a routerLink="/terms-and-conditions">Terms And Conditions</a></li>
-                        <li><a routerLink="/privacy-policy">Privacy Policy</a></li>
-                        <li><a routerLink="/disclaimer">Disclaimer</a></li>
-                        <li><a routerLink="/login" role="button">Admin Panel</a></li>
-                    </ul>
-                </div>
+<hr>
+<footer class="site-footer">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-md-8">
+                <h4 class="site-footer-header">About Us</h4>
+                <p class="text-justify">'{{data.brand}}' is established to fullfil vision to eradicate the myths
+                    related to Astrology and Vastu . The Knowledge should bring light and prosperity in individual
+                    life..</p>
             </div>
-            <hr>
-        </div>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-8 col-sm-6 col-xs-12">
-                    <p class="copyright-text">Copyright &copy; {{year}} All Rights Reserved by
-                        <a href="#">{{common.brand}}</a>.
-                    </p>
-                </div>
 
-                <div class="col-md-4 col-sm-6 col-xs-12">
-
-                    <ul class="social-icons">
-                        <li><a class="facebook" href="https://www.facebook.com/mangalambhav/"><i class="fa fa-facebook"></i></a></li>
-                        <li><a class="instagram" href="#"><i class="fa fa-instagram"></i></a></li>
-                    </ul>
-                </div>
+            <div class="col-xs-6 col-md-4">
+                <h6 class="site-footer-header">Site Links</h6>
+                <ul class="footer-links">
+                    <li><a routerLink="/submit-query" role="button">Post Query</a></li>
+                    <li><a routerLink="/contact-us">Contact Us</a></li>
+                    <li><a routerLink="/terms-and-conditions">Terms And Conditions</a></li>
+                    <li><a routerLink="/privacy-policy">Privacy Policy</a></li>
+                    <li><a routerLink="/disclaimer">Disclaimer</a></li>
+                    <li><a routerLink="/login" role="button">Admin Panel</a></li>
+                </ul>
             </div>
         </div>
-    </footer>
-</div>
+        <hr>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8 col-sm-6 col-xs-12">
+                <p class="copyright-text">Copyright &copy; {{year}} All Rights Reserved by
+                    <a href="#">{{data.brand}}</a>.
+                </p>
+            </div>
+
+            <div class="col-md-4 col-sm-6 col-xs-12">
+
+                <ul class="social-icons">
+                    <li><a class="facebook" href="https://www.facebook.com/mangalambhav/"><i class="fa fa-facebook"></i></a>
+                    </li>
+                    <li><a class="instagram" href="#"><i class="fa fa-instagram"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>

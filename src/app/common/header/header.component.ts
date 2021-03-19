@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { AppService } from "../../services/app.service";
 
 @Component({
@@ -7,21 +7,5 @@ import { AppService } from "../../services/app.service";
     styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-    common: {
-        brand: ""
-    };
-    contentLoaded: boolean;
-
-    constructor(private appService: AppService) {
-        this.populateContent();
-    }
-
-    populateContent() {
-        this.appService.readAssets("common", false, this.assetCallback.bind(this));
-    }
-
-    assetCallback(type, data) {
-        this.common = data;
-        this.contentLoaded = true;
-    }
+    @Input() data : any;
 }

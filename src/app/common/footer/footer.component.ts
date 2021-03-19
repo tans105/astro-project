@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input} from '@angular/core';
 import { AppService } from "../../services/app.service";
 
 @Component({
@@ -6,23 +6,7 @@ import { AppService } from "../../services/app.service";
     templateUrl: './footer.component.html',
     styleUrls: ['./footer.component.scss']
 })
-export class FooterComponent {
+export class FooterComponent{
+    @Input() data: any;
     year = new Date().getFullYear();
-    contentLoaded: boolean;
-    common: {
-        brand: ""
-    };
-
-    constructor(private appService: AppService) {
-        this.populateContent();
-    }
-
-    populateContent() {
-        this.appService.readAssets("common", false, this.assetCallback.bind(this));
-    }
-
-    assetCallback(type, data) {
-        this.common = data;
-        this.contentLoaded = true;
-    }
 }

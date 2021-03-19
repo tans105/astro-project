@@ -7,6 +7,7 @@ import { AppService } from "../../services/app.service";
     styleUrls: ['./details.component.scss']
 })
 export class DetailsComponent {
-    @Input() detailsContent;
+    @Input() cards;
+    @Input() title;
     contentLoaded = false;
 }
