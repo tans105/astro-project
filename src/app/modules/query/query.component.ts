@@ -10,7 +10,7 @@ import {QueryEmail} from "../../model/user.model";
     templateUrl: './query.component.html',
     styleUrls: ['./query.component.scss']
 })
-export class QueryComponent implements OnInit {
+export class QueryComponent {
     user: QueryEmail;
     queryForm: FormGroup;
     contentLoaded = false;
@@ -21,13 +21,17 @@ export class QueryComponent implements OnInit {
                 private emailService: EmailService,
                 public appService: AppService,
                 private toastr: ToastrService) {
-        this.initForm();
+        this.initForm()
+        this.populateContent();
     }
 
-    async ngOnInit(): Promise<void> {
+    populateContent() {
         window.scrollTo(0, 0)
-        this.data = await this.appService.getAssets();
-        this.contentLoaded = true;
+        this.appService.getAssets().then((data) => {
+            this.data = data;
+            this.contentLoaded = true;
+        });
+
     }
 
     initForm() {
