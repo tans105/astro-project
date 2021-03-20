@@ -7,17 +7,20 @@ import {Router} from "@angular/router";
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
     data: any = {}
     contentLoaded: boolean = false;
     lang: string
 
     constructor(private appService: AppService, private router: Router) {
         this.lang = this.appService.getLanguage();
+        this.populateContent();
     }
 
-    async ngOnInit(): Promise<void> {
-        this.data = await this.appService.getAssets();
-        this.contentLoaded = true;
+    populateContent() {
+        this.appService.getAssets().then((data) => {
+            this.data = data;
+            this.contentLoaded = true;
+        });
     }
 }

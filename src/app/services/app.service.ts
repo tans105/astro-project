@@ -33,7 +33,7 @@ export class AppService {
                 response = this.getJSON(content, forced, this.lang);
         }
 
-        return await response
+        return response
     }
 
     setLanguage(lang) {

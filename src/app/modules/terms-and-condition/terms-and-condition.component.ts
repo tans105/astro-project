@@ -14,8 +14,10 @@ export class TermsAndConditionComponent {
     this.populateContent();
   }
 
-  async populateContent() {
-    this.data = await this.appService.getAssets();
-    this.contentLoaded = true;
+  populateContent() {
+    this.appService.getAssets().then((data) => {
+      this.data = data;
+      this.contentLoaded = true;
+    });
   }
 }
