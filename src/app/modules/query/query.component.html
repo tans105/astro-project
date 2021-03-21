@@ -5,11 +5,21 @@
             <div class="form-group row">
                 <label class="col-md-12 col-form-label">
                     <h3><u>Note :</u></h3>
-                    <ol>
-                        <li *ngFor="let condition of data.noteConditions">{{condition}}</li>
-                    </ol>
+                    <li *ngFor="let condition of data.noteConditions">{{condition}}</li>
                 </label>
             </div>
+
+            <div class="form-group row">
+                <label for="service" class="col-md-2 col-form-label required">Service</label>
+                <div class="col-md-6">
+                    <select class="form-control" formControlName="service" id="service" name="service" (change)="onServiceChange($event)" required>
+                        <option *ngFor="let service of data.services; let i = index" [value]=service.id>
+                            {{service.heading}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+
             <div class="form-group row">
                 <label for="email" class="col-md-2 col-form-label required">{{data.queryForm.email}}</label>
                 <div class="col-md-10">
@@ -42,7 +52,7 @@
 
                 <label for="sob" class="col-md-2 col-form-label required">{{data.queryForm.sob}}</label>
                 <div class="col-md-4">
-                    <select class="form-control" id="sob" name="sob" required formControlName="sob">
+                    <select class="form-control" id="sob" name="sob" formControlName="sob" required>
                         <option *ngFor="let state of data.queryForm.states;let i = index" value="{{state}}">{{state}}</option>
                     </select>
                     <div *ngIf="formControls.sob.touched">
@@ -90,7 +100,7 @@
             </div>
 
             <div class="form-group row">
-                <label class="col-md-2" for="tob" class="col-md-2 col-form-label required time-input">{{data.queryForm.tob}}</label>
+                <label for="tob" class="col-md-2 col-form-label required time-input">{{data.queryForm.tob}}</label>
                 <div class="col-md-10">
                     <ngb-timepicker required name="tob" id="tob" formControlName="tob"
                                     [meridian]="true"></ngb-timepicker>
@@ -100,7 +110,7 @@
                 </div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group" *ngIf="showQuestions">
                 <div class="row">
                     <div class="col-sm-11">
                         <label class="required">{{data.queryForm.questions}}</label>
@@ -124,7 +134,16 @@
                 </div>
             </div>
 
-            <div class="form-group row">
+            <div class="form-group mt-5">
+                <div class="row">
+                    <label class="col-md-1 col-form-label">Cost</label>
+                    <div class="col-md-3">
+                        <input type="text" formControlName="amount" class="form-control" readonly>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row mt-5">
                 <div class="col-sm-12 text-center">
                     <button type="submit" [disabled]="!queryForm.valid" class="btn btn-primary mt-1">
                         <span *ngIf="!disableForm">{{data.queryForm.submitQuery}}</span>

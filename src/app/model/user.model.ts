@@ -8,4 +8,6 @@ export interface QueryEmail extends Email{
     sob: string;
     fname: string;
     questions: [];
+    amount: number;
+    service: string;
 }

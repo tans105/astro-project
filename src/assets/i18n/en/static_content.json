@@ -4,7 +4,7 @@
   "brand": "Mangalam Bhav::",
   "whyChooseUs": "Why Choose Us ?",
   "knowMore": "Know more",
-  "getStarted": "Post Query",
+  "getStarted": "Get Started",
   "queryForm": {
     "title": "Lets get started",
     "email": "Email",
@@ -68,6 +68,7 @@
     "sobRequired": "State of birth is required!",
     "primaryRequired": "Primary Contact is required!",
     "invalidNumber": "This is not a valid Phone Number!!!",
+    "emptyQuestion": "One of the question is empty",
     "dobRequired": "Date of birth is required!",
     "tobRequired": "Time of birth is required!",
     "invalidCredentials": "Invalid Credentials.. Try Again",
