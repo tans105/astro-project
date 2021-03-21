@@ -10,6 +10,7 @@ export class AppComponent implements OnInit{
     data : any = {}
 
     constructor(private appService: AppService) {
+        window.scrollTo(0, 0)
     }
 
     async ngOnInit(): Promise<void> {
