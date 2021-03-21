@@ -51,6 +51,20 @@
   filter: grayscale(100%);
 }
 
+.cost {
+  color: white;
+  font-weight: 700;
+  font-size: 20px;
+
+  .old-price {
+    font-size: 12px;
+    color: lightgrey;
+    margin-left: 15px;
+    text-decoration: line-through;
+    font-weight: 400;
+  }
+}
+
 @media (max-width: 640px) {
   .grid-flex {
     height: 40em;
@@ -75,6 +89,26 @@
   }
 }
 
+@media (max-width: 480px) {
+  .grid-flex {
+    height: 50em;
+  }
+}
+
+@media (max-width: 330px) {
+  .grid-flex {
+    height: 60em;
+  }
+
+  .cost {
+    font-size: 16px;
+
+    .old-price {
+      font-size: 8px;
+    }
+  }
+}
+
 
 .title {
   text-align: center;
@@ -84,18 +118,4 @@
 .service-heading {
   text-decoration: underline;
   color: $primary
-}
-
-.cost {
-  color: white;
-  font-weight: 700;
-  font-size: 20px;
-  .old-price {
-    font-size: 12px;
-    color: lightgrey;
-    margin-left: 15px;
-    text-decoration: line-through;
-    font-weight: 400;
-  }
-
 }
