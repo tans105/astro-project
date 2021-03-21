@@ -11,9 +11,7 @@
     <!--  How we work  -->
     <app-details [cards]=data.cards [title]=data.howItWorksButton></app-details>
 
-    <div class="text-center mt-5 mb-5">
-        <a class="btn btn-primary btn-lg my-btn" routerLink="/submit-query" role="button">{{data.getStarted}}</a>
-    </div>
+    <app-services [data]=data></app-services>
 
     <!-- Why Choose Us   -->
     <h2 *ngIf="lang === 'en'" class="title">{{data.whyChooseUs}}</h2>

@@ -126,11 +126,11 @@
 
             <div class="form-group row">
                 <div class="col-sm-12 text-center">
-                    <button type="submit" [disabled]="!queryForm.valid" class="btn btn-primary">
+                    <button type="submit" [disabled]="!queryForm.valid" class="btn btn-primary mt-1">
                         <span *ngIf="!disableForm">{{data.queryForm.submitQuery}}</span>
                         <span *ngIf="disableForm"><span class="fa fa-spinner fa-spin"></span></span>
                     </button>
-                    <a class="btn btn-info ml-1" target="_self" href="assets/report/report.pdf" download="Report.pdf">
+                    <a class="btn btn-info ml-1 mt-1" target="_self" href="assets/report/report.pdf" download="Report.pdf">
                         <span>{{data.queryForm.downloadSampleReport}}&nbsp;&nbsp;<span class="fa fa-download"></span></span>
                     </a>
                 </div>

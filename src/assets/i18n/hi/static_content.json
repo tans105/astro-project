@@ -101,7 +101,7 @@
       }
     ]
   },
-  "services": [
+  "carousal": [
     {
       "id": 0,
       "name": "business",
