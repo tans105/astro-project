@@ -107,17 +107,21 @@ export class QueryComponent {
             service = this.queryForm.get('service').value,
             isValid = true;
 
+        console.log(questions);
         if (questions && questions.length > 0) {
             if (service === 'custom') {
-                questions.forEach(question => {
-                    if (!question[0] || question[0].length == 0) {
+                questions.forEach(q => {
+                    if (!q.question) {
                         isValid = false;
                     }
                 })
-                this.toastr.warning(this.appService.getMessage('emptyQuestion'), 'Warning');
             } else {
                 this.queryForm.value.questions = [];
             }
+        }
+
+        if(!isValid) {
+            this.toastr.warning(this.appService.getMessage('emptyQuestion'), 'Warning');
         }
 
         return isValid;
