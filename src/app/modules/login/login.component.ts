@@ -28,21 +28,10 @@ export class LoginComponent implements OnInit {
 
     onSubmit(f: NgForm) {
         this.loginForm = f.value as Login;
-        this.authenticateService.authenticate(this.loginForm)
-            .then((loginSuccess) => {
-                if (loginSuccess) {
-                    this.router.navigate(['/admin']);
-                } else {
-                    this.toastr.warning(this.appService.getMessage('invalidCredentials'), 'Warning');
-                }
-            });
+        this.authenticateService.authenticate(this.loginForm);
     }
 
     socialLogin() {
-        this.authenticateService.socialAuthenticate().then(res => {
-            this.router.navigate(['/admin']);
-        }, err => {
-            this.toastr.warning(this.appService.getMessage('unauthorizedUser'), 'Warning');
-        });
+        this.authenticateService.socialAuthenticate();
     }
 }

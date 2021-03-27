@@ -10,8 +10,16 @@ import _ from "lodash";
 export class AppService {
     lang: string = 'en';
     assets: any = {};
-    private baseUrlContentService = (environment.production) ? 'https://astro-content-service.herokuapp.com' : 'http://localhost:8001';
     private contentAPI = '/api/content';
+
+
+    getBaseServerURL() {
+        return (environment.production) ? 'https://astroproject-server.herokuapp.com' : 'http://localhost:8000';
+    }
+
+    getBaseContentServiceUrl() {
+        return (environment.production) ? 'https://astro-content-service.herokuapp.com' : 'http://localhost:8001';
+    }
 
     constructor(private cookieService: CookieService, private http: HttpClient) {
     }
@@ -66,7 +74,7 @@ export class AppService {
     }
 
     getJSONFromContentService(content, forced, lang): Promise<any> {
-        let url = this.baseUrlContentService + this.contentAPI,
+        let url = this.getBaseContentServiceUrl() + this.contentAPI,
             query = `?id=${content}&lang=${lang}`
 
         if (forced) {
