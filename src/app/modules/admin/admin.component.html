@@ -1,4 +1,73 @@
 <div>
     <app-page-title title="Leads"></app-page-title>
-    <h3>In Progress*</h3>
+    <div class="action-buttons">
+        <span class="login-user">Hello {{currentUser}}</span>
+        <div class="logout-btn"><input type="button" class="btn btn-danger" (click)="logout()" value="Logout"></div>
+    </div>
+    <hr/>
+    <div>
+        <ngb-accordion #acc="ngbAccordion">
+            <ngb-panel *ngFor="let query of queries; let i= index" id="toggle-{{i}}" >
+                <ng-template ngbPanelHeader let-opened="opened">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <p class="m-0">{{i + 1}}. {{query.fname}} - {{query.email}} - {{query.primary}}</p>
+                        <button ngbPanelToggle class="btn btn-link p-0" *ngIf="opened"><i class="fa fa-minus"></i>
+                        </button>
+                        <button ngbPanelToggle class="btn btn-link p-0" *ngIf="!opened"><i class="fa fa-plus"></i>
+                        </button>
+                    </div>
+                </ng-template>
+                <ng-template ngbPanelContent>
+                    <div class="query-item">
+                        <div class="query-key">Email</div>
+                        <div class="query-value">{{query.email}}</div>
+                    </div>
+
+                    <div class="query-item">
+                        <div class="query-key">Name</div>
+                        <div class="query-value">{{query.fname}}</div>
+                    </div>
+
+                    <div class="query-item">
+                        <div class="query-key">Primary Contact</div>
+                        <div class="query-value">{{query.primary}}</div>
+                    </div>
+
+                    <div class="query-item">
+                        <div class="query-key">Secondary Contact</div>
+                        <div class="query-value">{{query.secondary}}</div>
+                    </div>
+
+                    <div class="query-item">
+                        <div class="query-key">State</div>
+                        <div class="query-value">{{query.sob}}</div>
+                    </div>
+
+                    <div class="query-item">
+                        <div class="query-key">City</div>
+                        <div class="query-value">{{query.pob}}</div>
+                    </div>
+
+                    <div class="query-item">
+                        <div class="query-key">Date of Birth</div>
+                        <div class="query-value">{{query.dob}}</div>
+                    </div>
+
+                    <div class="query-item">
+                        <div class="query-key">Time of Birth</div>
+                        <div class="query-value">{{query.tob}}</div>
+                    </div>
+                    <div class="query-item">
+                        <div class="query-key">Questions</div>
+                        <ul><li class="query-value" *ngFor="let q of query.questions">{{q.question}}</li></ul>
+                    </div>
+
+                    <div class="query-item">
+                        <div class="query-key">Service</div>
+                        <div class="query-value">{{query.service}}</div>
+                    </div>
+                </ng-template>
+            </ngb-panel>
+        </ngb-accordion>
+    </div>
 </div>

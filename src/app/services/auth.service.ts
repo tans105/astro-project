@@ -4,7 +4,7 @@ import {GoogleLoginProvider, SocialAuthService} from "angularx-social-login";
 import {HttpClient} from "@angular/common/http";
 import {AppService} from "./app.service";
 import {Router} from "@angular/router";
-
+import {CookieService} from "ngx-cookie-service";
 
 @Injectable({
     providedIn: 'root'
@@ -12,10 +12,12 @@ import {Router} from "@angular/router";
 export class AuthenticateService {
     private loginAPI = '/auth/login';
 
+
     constructor(private authService: SocialAuthService,
                 private http: HttpClient,
                 private appService: AppService,
-                private router: Router) {
+                private router: Router,
+                private cookieService: CookieService) {
     }
 
     authenticate(user: Login) {
@@ -34,7 +36,10 @@ export class AuthenticateService {
                         isSocial: true
                     }).subscribe(res => {
                         localStorage.setItem('astro_access_token', res['token']);
+                        this.cookieService.set("astro-user", user.firstName);
                         this.router.navigate(['/admin']);
+                    }, err => {
+                        console.log(err)
                     })
                 }
             })
@@ -42,10 +47,18 @@ export class AuthenticateService {
 
     logout() {
         localStorage.removeItem('astro_access_token');
+        this.router.navigate(['/login']);
     }
 
     isAuthenticated() {
         return (localStorage.getItem('astro_access_token') !== null);
+    }
 
+    getToken() {
+        return (this.isAuthenticated()) ? localStorage.getItem('astro_access_token') : null;
+    }
+
+    getCurrentUser() {
+        return this.cookieService.get('astro-user');
     }
 }

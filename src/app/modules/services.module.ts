@@ -5,7 +5,7 @@ import { SharedModule } from "../common/shared.module";
 import { DetailsComponent } from "./details/details.component";
 import { QueryComponent } from './query/query.component';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { NgbDatepickerModule, NgbTimepickerModule } from "@ng-bootstrap/ng-bootstrap";
+import {NgbAccordionModule, NgbDatepickerModule, NgbTimepickerModule} from "@ng-bootstrap/ng-bootstrap";
 import { RouterModule } from "@angular/router";
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { DisclaimerComponent } from './disclaimer/disclaimer.component';
@@ -37,7 +37,8 @@ import { ServicesComponent } from './services/services.component';
         NgbDatepickerModule,
         NgbTimepickerModule,
         RouterModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        NgbAccordionModule
     ],
     providers: [],
     bootstrap: []

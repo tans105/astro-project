@@ -1,15 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {QueriesService} from "../../services/queries.service";
+import {AuthenticateService} from "../../services/auth.service";
 
 @Component({
-  selector: 'app-admin',
-  templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.scss']
+    selector: 'app-admin',
+    templateUrl: './admin.component.html',
+    styleUrls: ['./admin.component.scss']
 })
-export class AdminComponent implements OnInit {
+export class AdminComponent {
+    queries = [];
+    currentUser;
 
-  constructor() { }
+    constructor(private queriesService: QueriesService,
+                private authService: AuthenticateService) {
+        queriesService.getQueries()
+            .subscribe((response) => {
+                console.log(response);
+                this.queries = response;
+                this.currentUser = this.authService.getCurrentUser();
+            })
+    }
 
-  ngOnInit(): void {
-  }
-
+    logout() {
+        this.authService.logout();
+    }
 }
