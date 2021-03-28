@@ -33,5 +33,6 @@ export class AdminComponent {
 
     logout() {
         this.authService.logout();
+        this.toastr.success(this.appService.getMessage('logoutSuccess'), 'Success');
     }
 }

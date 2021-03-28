@@ -7,10 +7,10 @@
     <hr/>
     <div>
         <ngb-accordion #acc="ngbAccordion">
-            <ngb-panel *ngFor="let query of queries; let i= index" id="toggle-{{i}}" >
+            <ngb-panel *ngFor="let q of queries; let i= index" id="toggle-{{i}}" >
                 <ng-template ngbPanelHeader let-opened="opened">
                     <div class="d-flex align-items-center justify-content-between">
-                        <p class="m-0">{{i + 1}}. {{query.fname}} - {{query.email}} - {{query.primary}}</p>
+                        <p class="m-0">#{{q.id}} - {{q.query.fname}}</p>
                         <button ngbPanelToggle class="btn btn-link p-0" *ngIf="opened"><i class="fa fa-minus"></i>
                         </button>
                         <button ngbPanelToggle class="btn btn-link p-0" *ngIf="!opened"><i class="fa fa-plus"></i>
@@ -20,51 +20,51 @@
                 <ng-template ngbPanelContent>
                     <div class="query-item">
                         <div class="query-key">Email</div>
-                        <div class="query-value">{{query.email}}</div>
+                        <div class="query-value">{{q.query.email}}</div>
                     </div>
 
                     <div class="query-item">
                         <div class="query-key">Name</div>
-                        <div class="query-value">{{query.fname}}</div>
+                        <div class="query-value">{{q.query.fname}}</div>
                     </div>
 
                     <div class="query-item">
                         <div class="query-key">Primary Contact</div>
-                        <div class="query-value">{{query.primary}}</div>
+                        <div class="query-value">{{q.query.primary}}</div>
                     </div>
 
                     <div class="query-item">
                         <div class="query-key">Secondary Contact</div>
-                        <div class="query-value">{{query.secondary}}</div>
+                        <div class="query-value">{{q.query.secondary}}</div>
                     </div>
 
                     <div class="query-item">
                         <div class="query-key">State</div>
-                        <div class="query-value">{{query.sob}}</div>
+                        <div class="query-value">{{q.query.sob}}</div>
                     </div>
 
                     <div class="query-item">
                         <div class="query-key">City</div>
-                        <div class="query-value">{{query.pob}}</div>
+                        <div class="query-value">{{q.query.pob}}</div>
                     </div>
 
                     <div class="query-item">
                         <div class="query-key">Date of Birth</div>
-                        <div class="query-value">{{query.dob}}</div>
+                        <div class="query-value">{{q.query.dob}}</div>
                     </div>
 
                     <div class="query-item">
                         <div class="query-key">Time of Birth</div>
-                        <div class="query-value">{{query.tob}}</div>
+                        <div class="query-value">{{q.query.tob}}</div>
                     </div>
                     <div class="query-item">
                         <div class="query-key">Questions</div>
-                        <ul><li class="query-value" *ngFor="let q of query.questions">{{q.question}}</li></ul>
+                        <ul><li class="query-value" *ngFor="let q of q.query.questions">{{q.question}}</li></ul>
                     </div>
 
                     <div class="query-item">
                         <div class="query-key">Service</div>
-                        <div class="query-value">{{query.service}}</div>
+                        <div class="query-value">{{q.query.service}}</div>
                     </div>
                 </ng-template>
             </ngb-panel>

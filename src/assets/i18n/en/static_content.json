@@ -73,7 +73,8 @@
     "tobRequired": "Time of birth is required!",
     "invalidCredentials": "Invalid Credentials.. Try Again",
     "unauthorizedUser": "Pop closed or the user is not Authorized User",
-    "loginAgain": "Token Expired, Login Again"
+    "loginAgain": "Token Expired, Login Again",
+    "logoutSuccess": "Logout Successful"
   },
   "tile-content": {
     "set1": [
