@@ -1,16 +1,27 @@
 <div>
     <app-page-title title="Leads"></app-page-title>
     <div class="action-buttons">
-        <span class="login-user">Hello {{currentUser}}</span>
-        <div class="logout-btn"><input type="button" class="btn btn-danger" (click)="logout()" value="Logout"></div>
+        <span class="login-user">Welcome, <span class="logged-in-usr">{{currentUser}}</span></span>
+        <a type="button logout-btn" class="btn btn-light" (click)="logout()"> Logout</a>
     </div>
     <hr/>
+    <div class="filter-section">
+        <div class="form-group form-inline">
+            <label for="sel1" class="select-label">Status</label>
+            <select class="form-control" id="sel1" (change)="onFilterSelect($event)">
+                <option *ngFor="let status of filter" value="{{status}}">{{status}}</option>
+            </select>
+        </div>
+    </div>
     <div>
         <ngb-accordion #acc="ngbAccordion">
-            <ngb-panel *ngFor="let q of queries; let i= index" id="toggle-{{i}}" >
+            <ngb-panel *ngFor="let q of queries; let i= index" id="toggle-{{q.id}}">
                 <ng-template ngbPanelHeader let-opened="opened">
                     <div class="d-flex align-items-center justify-content-between">
-                        <p class="m-0">#{{q.id}} - {{q.query.fname}}</p>
+                        <div>
+                            <span class="mr-1">#{{q.id}} - {{q.query.fname}}</span>
+                            <span [ngClass]="getBadge(q.status)">{{q.status}}</span>
+                        </div>
                         <button ngbPanelToggle class="btn btn-link p-0" *ngIf="opened"><i class="fa fa-minus"></i>
                         </button>
                         <button ngbPanelToggle class="btn btn-link p-0" *ngIf="!opened"><i class="fa fa-plus"></i>
@@ -59,12 +70,29 @@
                     </div>
                     <div class="query-item">
                         <div class="query-key">Questions</div>
-                        <ul><li class="query-value" *ngFor="let q of q.query.questions">{{q.question}}</li></ul>
+                        <ul>
+                            <li class="query-value" *ngFor="let q of q.query.questions">{{q.question}}</li>
+                        </ul>
                     </div>
 
                     <div class="query-item">
                         <div class="query-key">Service</div>
                         <div class="query-value">{{q.query.service}}</div>
+                    </div>
+
+                    <div class="text-align-center mt-5">
+                        <button *ngIf="canShowResolved(q.status)" ngbPanelToggle type="button" class="btn btn-info mr-1"
+                                (click)="updateStatus(q, RESOLVED, acc)">
+                            Resolved
+                        </button>
+                        <button *ngIf="canShowReject(q.status)" ngbPanelToggle type="button" class="btn btn-danger mr-1"
+                                (click)="updateStatus(q, REJECT, acc)">
+                            Reject
+                        </button>
+                        <button *ngIf="canShowAck(q.status)" ngbPanelToggle type="button" class="btn btn-success"
+                                (click)="updateStatus(q, ACK, acc)">
+                            Acknowledge
+                        </button>
                     </div>
                 </ng-template>
             </ngb-panel>

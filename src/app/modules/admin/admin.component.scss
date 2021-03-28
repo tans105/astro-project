@@ -11,8 +11,12 @@
 
   .login-user {
     color: $primary;
-    font-size: 24px;
+    font-size: 18px;
     font-weight: 400;
+  }
+
+  .logged-in-usr {
+    color: chocolate;
   }
 }
 
@@ -22,4 +26,13 @@
   justify-content: space-between;
   border-bottom: 1px solid #E6E7E8;
   padding: 5px;
+}
+
+.filter-section {
+  margin-bottom: 40px;
+
+  .select-label {
+    color: white;
+    margin-right: 10px;
+  }
 }

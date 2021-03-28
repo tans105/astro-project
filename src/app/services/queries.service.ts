@@ -9,6 +9,7 @@ import {Observable} from "rxjs";
 })
 export class QueriesService {
     private queryAPI = '/api/queries';
+    private updateStatusAPI = '/api/updateStatus/'
 
 
     constructor(private http: HttpClient,
@@ -16,11 +17,24 @@ export class QueriesService {
                 private authService: AuthenticateService) {
     }
 
+    getHeaders() {
+        const header = new HttpHeaders().set('Authorization', this.authService.getToken());
+        return {headers: header};
+    }
+
     getQueries(): Observable<any> {
-        if(this.authService.isAuthenticated()) {
-            const header = new HttpHeaders().set('Authorization', this.authService.getToken());
-            const headers = {headers: header};
-            return this.http.get(this.appService.getBaseServerURL() + this.queryAPI, headers);
+        if (this.authService.isAuthenticated()) {
+            return this.http.get(this.appService.getBaseServerURL() + this.queryAPI, this.getHeaders());
+        } else {
+            return null;
+        }
+    }
+
+    updateStatus(id, status): Promise<any> {
+        if (this.authService.isAuthenticated()) {
+            return this.http.post(this.appService.getBaseServerURL() + this.updateStatusAPI,
+                {id, status},
+                this.getHeaders()).toPromise();
         } else {
             return null;
         }
