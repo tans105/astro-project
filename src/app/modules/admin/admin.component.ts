@@ -97,7 +97,7 @@ export class AdminComponent {
     }
 
     canShowReject(status) {
-        return status === this.NEW || status === this.ACK || status === this.RESOLVED
+        return status === this.NEW || status === this.ACK
     }
 
     canShowAck(status) {
@@ -110,5 +110,9 @@ export class AdminComponent {
         this.queries = (this.currentFilter === this.ALL)
             ? this.allQueries
             : this.allQueries.filter(query => query.status === this.currentFilter)
+    }
+
+    panelClicked(id, acc) {
+        acc.toggle('toggle-'+id)
     }
 }

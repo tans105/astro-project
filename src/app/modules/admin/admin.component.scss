@@ -2,11 +2,21 @@
 
 .action-buttons {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: flex-end;
+  text-align: right;
 
   .logout-btn {
     text-align: right;
+    width: 48px;
+    padding: 0;
+    margin: 0;
+    text-decoration: underline;
+    color: white;
+
+    &:hover {
+      color: #0000FF
+    }
   }
 
   .login-user {
@@ -29,10 +39,12 @@
 }
 
 .filter-section {
-  margin-bottom: 40px;
-
   .select-label {
     color: white;
     margin-right: 10px;
   }
+}
+
+::ng-deep .card {
+  margin-bottom: 10px;
 }

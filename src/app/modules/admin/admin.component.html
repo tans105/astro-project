@@ -1,10 +1,13 @@
 <div>
-    <app-page-title title="Leads"></app-page-title>
     <div class="action-buttons">
-        <span class="login-user">Welcome, <span class="logged-in-usr">{{currentUser}}</span></span>
-        <a type="button logout-btn" class="btn btn-light" (click)="logout()"> Logout</a>
+        <div>
+            <span class="login-user">Welcome, <span class="logged-in-usr">{{currentUser}}</span></span>
+        </div>
+        <div>
+            <a type="button" class="btn btn-link logout-btn" (click)="logout()"> Logout</a>
+        </div>
     </div>
-    <hr/>
+    <hr>
     <div class="filter-section">
         <div class="form-group form-inline">
             <label for="sel1" class="select-label">Status</label>
@@ -13,19 +16,16 @@
             </select>
         </div>
     </div>
+    <hr>
     <div>
         <ngb-accordion #acc="ngbAccordion">
             <ngb-panel *ngFor="let q of queries; let i= index" id="toggle-{{q.id}}">
                 <ng-template ngbPanelHeader let-opened="opened">
-                    <div class="d-flex align-items-center justify-content-between">
+                    <div class="d-flex align-items-center justify-content-between" (click)="panelClicked(q.id, acc)">
                         <div>
                             <span class="mr-1">#{{q.id}} - {{q.query.fname}}</span>
                             <span [ngClass]="getBadge(q.status)">{{q.status}}</span>
                         </div>
-                        <button ngbPanelToggle class="btn btn-link p-0" *ngIf="opened"><i class="fa fa-minus"></i>
-                        </button>
-                        <button ngbPanelToggle class="btn btn-link p-0" *ngIf="!opened"><i class="fa fa-plus"></i>
-                        </button>
                     </div>
                 </ng-template>
                 <ng-template ngbPanelContent>
