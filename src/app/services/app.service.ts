@@ -25,7 +25,12 @@ export class AppService {
     }
 
     getMessage(messageId) {
-        return this.assets["messages"][messageId];
+        if(this.assets["messages"]) {
+            return this.assets["messages"][messageId];
+        } else {
+            this.getAssets().then(data => this.assets = data)
+            return this.assets["messages"][messageId];
+        }
     }
 
     async readAssets(content: string, forced = false) {

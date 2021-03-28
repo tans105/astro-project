@@ -5,6 +5,7 @@ import {HttpClient} from "@angular/common/http";
 import {AppService} from "./app.service";
 import {Router} from "@angular/router";
 import {CookieService} from "ngx-cookie-service";
+import {ToastrService} from "ngx-toastr";
 
 @Injectable({
     providedIn: 'root'
@@ -17,7 +18,8 @@ export class AuthenticateService {
                 private http: HttpClient,
                 private appService: AppService,
                 private router: Router,
-                private cookieService: CookieService) {
+                private cookieService: CookieService,
+                private toastr: ToastrService,) {
     }
 
     authenticate(user: Login) {
@@ -39,7 +41,9 @@ export class AuthenticateService {
                         this.cookieService.set("astro-user", user.firstName);
                         this.router.navigate(['/admin']);
                     }, err => {
-                        console.log(err)
+                        this.toastr.warning(this.appService.getMessage('unauthorizedUser'), 'Warning');
+                        this.router.navigate(['/login']);
+
                     })
                 }
             })

@@ -1,6 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {QueriesService} from "../../services/queries.service";
 import {AuthenticateService} from "../../services/auth.service";
+import {ToastrService} from "ngx-toastr";
+import {AppService} from "../../services/app.service";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-admin',
@@ -12,12 +15,19 @@ export class AdminComponent {
     currentUser;
 
     constructor(private queriesService: QueriesService,
-                private authService: AuthenticateService) {
+                private authService: AuthenticateService,
+                private toastr: ToastrService,
+                private appService: AppService,
+                private router: Router) {
         queriesService.getQueries()
             .subscribe((response) => {
-                console.log(response);
                 this.queries = response;
                 this.currentUser = this.authService.getCurrentUser();
+            }, err => {
+                if(err.isExpired) {
+                    this.router.navigate(['/login']);
+                    this.toastr.warning(this.appService.getMessage('loginAgain'), 'Warning');
+                }
             })
     }
 

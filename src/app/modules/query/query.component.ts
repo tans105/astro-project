@@ -107,7 +107,6 @@ export class QueryComponent {
             service = this.queryForm.get('service').value,
             isValid = true;
 
-        console.log(questions);
         if (questions && questions.length > 0) {
             if (service === 'custom') {
                 questions.forEach(q => {
