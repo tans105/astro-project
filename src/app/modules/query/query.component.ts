@@ -19,6 +19,7 @@ export class QueryComponent {
     data: any = {}
     showQuestions = false;
     perQuestionCost: number = 0;
+    showSecondPerson = false;
 
     constructor(private fb: FormBuilder,
                 private emailService: EmailService,
@@ -43,20 +44,25 @@ export class QueryComponent {
                 Validators.required,
                 Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')
             ]),
-            'fname': new FormControl('', Validators.required),
-            'amount': new FormControl('', Validators.required),
-            'service': new FormControl('', [Validators.required, Validators.min(1)]),
-            'pob': new FormControl('', Validators.required),
-            'sob': new FormControl('', [Validators.required, Validators.min(1)]),
             'primary': new FormControl('', [
                 Validators.required,
                 Validators.pattern('^\\s*(?:\\+?(\\d{1,3}))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?\\s*$')]),
             'secondary': new FormControl('', [
                 Validators.pattern('^\\s*(?:\\+?(\\d{1,3}))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?\\s*$')
             ]),
+            'fname': new FormControl('', Validators.required),
+            'pob': new FormControl('', Validators.required),
+            'sob': new FormControl('', [Validators.required, Validators.min(1)]),
             'dob': new FormControl('', Validators.required),
             'tob': new FormControl('', Validators.required),
-            'questions': this.fb.array([this.fb.group({question: ''})])
+            'fname_2': new FormControl(''),
+            'pob_2': new FormControl(''),
+            'sob_2': new FormControl(''),
+            'dob_2': new FormControl(''),
+            'tob_2': new FormControl(''),
+            'questions': this.fb.array([this.fb.group({question: ''})]),
+            'amount': new FormControl('', Validators.required),
+            'service': new FormControl('', [Validators.required, Validators.min(1)]),
         });
     }
 
@@ -91,15 +97,16 @@ export class QueryComponent {
         // this.disableForm = true;
         this.user = this.queryForm.value as QueryEmail;
         this.user.emailType = 'query';
-        this.emailService.send(this.user).then((data) => {
-            this.toastr.success(this.appService.getMessage('emailSuccess'), 'Success');
-            this.disableForm = false;
-            this.queryForm.reset();
-        }, (err) => {
-            console.log("Email Failed, " + err);
-            this.disableForm = false;
-            this.toastr.warning(this.appService.getMessage('emailFailed'), 'Warning');
-        });
+        console.log(this.user)
+        // this.emailService.send(this.user).then((data) => {
+        //     this.toastr.success(this.appService.getMessage('emailSuccess'), 'Success');
+        //     this.disableForm = false;
+        //     this.queryForm.reset();
+        // }, (err) => {
+        //     console.log("Email Failed, " + err);
+        //     this.disableForm = false;
+        //     this.toastr.warning(this.appService.getMessage('emailFailed'), 'Warning');
+        // });
     }
 
     validateForm() {
@@ -126,7 +133,6 @@ export class QueryComponent {
         return isValid;
     }
 
-
     onServiceChange(event) {
         let selectedService = this.data.services
             .find((service) => service.id === event.target.value);
@@ -134,7 +140,39 @@ export class QueryComponent {
         if (selectedService) {
             this.perQuestionCost = selectedService.newPrice;
             this.showQuestions = selectedService.id === 'custom';
+            this.showSecondPerson = selectedService.id === 'kundli';
             this.queryForm.patchValue({amount: this.perQuestionCost})
         }
+
+        if(selectedService.id === 'kundli') {
+            this.addValidators();
+        } else {
+            this.removeValidators();
+        }
+    }
+
+    addValidators() {
+        this.queryForm.controls["fname_2"].setValidators(Validators.required);
+        this.queryForm.controls["dob_2"].setValidators(Validators.required);
+        this.queryForm.controls["sob_2"].setValidators(Validators.required);
+        this.queryForm.controls["tob_2"].setValidators(Validators.required);
+        this.queryForm.controls["pob_2"].setValidators(Validators.required);
+    }
+
+    removeValidators() {
+        this.queryForm.controls["fname_2"].clearValidators();
+        this.queryForm.controls["fname_2"].updateValueAndValidity();
+
+        this.queryForm.controls["dob_2"].clearValidators();
+        this.queryForm.controls["dob_2"].updateValueAndValidity();
+
+        this.queryForm.controls["sob_2"].clearValidators();
+        this.queryForm.controls["sob_2"].updateValueAndValidity();
+
+        this.queryForm.controls["tob_2"].clearValidators();
+        this.queryForm.controls["tob_2"].updateValueAndValidity();
+
+        this.queryForm.controls["pob_2"].clearValidators();
+        this.queryForm.controls["pob_2"].updateValueAndValidity();
     }
 }
