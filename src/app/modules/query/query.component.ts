@@ -94,19 +94,19 @@ export class QueryComponent {
             return;
         }
 
-        // this.disableForm = true;
+        this.disableForm = true;
         this.user = this.queryForm.value as QueryEmail;
         this.user.emailType = 'query';
         console.log(this.user)
-        // this.emailService.send(this.user).then((data) => {
-        //     this.toastr.success(this.appService.getMessage('emailSuccess'), 'Success');
-        //     this.disableForm = false;
-        //     this.queryForm.reset();
-        // }, (err) => {
-        //     console.log("Email Failed, " + err);
-        //     this.disableForm = false;
-        //     this.toastr.warning(this.appService.getMessage('emailFailed'), 'Warning');
-        // });
+        this.emailService.send(this.user).then((data) => {
+            this.toastr.success(this.appService.getMessage('emailSuccess'), 'Success');
+            this.disableForm = false;
+            this.queryForm.reset();
+        }, (err) => {
+            console.log("Email Failed, " + err);
+            this.disableForm = false;
+            this.toastr.warning(this.appService.getMessage('emailFailed'), 'Warning');
+        });
     }
 
     validateForm() {
