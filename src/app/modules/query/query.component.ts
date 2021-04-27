@@ -97,7 +97,6 @@ export class QueryComponent {
         this.disableForm = true;
         this.user = this.queryForm.value as QueryEmail;
         this.user.emailType = 'query';
-        console.log(this.user)
         this.emailService.send(this.user).then((data) => {
             this.toastr.success(this.appService.getMessage('emailSuccess'), 'Success');
             this.disableForm = false;
