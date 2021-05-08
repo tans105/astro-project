@@ -6,11 +6,11 @@ export interface QueryEmail extends Email{
     sob: string;
     tob: string;
     fname: string;
-    dob_2: string;
-    pob_2: string;
-    sob_2: string;
-    tob_2: string;
-    fname_2: string;
+    dob_girl: string;
+    pob_girl: string;
+    sob_girl: string;
+    tob_girl: string;
+    fname_girl: string;
     secondary: string;
     primary: string;
     questions: [];

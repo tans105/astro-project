@@ -4,7 +4,6 @@ import {EmailService} from "../../services/email.service";
 import {AppService} from "../../services/app.service";
 import {ToastrService} from "ngx-toastr";
 import {QueryEmail} from "../../model/user.model";
-import {ActivatedRoute} from "@angular/router";
 
 @Component({
     selector: 'app-query',
@@ -55,11 +54,11 @@ export class QueryComponent {
             'sob': new FormControl('', [Validators.required, Validators.min(1)]),
             'dob': new FormControl('', Validators.required),
             'tob': new FormControl('', Validators.required),
-            'fname_2': new FormControl(''),
-            'pob_2': new FormControl(''),
-            'sob_2': new FormControl(''),
-            'dob_2': new FormControl(''),
-            'tob_2': new FormControl(''),
+            'fname_girl': new FormControl(''),
+            'pob_girl': new FormControl(''),
+            'sob_girl': new FormControl(''),
+            'dob_girl': new FormControl(''),
+            'tob_girl': new FormControl(''),
             'questions': this.fb.array([this.fb.group({question: ''})]),
             'amount': new FormControl('', Validators.required),
             'service': new FormControl('', [Validators.required, Validators.min(1)]),
@@ -111,13 +110,15 @@ export class QueryComponent {
     validateForm() {
         let questions = this.queryForm.get('questions').value,
             service = this.queryForm.get('service').value,
-            isValid = true;
+            isValid = true,
+            errorMsg;
 
         if (questions && questions.length > 0) {
             if (service === 'custom') {
                 questions.forEach(q => {
                     if (!q.question) {
                         isValid = false;
+                        errorMsg = 'emptyQuestion'
                     }
                 })
             } else {
@@ -125,8 +126,8 @@ export class QueryComponent {
             }
         }
 
-        if(!isValid) {
-            this.toastr.warning(this.appService.getMessage('emptyQuestion'), 'Warning');
+        if (!isValid) {
+            this.toastr.error(this.appService.getMessage(errorMsg), 'Error');
         }
 
         return isValid;
@@ -151,27 +152,27 @@ export class QueryComponent {
     }
 
     addValidators() {
-        this.queryForm.controls["fname_2"].setValidators(Validators.required);
-        this.queryForm.controls["dob_2"].setValidators(Validators.required);
-        this.queryForm.controls["sob_2"].setValidators(Validators.required);
-        this.queryForm.controls["tob_2"].setValidators(Validators.required);
-        this.queryForm.controls["pob_2"].setValidators(Validators.required);
+        this.queryForm.controls["fname_girl"].setValidators(Validators.required);
+        this.queryForm.controls["dob_girl"].setValidators(Validators.required);
+        this.queryForm.controls["sob_girl"].setValidators(Validators.required);
+        this.queryForm.controls["tob_girl"].setValidators(Validators.required);
+        this.queryForm.controls["pob_girl"].setValidators(Validators.required);
     }
 
     removeValidators() {
-        this.queryForm.controls["fname_2"].clearValidators();
-        this.queryForm.controls["fname_2"].updateValueAndValidity();
+        this.queryForm.controls["fname_girl"].clearValidators();
+        this.queryForm.controls["fname_girl"].updateValueAndValidity();
 
-        this.queryForm.controls["dob_2"].clearValidators();
-        this.queryForm.controls["dob_2"].updateValueAndValidity();
+        this.queryForm.controls["dob_girl"].clearValidators();
+        this.queryForm.controls["dob_girl"].updateValueAndValidity();
 
-        this.queryForm.controls["sob_2"].clearValidators();
-        this.queryForm.controls["sob_2"].updateValueAndValidity();
+        this.queryForm.controls["sob_girl"].clearValidators();
+        this.queryForm.controls["sob_girl"].updateValueAndValidity();
 
-        this.queryForm.controls["tob_2"].clearValidators();
-        this.queryForm.controls["tob_2"].updateValueAndValidity();
+        this.queryForm.controls["tob_girl"].clearValidators();
+        this.queryForm.controls["tob_girl"].updateValueAndValidity();
 
-        this.queryForm.controls["pob_2"].clearValidators();
-        this.queryForm.controls["pob_2"].updateValueAndValidity();
+        this.queryForm.controls["pob_girl"].clearValidators();
+        this.queryForm.controls["pob_girl"].updateValueAndValidity();
     }
 }

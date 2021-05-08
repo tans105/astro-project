@@ -115,40 +115,40 @@
                 <div class="person-label">{{data.queryForm.girlDetail}}</div>
 
                 <div class="form-group row">
-                    <label for="fname_2" class="col-md-2 col-form-label required">{{data.queryForm.fname_2}}</label>
+                    <label for="fname_girl" class="col-md-2 col-form-label required">{{data.queryForm.fname_girl}}</label>
                     <div class="col-md-10">
-                        <input formControlName="fname_2" type="text" class="form-control" id="fname_2" name="fname_2">
-                        <div *ngIf="formControls.fname_2.touched">
-                            <p class="error" *ngIf="formControls.fname_2.errors?.required">{{appService.getMessage('fnameRequired')}}</p>
+                        <input formControlName="fname_girl" type="text" class="form-control" id="fname_girl" name="fname_girl">
+                        <div *ngIf="formControls.fname_girl.touched">
+                            <p class="error" *ngIf="formControls.fname_girl.errors?.required">{{appService.getMessage('fnameRequired')}}</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="form-group row">
-                    <label for="pob_2" class="col-md-2 col-form-label required">{{data.queryForm.pob_2}}</label>
+                    <label for="pob_girl" class="col-md-2 col-form-label required">{{data.queryForm.pob_girl}}</label>
                     <div class="col-md-4">
-                        <input formControlName="pob_2" type="text" class="form-control" id="pob_2" name="pob_2">
-                        <div *ngIf="formControls.pob_2.touched">
-                            <p class="error" *ngIf="formControls.pob_2.errors?.required">{{appService.getMessage('pobRequired')}}</p>
+                        <input formControlName="pob_girl" type="text" class="form-control" id="pob_girl" name="pob_girl">
+                        <div *ngIf="formControls.pob_girl.touched">
+                            <p class="error" *ngIf="formControls.pob_girl.errors?.required">{{appService.getMessage('pobRequired')}}</p>
                         </div>
                     </div>
 
-                    <label for="sob_2" class="col-md-2 col-form-label required">{{data.queryForm.sob_2}}</label>
+                    <label for="sob_girl" class="col-md-2 col-form-label required">{{data.queryForm.sob_girl}}</label>
                     <div class="col-md-4">
-                        <select class="form-control" id="sob_2" name="sob_2" formControlName="sob_2">
+                        <select class="form-control" id="sob_girl" name="sob_girl" formControlName="sob_girl">
                             <option *ngFor="let state of data.queryForm.states;let i = index" value="{{state}}">{{state}}</option>
                         </select>
-                        <div *ngIf="formControls.sob_2.touched">
-                            <p class="error" *ngIf="formControls.sob_2.errors?.required">{{appService.getMessage('sobRequired')}}</p>
+                        <div *ngIf="formControls.sob_girl.touched">
+                            <p class="error" *ngIf="formControls.sob_girl.errors?.required">{{appService.getMessage('sobRequired')}}</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="form-group row">
-                    <label for="dob_2" class="col-md-2 col-form-label required">{{data.queryForm.dob_2}}</label>
+                    <label for="dob_girl" class="col-md-2 col-form-label required">{{data.queryForm.dob_girl}}</label>
                     <div class="col-md-4">
                         <div class="input-group">
-                            <input class="form-control" name="dob_2" id="dob_2" formControlName="dob_2" ngbDatepicker
+                            <input class="form-control" name="dob_girl" id="dob_girl" formControlName="dob_girl" ngbDatepicker
                                    [minDate]="{year: 1900, month: 1, day: 1}"
                                    #d="ngbDatepicker">
                             <div class="input-group-append">
@@ -157,18 +157,18 @@
                                 </button>
                             </div>
                         </div>
-                        <div *ngIf="formControls.dob_2.touched"><p class="error" *ngIf="formControls.dob_2.errors?.required">{{appService.getMessage('dobRequired')}}</p>
+                        <div *ngIf="formControls.dob_girl.touched"><p class="error" *ngIf="formControls.dob_girl.errors?.required">{{appService.getMessage('dobRequired')}}</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="form-group row">
-                    <label for="tob_2" class="col-md-2 col-form-label required time-input">{{data.queryForm.tob_2}}</label>
+                    <label for="tob_girl" class="col-md-2 col-form-label required time-input">{{data.queryForm.tob_girl}}</label>
                     <div class="col-md-10">
-                        <ngb-timepicker name="tob_2" id="tob_2" formControlName="tob_2"
+                        <ngb-timepicker name="tob_girl" id="tob_girl" formControlName="tob_girl"
                                         [meridian]="true"></ngb-timepicker>
-                        <div *ngIf="formControls.tob_2.touched">
-                            <p class="error" *ngIf="formControls.tob_2.errors?.required">{{appService.getMessage('tobRequired')}}</p>
+                        <div *ngIf="formControls.tob_girl.touched">
+                            <p class="error" *ngIf="formControls.tob_girl.errors?.required">{{appService.getMessage('tobRequired')}}</p>
                         </div>
                     </div>
                 </div>
