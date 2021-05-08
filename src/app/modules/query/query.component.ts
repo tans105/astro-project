@@ -4,7 +4,6 @@ import {EmailService} from "../../services/email.service";
 import {AppService} from "../../services/app.service";
 import {ToastrService} from "ngx-toastr";
 import {QueryEmail} from "../../model/user.model";
-import {ActivatedRoute} from "@angular/router";
 
 @Component({
     selector: 'app-query',
@@ -19,6 +18,7 @@ export class QueryComponent {
     data: any = {}
     showQuestions = false;
     perQuestionCost: number = 0;
+    showSecondPerson = false;
 
     constructor(private fb: FormBuilder,
                 private emailService: EmailService,
@@ -43,20 +43,25 @@ export class QueryComponent {
                 Validators.required,
                 Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')
             ]),
-            'fname': new FormControl('', Validators.required),
-            'amount': new FormControl('', Validators.required),
-            'service': new FormControl('', [Validators.required, Validators.min(1)]),
-            'pob': new FormControl('', Validators.required),
-            'sob': new FormControl('', [Validators.required, Validators.min(1)]),
             'primary': new FormControl('', [
                 Validators.required,
                 Validators.pattern('^\\s*(?:\\+?(\\d{1,3}))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?\\s*$')]),
             'secondary': new FormControl('', [
                 Validators.pattern('^\\s*(?:\\+?(\\d{1,3}))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?\\s*$')
             ]),
+            'fname': new FormControl('', Validators.required),
+            'pob': new FormControl('', Validators.required),
+            'sob': new FormControl('', [Validators.required, Validators.min(1)]),
             'dob': new FormControl('', Validators.required),
             'tob': new FormControl('', Validators.required),
-            'questions': this.fb.array([this.fb.group({question: ''})])
+            'fname_girl': new FormControl(''),
+            'pob_girl': new FormControl(''),
+            'sob_girl': new FormControl(''),
+            'dob_girl': new FormControl(''),
+            'tob_girl': new FormControl(''),
+            'questions': this.fb.array([this.fb.group({question: ''})]),
+            'amount': new FormControl('', Validators.required),
+            'service': new FormControl('', [Validators.required, Validators.min(1)]),
         });
     }
 
@@ -88,7 +93,7 @@ export class QueryComponent {
             return;
         }
 
-        // this.disableForm = true;
+        this.disableForm = true;
         this.user = this.queryForm.value as QueryEmail;
         this.user.emailType = 'query';
         this.emailService.send(this.user).then((data) => {
@@ -105,13 +110,15 @@ export class QueryComponent {
     validateForm() {
         let questions = this.queryForm.get('questions').value,
             service = this.queryForm.get('service').value,
-            isValid = true;
+            isValid = true,
+            errorMsg;
 
         if (questions && questions.length > 0) {
             if (service === 'custom') {
                 questions.forEach(q => {
                     if (!q.question) {
                         isValid = false;
+                        errorMsg = 'emptyQuestion'
                     }
                 })
             } else {
@@ -119,13 +126,12 @@ export class QueryComponent {
             }
         }
 
-        if(!isValid) {
-            this.toastr.warning(this.appService.getMessage('emptyQuestion'), 'Warning');
+        if (!isValid) {
+            this.toastr.error(this.appService.getMessage(errorMsg), 'Error');
         }
 
         return isValid;
     }
-
 
     onServiceChange(event) {
         let selectedService = this.data.services
@@ -134,7 +140,39 @@ export class QueryComponent {
         if (selectedService) {
             this.perQuestionCost = selectedService.newPrice;
             this.showQuestions = selectedService.id === 'custom';
+            this.showSecondPerson = selectedService.id === 'kundli';
             this.queryForm.patchValue({amount: this.perQuestionCost})
         }
+
+        if(selectedService.id === 'kundli') {
+            this.addValidators();
+        } else {
+            this.removeValidators();
+        }
+    }
+
+    addValidators() {
+        this.queryForm.controls["fname_girl"].setValidators(Validators.required);
+        this.queryForm.controls["dob_girl"].setValidators(Validators.required);
+        this.queryForm.controls["sob_girl"].setValidators(Validators.required);
+        this.queryForm.controls["tob_girl"].setValidators(Validators.required);
+        this.queryForm.controls["pob_girl"].setValidators(Validators.required);
+    }
+
+    removeValidators() {
+        this.queryForm.controls["fname_girl"].clearValidators();
+        this.queryForm.controls["fname_girl"].updateValueAndValidity();
+
+        this.queryForm.controls["dob_girl"].clearValidators();
+        this.queryForm.controls["dob_girl"].updateValueAndValidity();
+
+        this.queryForm.controls["sob_girl"].clearValidators();
+        this.queryForm.controls["sob_girl"].updateValueAndValidity();
+
+        this.queryForm.controls["tob_girl"].clearValidators();
+        this.queryForm.controls["tob_girl"].updateValueAndValidity();
+
+        this.queryForm.controls["pob_girl"].clearValidators();
+        this.queryForm.controls["pob_girl"].updateValueAndValidity();
     }
 }

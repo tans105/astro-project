@@ -32,6 +32,27 @@
             </div>
 
             <div class="form-group row">
+                <label for="primary" class="col-md-2 col-form-label required">{{data.queryForm.primary}}</label>
+                <div class="col-md-4">
+                    <input formControlName="primary" type="text" class="form-control" name="primary" id="primary">
+                    <div *ngIf="formControls.primary.touched">
+                        <p class="error" *ngIf="formControls.primary.errors?.required">{{appService.getMessage('primaryRequired')}}</p>
+                        <p class="error" *ngIf="formControls.primary.errors?.pattern">{{appService.getMessage('invalidNumber')}}</p>
+                    </div>
+                </div>
+
+                <label for="secondary" class="col-md-2 col-form-label">{{data.queryForm.secondary}}</label>
+                <div class="col-md-4">
+                    <input formControlName="secondary" type="text" class="form-control" name="secondary" id="secondary">
+                    <div *ngIf="formControls.secondary.touched">
+                        <p class="error" *ngIf="formControls.secondary.errors?.pattern">{{appService.getMessage('invalidNumber')}}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="showSecondPerson" class="person-label">{{data.queryForm.boyDetail}}</div>
+
+            <div class="form-group row">
                 <label for="fname" class="col-md-2 col-form-label required">{{data.queryForm.fname}}</label>
                 <div class="col-md-10">
                     <input required formControlName="fname" type="text" class="form-control" id="fname" name="fname">
@@ -61,26 +82,6 @@
                 </div>
             </div>
 
-
-            <div class="form-group row">
-                <label for="primary" class="col-md-2 col-form-label required">{{data.queryForm.primary}}</label>
-                <div class="col-md-4">
-                    <input formControlName="primary" type="text" class="form-control" name="primary" id="primary">
-                    <div *ngIf="formControls.primary.touched">
-                        <p class="error" *ngIf="formControls.primary.errors?.required">{{appService.getMessage('primaryRequired')}}</p>
-                        <p class="error" *ngIf="formControls.primary.errors?.pattern">{{appService.getMessage('invalidNumber')}}</p>
-                    </div>
-                </div>
-
-                <label for="secondary" class="col-md-2 col-form-label">{{data.queryForm.secondary}}</label>
-                <div class="col-md-4">
-                    <input formControlName="secondary" type="text" class="form-control" name="secondary" id="secondary">
-                    <div *ngIf="formControls.secondary.touched">
-                        <p class="error" *ngIf="formControls.secondary.errors?.pattern">{{appService.getMessage('invalidNumber')}}</p>
-                    </div>
-                </div>
-            </div>
-
             <div class="form-group row">
                 <label for="dob" class="col-md-2 col-form-label required">{{data.queryForm.dob}}</label>
                 <div class="col-md-4">
@@ -106,6 +107,69 @@
                                     [meridian]="true"></ngb-timepicker>
                     <div *ngIf="formControls.tob.touched">
                         <p class="error" *ngIf="formControls.tob.errors?.required">{{appService.getMessage('tobRequired')}}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="showSecondPerson">
+                <div class="person-label">{{data.queryForm.girlDetail}}</div>
+
+                <div class="form-group row">
+                    <label for="fname_girl" class="col-md-2 col-form-label required">{{data.queryForm.fname_girl}}</label>
+                    <div class="col-md-10">
+                        <input formControlName="fname_girl" type="text" class="form-control" id="fname_girl" name="fname_girl">
+                        <div *ngIf="formControls.fname_girl.touched">
+                            <p class="error" *ngIf="formControls.fname_girl.errors?.required">{{appService.getMessage('fnameRequired')}}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="pob_girl" class="col-md-2 col-form-label required">{{data.queryForm.pob_girl}}</label>
+                    <div class="col-md-4">
+                        <input formControlName="pob_girl" type="text" class="form-control" id="pob_girl" name="pob_girl">
+                        <div *ngIf="formControls.pob_girl.touched">
+                            <p class="error" *ngIf="formControls.pob_girl.errors?.required">{{appService.getMessage('pobRequired')}}</p>
+                        </div>
+                    </div>
+
+                    <label for="sob_girl" class="col-md-2 col-form-label required">{{data.queryForm.sob_girl}}</label>
+                    <div class="col-md-4">
+                        <select class="form-control" id="sob_girl" name="sob_girl" formControlName="sob_girl">
+                            <option *ngFor="let state of data.queryForm.states;let i = index" value="{{state}}">{{state}}</option>
+                        </select>
+                        <div *ngIf="formControls.sob_girl.touched">
+                            <p class="error" *ngIf="formControls.sob_girl.errors?.required">{{appService.getMessage('sobRequired')}}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="dob_girl" class="col-md-2 col-form-label required">{{data.queryForm.dob_girl}}</label>
+                    <div class="col-md-4">
+                        <div class="input-group">
+                            <input class="form-control" name="dob_girl" id="dob_girl" formControlName="dob_girl" ngbDatepicker
+                                   [minDate]="{year: 1900, month: 1, day: 1}"
+                                   #d="ngbDatepicker">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button">
+                                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div *ngIf="formControls.dob_girl.touched"><p class="error" *ngIf="formControls.dob_girl.errors?.required">{{appService.getMessage('dobRequired')}}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="tob_girl" class="col-md-2 col-form-label required time-input">{{data.queryForm.tob_girl}}</label>
+                    <div class="col-md-10">
+                        <ngb-timepicker name="tob_girl" id="tob_girl" formControlName="tob_girl"
+                                        [meridian]="true"></ngb-timepicker>
+                        <div *ngIf="formControls.tob_girl.touched">
+                            <p class="error" *ngIf="formControls.tob_girl.errors?.required">{{appService.getMessage('tobRequired')}}</p>
+                        </div>
                     </div>
                 </div>
             </div>
