@@ -26,7 +26,11 @@ export class AuthenticateService {
         return this.http.post(this.appService.getBaseServerURL() + this.loginAPI, {
             user,
             isSocial: false
-        });
+        }).subscribe(res => {
+            this.onLoginSuccess(user.email, res['token']);
+        }, err => {
+            this.onLoginFail()
+        })
     }
 
     socialAuthenticate() {
@@ -37,16 +41,23 @@ export class AuthenticateService {
                         user,
                         isSocial: true
                     }).subscribe(res => {
-                        localStorage.setItem('astro_access_token', res['token']);
-                        this.cookieService.set("astro-user", user.firstName);
-                        this.router.navigate(['/admin']);
+                        this.onLoginSuccess(user.firstName, res['token']);
                     }, err => {
-                        this.toastr.warning(this.appService.getMessage('unauthorizedUser'), 'Warning');
-                        this.router.navigate(['/login']);
-
+                        this.onLoginFail()
                     })
                 }
             })
+    }
+
+    onLoginSuccess(user, token) {
+        localStorage.setItem('astro_access_token', token);
+        this.cookieService.set("astro-user", user);
+        this.router.navigate(['/admin']);
+    }
+
+    onLoginFail() {
+        this.toastr.warning(this.appService.getMessage('unauthorizedUser'), 'Warning');
+        this.router.navigate(['/login']);
     }
 
     logout() {

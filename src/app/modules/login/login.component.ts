@@ -21,7 +21,7 @@ export class LoginComponent {
 
     onSubmit(f: NgForm) {
         this.loginForm = f.value as Login;
-        this.authenticateService.authenticate(this.loginForm);
+        this.authenticateService.authenticate(this.loginForm)
     }
 
     socialLogin() {
