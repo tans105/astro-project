@@ -17,7 +17,7 @@
         </div>
     </div>
     <hr>
-    <div>
+    <div *ngIf="queries.length > 0">
         <ngb-accordion #acc="ngbAccordion">
             <ngb-panel *ngFor="let q of queries; let i= index" id="toggle-{{q.id}}">
                 <ng-template ngbPanelHeader let-opened="opened">
@@ -35,11 +35,6 @@
                     </div>
 
                     <div class="query-item">
-                        <div class="query-key">Name</div>
-                        <div class="query-value">{{q.query.fname}}</div>
-                    </div>
-
-                    <div class="query-item">
                         <div class="query-key">Primary Contact</div>
                         <div class="query-value">{{q.query.primary}}</div>
                     </div>
@@ -50,34 +45,73 @@
                     </div>
 
                     <div class="query-item">
-                        <div class="query-key">State</div>
-                        <div class="query-value">{{q.query.sob}}</div>
+                        <div class="query-key">Service</div>
+                        <div class="query-value">{{q.query.service}}</div>
                     </div>
 
-                    <div class="query-item">
-                        <div class="query-key">City</div>
-                        <div class="query-value">{{q.query.pob}}</div>
+                    <div *ngIf="q.query.fname">
+                        <p>Person 1 Detail</p>
+
+                        <div class="query-item">
+                            <div class="query-key">Name</div>
+                            <div class="query-value">{{q.query.fname}}</div>
+                        </div>
+
+                        <div class="query-item">
+                            <div class="query-key">State</div>
+                            <div class="query-value">{{q.query.sob}}</div>
+                        </div>
+
+                        <div class="query-item">
+                            <div class="query-key">City</div>
+                            <div class="query-value">{{q.query.pob}}</div>
+                        </div>
+
+                        <div class="query-item">
+                            <div class="query-key">Date of Birth</div>
+                            <div class="query-value">{{q.query.dob}}</div>
+                        </div>
+
+                        <div class="query-item">
+                            <div class="query-key">Time of Birth</div>
+                            <div class="query-value">{{q.query.tob}}</div>
+                        </div>
                     </div>
 
-                    <div class="query-item">
-                        <div class="query-key">Date of Birth</div>
-                        <div class="query-value">{{q.query.dob}}</div>
+                    <div *ngIf="q.query.fname_girl">
+                        <p>Person 2 Detail</p>
+
+                        <div class="query-item">
+                            <div class="query-key">Name</div>
+                            <div class="query-value">{{q.query.fname_girl}}</div>
+                        </div>
+
+                        <div class="query-item">
+                            <div class="query-key">State</div>
+                            <div class="query-value">{{q.query.sob_girl}}</div>
+                        </div>
+
+                        <div class="query-item">
+                            <div class="query-key">City</div>
+                            <div class="query-value">{{q.query.pob_girl}}</div>
+                        </div>
+
+                        <div class="query-item">
+                            <div class="query-key">Date of Birth</div>
+                            <div class="query-value">{{q.query.dob_girl}}</div>
+                        </div>
+
+                        <div class="query-item">
+                            <div class="query-key">Time of Birth</div>
+                            <div class="query-value">{{q.query.tob_girl}}</div>
+                        </div>
                     </div>
 
-                    <div class="query-item">
-                        <div class="query-key">Time of Birth</div>
-                        <div class="query-value">{{q.query.tob}}</div>
-                    </div>
-                    <div class="query-item">
+                    <div *ngIf="q.query.questions && q.query.questions.length > 0" class="query-item">
                         <div class="query-key">Questions</div>
                         <ul>
                             <li class="query-value" *ngFor="let q of q.query.questions">{{q.question}}</li>
                         </ul>
-                    </div>
-
-                    <div class="query-item">
-                        <div class="query-key">Service</div>
-                        <div class="query-value">{{q.query.service}}</div>
                     </div>
 
                     <div class="text-align-center mt-5">
@@ -98,4 +132,5 @@
             </ngb-panel>
         </ngb-accordion>
     </div>
+    <p *ngIf="queries.length === 0">Sorry. Nothing found for this filter</p>
 </div>
