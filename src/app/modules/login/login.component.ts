@@ -11,6 +11,7 @@ import {Router} from "@angular/router";
 })
 export class LoginComponent {
     loginForm: Login;
+    disableForm: boolean;
 
     constructor(private authenticateService: AuthenticateService,
                 private router: Router) {
@@ -21,7 +22,14 @@ export class LoginComponent {
 
     onSubmit(f: NgForm) {
         this.loginForm = f.value as Login;
-        this.authenticateService.authenticate(this.loginForm)
+        this.disableForm =  true;
+        this.authenticateService.authenticate(this.loginForm).subscribe(res => {
+            this.disableForm = false;
+            this.authenticateService.onLoginSuccess(this.loginForm.email, res['token']);
+        }, err => {
+            this.authenticateService.onLoginFail()
+            this.disableForm = false;
+        })
     }
 
     socialLogin() {

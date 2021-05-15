@@ -26,10 +26,6 @@ export class AuthenticateService {
         return this.http.post(this.appService.getBaseServerURL() + this.loginAPI, {
             user,
             isSocial: false
-        }).subscribe(res => {
-            this.onLoginSuccess(user.email, res['token']);
-        }, err => {
-            this.onLoginFail()
         })
     }
 
