@@ -12,20 +12,43 @@ export class AppService {
     assets: any = {};
     private contentAPI = '/api/content';
 
+    getEnvironment() {
+        return environment.type
+    }
 
     getBaseServerURL() {
-        return (environment.production) ? 'https://astroproject-server.herokuapp.com' : 'http://localhost:8000';
+        switch (environment.type) {
+            case 'production': {
+                return 'https://astroproject-server.herokuapp.com'
+            }
+            case 'uat': {
+                return 'https://astroproject-server.herokuapp.com'
+            }
+            default: {
+                return 'http://localhost:8000'
+            }
+        }
     }
 
     getBaseContentServiceUrl() {
-        return (environment.production) ? 'https://astro-content-service.herokuapp.com' : 'http://localhost:8001';
+        switch (environment.type) {
+            case 'production': {
+                return 'https://astro-content-service.herokuapp.com'
+            }
+            case 'uat': {
+                return 'https://astro-content-service.herokuapp.com'
+            }
+            default: {
+                return 'http://localhost:8001'
+            }
+        }
     }
 
     constructor(private cookieService: CookieService, private http: HttpClient) {
     }
 
     getMessage(messageId) {
-        if(this.assets["messages"]) {
+        if (this.assets["messages"]) {
             return this.assets["messages"][messageId];
         } else {
             this.getAssets().then(data => this.assets = data)
@@ -80,23 +103,25 @@ export class AppService {
 
     getJSONFromContentService(content, forced, lang): Promise<any> {
         let url = this.getBaseContentServiceUrl() + this.contentAPI,
-            query = `?id=${content}&lang=${lang}`
+            query = `?id=${content}&lang=${lang}`,
+            env = `&env=${this.getEnvironment()}`,
+            endPoint = url + query + env
 
         if (forced) {
-            return this.http.get(url + query).toPromise();
+            return this.http.get(endPoint).toPromise();
         } else {
             if (this.assets && this.assets[content]) {
                 return new Promise<any>((res) => {
                     res(this.assets[content]);
                 });
             } else {
-                return this.http.get(url + query).toPromise();
+                return this.http.get(endPoint).toPromise();
             }
         }
     }
 
     async getAssets() {
-        if(!_.isEmpty(this.assets)) return this.assets
+        if (!_.isEmpty(this.assets)) return this.assets
 
         let data = {};
         data = {...await this.readAssets("dynamic_content", false), ...data};

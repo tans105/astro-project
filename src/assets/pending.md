@@ -8,3 +8,4 @@
 - API to get token
 - route in admin page
 - role management
+- content service prod and test setup
