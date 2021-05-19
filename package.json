@@ -47,6 +47,9 @@
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0"
   },
+  "resolutions": {
+    "graceful-fs": "4.2.4"
+  },
   "engines": {
     "node": "~14",
     "npm": "~6.9.0"

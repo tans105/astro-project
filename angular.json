@@ -106,6 +106,9 @@
           "configurations": {
             "production": {
               "browserTarget": "the-astro-project:build:production"
+            },
+            "uat": {
+              "browserTarget": "the-astro-project:build:uat"
             }
           }
         },
