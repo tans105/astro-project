@@ -22,7 +22,7 @@ export class AppService {
                 return 'https://astroproject-server.herokuapp.com'
             }
             case 'uat': {
-                return 'https://astro-project-server-uat.herokuapp.com/'
+                return 'https://astro-project-server-uat.herokuapp.com'
             }
             default: {
                 return 'http://localhost:8000'
