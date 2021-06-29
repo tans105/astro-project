@@ -152,5 +152,61 @@
       "title": "कुंडली",
       "content": "तरीके एसलिये परिवहन तरहथा। मानव निर्माण ढांचामात्रुभाषा लेने चुनने वास्तव विकेन्द्रियकरण उशकी नवंबर होसके शुरुआत सोफ़तवेर व्रुद्धि अपनि उद्योग दोषसके सीमित सुना आधुनिक प्रतिबध्दता बढाता पसंद बिना चुनने गटकउसि मुश्किले कार्यकर्ता रिती क्षमता वर्तमान निरपेक्ष पुर्व विशेष पासपाई वार्तालाप एकएस लेकिन है।"
     }
+  ],
+  "cards": [
+    {
+      "id": 1,
+      "title": "शीर्षक 1",
+      "subtitle": "उपशीर्षक 1"
+    },
+    {
+      "id": 2,
+      "title": "शीर्षक 2",
+      "subtitle": "उपशीर्षक 2"
+    },
+    {
+      "id": 3,
+      "title": "शीर्षक 3",
+      "subtitle": "उपशीर्षक 3"
+    }
+  ],
+  "aboutUsPara": [
+    "A Good Astrologer helps to understand your past, accept your piles of karma and work on your future by choosing the right actions and negating further negative karmas by remedies like Meditation, Ayurveda, Gemstones, Mantra, Homa and Yoga (Bhakti, Karma, Gyan, Raj, Kundalini, Swar Yoga).",
+    "Our Astrologers are on Mission. They strongly believes that Rishis have envisioned Vedic Sciences to bring light in the life of human civilization by helping them to choose Right path. They are trained through Guru Sisya Parampara in Himalayas. They also has deep interest in Yoga, Meditation, Ayurveda, Pranayam, Yantra, Mantra and homa..Their Remedies are based upon all these tools and they tries to match the remedies according to the needs of Jatak.."
+  ],
+  "noteConditions": [
+    "We make sure to take minimal personal details.",
+    "These details are needed for contact and to map your 'Janampatri'. So please make sure the details are correct.",
+    "When posting questions please ensure to be elaborate and specific.",
+    "Questions once posted cannot be reversed.",
+    "You can ask as many questions as you want.",
+    "Fields with '*' are mandatory"
+  ],
+  "services": [
+    {
+      "image": "assets/images/modules/janampatri.jpeg",
+      "heading": "Complete Janampatri",
+      "id": "complete",
+      "para": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut\n                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco\n                        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in\n                        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat\n                        non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "oldPrice": "4999",
+      "newPrice": "2999"
+    },
+    {
+      "image": "assets/images/modules/indian-wedding.jpg",
+      "heading": "Kundli Matching",
+      "id": "kundli",
+      "para": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut\n                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco\n                        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in\n                        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat\n                        non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "oldPrice": "1499",
+      "newPrice": "999"
+    },
+    {
+      "image": "assets/images/modules/kundli.jpg",
+      "heading": "Custom Query from Janampatri",
+      "id": "custom",
+      "para": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut\n                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco\n                        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in\n                        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat\n                        non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "oldPrice": "199",
+      "newPrice": "99",
+      "additionalInfo": "per question"
+    }
   ]
 }

@@ -160,5 +160,61 @@
       "title": "Kundli",
       "content": "The generalized tendency adopted these days is to compare the two horoscopes only on the merit of Nakshatra or Constellation matching"
     }
+  ],
+  "cards": [
+    {
+      "id": 2,
+      "title": "Tell us about yourself",
+      "subtitle": "Some more information about your place, date & time of Birth. This will help us map your nakshatra with the position of the stars. The more precise the better"
+    },
+    {
+      "id": 1,
+      "title": "Tell us your problems",
+      "subtitle": "Can be anything with bothers you. Be it personal, professional, career. The power of Astrology has answers of everything."
+    },
+    {
+      "id": 3,
+      "title": "Pay a consultation fees",
+      "subtitle": "If not satisfied, 100% of the amount will be returned. We believe in customer satisfaction. No questions asked."
+    }
+  ],
+  "aboutUsPara": [
+    "A Good Astrologer helps to understand your past, accept your piles of karma and work on your future by choosing the right actions and negating further negative karmas by remedies like Meditation, Ayurveda, Gemstones, Mantra, Homa and Yoga (Bhakti, Karma, Gyan, Raj, Kundalini, Swar Yoga).",
+    "Our Astrologers are on Mission. They strongly believes that Rishis have envisioned Vedic Sciences to bring light in the life of human civilization by helping them to choose Right path. They are trained through Guru Sisya Parampara in Himalayas. They also has deep interest in Yoga, Meditation, Ayurveda, Pranayam, Yantra, Mantra and homa..Their Remedies are based upon all these tools and they tries to match the remedies according to the needs of Jatak.."
+  ],
+  "noteConditions": [
+    "We make sure to take minimal personal details.",
+    "These details are needed for contact and to map your 'Janampatri'. So please make sure the details are correct.",
+    "When posting questions please ensure to be elaborate and specific.",
+    "Questions once posted cannot be reversed.",
+    "You can ask as many questions as you want.",
+    "Fields with '*' are mandatory"
+  ],
+  "services": [
+    {
+      "image": "assets/images/modules/janampatri.jpeg",
+      "heading": "Complete Janampatri",
+      "id": "complete",
+      "para": "<p>Our expert astrologers leverage their knowledge to create a personalized Janampatri along with your Kundli that is all and only about you. It tells you your strengths and weaknesses. In this way, you can work on your weaknesses and become a better person and also develop your personality.</p><p>The Janampatri report empowers you to make smarter decisions and excel in all aspects of life - married life, career, love, finance, education & much more.</p>",
+      "oldPrice": "4999",
+      "newPrice": "2999"
+    },
+    {
+      "image": "assets/images/modules/indian-wedding.jpg",
+      "heading": "Kundli Matching",
+      "id": "kundli",
+      "para": "<p>In Hindu tradition, Kundli Milan is a key ritual ahead of solemnizing a marriage. It is the process of matching horoscopes (birth-charts) of the bride and the groom to determine whether their stars are in harmony for a successful and happy marriage. Often known as Horoscope matching, Janam Kundli milan, Patrimilan or Gun milan Kundli match for marriage is based on many factors that come into play to determine the Kundali matching score also known as Gunas.</p>\n\n<p>Kundali matching by date of birth and name is the best and most accurate method of matching horoscopes and establishing the compatibility between the boy and the girl. It can be used to predict the Shubh Muhurat for the wedding ceremony, in order to enjoy a long and blissful relationship.</p>\n",
+      "oldPrice": "1499",
+      "newPrice": "999"
+    },
+    {
+      "image": "assets/images/modules/kundli.jpg",
+      "heading": "Ask Us Anything",
+      "id": "custom",
+      "para": "<p>Worried about your career and future? Is your love life not happy? Do you have any relationship questions? Which gemstone is beneficial as per your horoscope?</p><p>Not Sure what you are looking for ? Shoot us anything you want to know. Be it career, marriage, education. By means of Astrology, we will try our best to give answers to all the questions put forth.</p> <p>You can ask any number of questions.</p> ",
+      "oldPrice": "199",
+      "newPrice": "99",
+      "additionalInfo": "per question"
+    }
   ]
 }
