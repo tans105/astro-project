@@ -4,6 +4,7 @@ import {EmailService} from "../../services/email.service";
 import {AppService} from "../../services/app.service";
 import {ToastrService} from "ngx-toastr";
 import {QueryEmail} from "../../model/user.model";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-query',
@@ -23,7 +24,8 @@ export class QueryComponent {
     constructor(private fb: FormBuilder,
                 private emailService: EmailService,
                 public appService: AppService,
-                private toastr: ToastrService) {
+                private toastr: ToastrService,
+                private router: Router) {
         this.populateContent();
     }
 
@@ -100,6 +102,7 @@ export class QueryComponent {
             this.toastr.success(this.appService.getMessage('emailSuccess'), 'Success');
             this.disableForm = false;
             this.queryForm.reset();
+            this.router.navigate(['/']);
         }, (err) => {
             console.log("Email Failed, " + err);
             this.disableForm = false;
@@ -113,7 +116,7 @@ export class QueryComponent {
             isValid = true,
             errorMsg = 'mandatoryParamMissing';
 
-        if(!this.queryForm.valid) {
+        if (!this.queryForm.valid) {
             this.toastr.error(this.appService.getMessage(errorMsg), 'Error');
             return false;
         }
@@ -147,7 +150,7 @@ export class QueryComponent {
             this.queryForm.patchValue({amount: this.perQuestionCost})
         }
 
-        if(selectedService.id === 'kundli') {
+        if (selectedService.id === 'kundli') {
             this.addValidators();
         } else {
             this.removeValidators();
