@@ -3,14 +3,15 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-8 col-sm-6">
+                <div class="social-icons">
+                    <p class="follow-us">Follow us </p>
+                    <a target="_blank" class="facebook" href="https://www.facebook.com/mangalambhav/"><i class="fa fa-facebook"></i></a>
+                    <a target="_blank" class="instagram" href="#"><i class="fa fa-instagram"></i></a>
+                </div>
                 <p class="copyright-text">Copyright &copy; {{year}} All Rights Reserved by
                     <a href="#">{{data.brand}}</a>.
                 </p>
-                <ul class="social-icons">
-                    <li><a class="facebook" href="https://www.facebook.com/mangalambhav/"><i class="fa fa-facebook"></i></a>
-                    </li>
-                    <li><a class="instagram" href="#"><i class="fa fa-instagram"></i></a></li>
-                </ul>
+                <pre>{{version}}</pre>
             </div>
             <div class="col-md-4 col-sm-6">
                 <h5 class="footer-links-header">Site Links</h5>
@@ -23,6 +24,10 @@
                     <li class="site-link"><a routerLink="/login" role="button">Admin Panel</a></li>
                 </ul>
             </div>
+        </div>
+        <div class="dev-info">
+            <span>Have a business to expand? Contact our website </span>
+            <a target="_blank" href="https://www.linkedin.com/in/tanmayawasthi105/">Developer</a>.
         </div>
     </div>
 </footer>

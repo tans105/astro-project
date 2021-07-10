@@ -1,3 +1,4 @@
 export const environment = {
-  type: 'dev'
+  type: 'dev',
+  version: 'v1.0.0-dev'
 }
