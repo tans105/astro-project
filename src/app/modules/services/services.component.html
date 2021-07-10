@@ -8,10 +8,9 @@
             <div class="aligner-item">
                 <div class="text-center">
                     <h3 class="service-heading">{{service.heading}}</h3>
-                    <p>{{service.para}}
-                    </p>
+                    <div [innerHTML]="service.para"></div>
                     <p class="cost">
-                        <span class="new-price">{{service.newPrice}} {{service.additionalInfo}}</span>
+                        <span class="new-price blink_me">{{service.newPrice}} {{service.additionalInfo}}</span>
                         <span class="old-price">{{service.oldPrice}}</span>
                     </p>
                     <div class="text-center mt-5 mb-5">

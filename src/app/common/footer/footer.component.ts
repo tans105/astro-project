@@ -1,5 +1,6 @@
 import {Component, Input} from '@angular/core';
 import { AppService } from "../../services/app.service";
+import {environment} from "../../../environments/environment";
 
 @Component({
     selector: 'app-footer',
@@ -9,4 +10,5 @@ import { AppService } from "../../services/app.service";
 export class FooterComponent{
     @Input() data: any;
     year = new Date().getFullYear();
+    version = environment.version
 }

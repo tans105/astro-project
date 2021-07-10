@@ -30,20 +30,6 @@ export class AppService {
         }
     }
 
-    getBaseContentServiceUrl() {
-        switch (environment.type) {
-            case 'production': {
-                return 'https://astro-content-service.herokuapp.com'
-            }
-            case 'uat': {
-                return 'https://astro-content-service.herokuapp.com'
-            }
-            default: {
-                return 'http://localhost:8001'
-            }
-        }
-    }
-
     constructor(private cookieService: CookieService, private http: HttpClient) {
     }
 
@@ -58,18 +44,7 @@ export class AppService {
 
     async readAssets(content: string, forced = false) {
         this.getLanguage();
-        let response;
-
-        switch (content) {
-            case "dynamic_content": {
-                response = this.getJSONFromContentService(content, forced, this.lang);
-                break;
-            }
-            default:
-                response = this.getJSON(content, forced, this.lang);
-        }
-
-        return response
+        return this.getJSON(content, forced, this.lang)
     }
 
     setLanguage(lang) {
@@ -101,30 +76,10 @@ export class AppService {
         }
     }
 
-    getJSONFromContentService(content, forced, lang): Promise<any> {
-        let url = this.getBaseContentServiceUrl() + this.contentAPI,
-            query = `?id=${content}&lang=${lang}`,
-            env = `&env=${this.getEnvironment()}`,
-            endPoint = url + query + env
-
-        if (forced) {
-            return this.http.get(endPoint).toPromise();
-        } else {
-            if (this.assets && this.assets[content]) {
-                return new Promise<any>((res) => {
-                    res(this.assets[content]);
-                });
-            } else {
-                return this.http.get(endPoint).toPromise();
-            }
-        }
-    }
-
     async getAssets() {
         if (!_.isEmpty(this.assets)) return this.assets
 
         let data = {};
-        data = {...await this.readAssets("dynamic_content", false), ...data};
         data = {...await this.readAssets("static_content", false), ...data};
         this.assets = data;
         return data;
