@@ -111,8 +111,14 @@ export class QueryComponent {
         let questions = this.queryForm.get('questions').value,
             service = this.queryForm.get('service').value,
             isValid = true,
-            errorMsg;
+            errorMsg = 'mandatoryParamMissing';
 
+        if(!this.queryForm.valid) {
+            this.toastr.error(this.appService.getMessage(errorMsg), 'Error');
+            return false;
+        }
+
+        //Validate questions (if applicable)
         if (questions && questions.length > 0) {
             if (service === 'custom') {
                 questions.forEach(q => {
@@ -126,10 +132,7 @@ export class QueryComponent {
             }
         }
 
-        if (!isValid) {
-            this.toastr.error(this.appService.getMessage(errorMsg), 'Error');
-        }
-
+        if (!isValid) this.toastr.error(this.appService.getMessage(errorMsg), 'Error');
         return isValid;
     }
 

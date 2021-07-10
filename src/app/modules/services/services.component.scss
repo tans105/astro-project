@@ -68,9 +68,9 @@
   }
 
   .new-price {
-    &:before {
-      content: '₹'
-    }
+  //  &:before {
+  //    content: '₹'
+  //  }
   }
 }
 
@@ -127,4 +127,17 @@
 .service-heading {
   text-decoration: underline;
   color: $primary
+}
+
+.my-btn {
+  width: 60%;
+  background: linear-gradient(to bottom right, #ef7f00, #f7b200);
+}
+
+.blink_me {
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  50% { opacity: 0; }
 }

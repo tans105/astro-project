@@ -2,7 +2,7 @@
     <!--  About Us  -->
     <h2 class="title">{{data.aboutUs}}</h2>
     <hr>
-    <p *ngFor="let para of data.aboutUsPara" class="lead">{{para}}</p>
+    <p class="lead" [innerHTML]="data.aboutUsPara"></p>
 
 <!--    <div class="home-carousal">-->
 <!--        <app-carousel [button]="common.knowMore" [models]="appServices" size="lg"></app-carousel>-->
