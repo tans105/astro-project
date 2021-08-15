@@ -6,6 +6,9 @@ import {ToastrService} from "ngx-toastr";
 import {QueryEmail} from "../../model/user.model";
 import {NgbModalConfig, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {Router} from "@angular/router";
+import {OrderService} from "../../services/order_service";
+
+declare var Razorpay: any;
 
 @Component({
     selector: 'app-query',
@@ -22,9 +25,27 @@ export class QueryComponent {
     showQuestions = false;
     perQuestionCost: number = 0;
     showSecondPerson = false;
+    razorpayOptions = {
+        key: "",
+        amount: "",
+        currency: "INR",
+        name: "",
+        description: "MangalamBhav Query",
+        order_id: "",
+        modal: {
+            escape: false,
+            ondismiss: () => {
+                //nothing
+            }
+        },
+        handler: (response) => {
+            //nothing
+        }
+    };
 
     constructor(private fb: FormBuilder,
                 private emailService: EmailService,
+                private orderService: OrderService,
                 public appService: AppService,
                 private toastr: ToastrService,
                 config: NgbModalConfig,
@@ -180,20 +201,58 @@ export class QueryComponent {
         this.user.emailType = 'query';
 
         if (action === 'checkout') {
-            this.disableForm = true;
-            this.emailService.send(this.user).then((data) => {
-                this.toastr.success(this.appService.getMessage('emailSuccess'), 'Success');
-                this.disableForm = false;
-                this.queryForm.reset();
-                this.router.navigate(['/']);
-            }, (err) => {
-                console.log("Email Failed, " + err);
-                this.disableForm = false;
-                this.toastr.warning(this.appService.getMessage('emailFailed'), 'Warning');
-            });
+            this.disableForm = false; //change this
+            this.initiatePayment(this.user);
         } else {
             this.disableForm = false;
         }
         this.modalService.dismissAll();
+    }
+
+    initiatePayment(user) {
+        this.orderService.makeOrder(user).subscribe(res => {
+            this.user.uuid = res.uuid;
+            this.user.order_id = res['value']['id'];
+            this.razorpayOptions.key = res['key'];
+            this.razorpayOptions.amount = res['value']['amount'];
+            this.razorpayOptions.name = user.email;
+            this.razorpayOptions.order_id = res['value']['id'];
+            this.razorpayOptions.handler = this.paymentSuccessHandler.bind(this);
+            this.razorpayOptions.modal.ondismiss = this.onPaymentModalDismiss.bind(this);
+            const rzp1 = new Razorpay(this.razorpayOptions);
+
+            rzp1.on('payment.failed', this.paymentFailureHandler.bind(this));
+            rzp1.open();
+        })
+    }
+
+    paymentFailureHandler(response) {
+        console.log(response);
+        this.toastr.warning('Unable to make payment', 'Error');
+        this.disableForm = false;
+    }
+
+    paymentSuccessHandler(response) {
+        console.log('Response', response);
+        //TODO: Verify payment from gateway https://razorpay.com/docs/payment-gateway/web-integration/standard/
+        this.orderService.verifyOrder({gateway: response, user: this.user})
+            .subscribe(() => {
+                this.emailService.send(this.user)
+                    .then((data) => {
+                        this.toastr.success(this.appService.getMessage('emailSuccess'), 'Success');
+                        this.disableForm = false;
+                        this.queryForm.reset();
+                        this.router.navigate(['/']);
+                    }, (err) => {
+                        console.log("Email Failed, " + err);
+                        this.disableForm = false;
+                        this.toastr.warning(this.appService.getMessage('emailFailed'), 'Warning');
+                    });
+            })
+    }
+
+    onPaymentModalDismiss() {
+        this.disableForm = false;
+        console.log('Modal closed');
     }
 }

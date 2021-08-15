@@ -25,6 +25,10 @@
     "questions": "प्रशन",
     "submitQuery": "फार्म जमा करें",
     "downloadSampleReport": "सैंपल रिपोर्ट",
+    "review": "Review Again",
+    "payment_proceed": "Proceed to payment",
+    "confirmation_message": "Are you sure you want to proceed with checkout?",
+    "confirmation_heading": "Confirm",
     "states": [
       "आंध्र प्रदेश",
       "अरुणाचल प्रदेश",
@@ -207,6 +211,6 @@
       "oldPrice": "199",
       "newPrice": "99",
       "additionalInfo": "per question"
-    }
+    },
   ]
 }
