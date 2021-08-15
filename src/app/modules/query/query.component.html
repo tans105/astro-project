@@ -220,6 +220,23 @@
         </fieldset>
     </form>
 </div>
+
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Confirm</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modalAction('review')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p>Are you sure you want to proceed with checkout?</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark btn-review" (click)="modalAction('review')">Review Again</button>
+        <button type="button" class="btn btn-primary btn-checkout" (click)="modalAction('checkout')">Proceed to Checkout</button>
+    </div>
+</ng-template>
+
 <div *ngIf="!contentLoaded">
     <app-loading></app-loading>
 </div>

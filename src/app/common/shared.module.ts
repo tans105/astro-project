@@ -21,7 +21,7 @@ import { LoadingComponent } from './loading/loading.component';
         LanguageWidgetComponent,
         PageTitleComponent,
         MessageBoxComponent,
-        LoadingComponent
+        LoadingComponent,
     ],
     imports: [
         CommonModule,
@@ -35,7 +35,7 @@ import { LoadingComponent } from './loading/loading.component';
         CarouselComponent,
         PageTitleComponent,
         MessageBoxComponent,
-        LoadingComponent
+        LoadingComponent,
     ]
 })
 export class SharedModule {

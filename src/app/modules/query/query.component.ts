@@ -1,9 +1,10 @@
-import {Component} from '@angular/core';
+import {Component, ElementRef, ViewChild} from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup, NgForm, Validators} from "@angular/forms";
 import {EmailService} from "../../services/email.service";
 import {AppService} from "../../services/app.service";
 import {ToastrService} from "ngx-toastr";
 import {QueryEmail} from "../../model/user.model";
+import {NgbModalConfig, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {Router} from "@angular/router";
 
 @Component({
@@ -12,6 +13,7 @@ import {Router} from "@angular/router";
     styleUrls: ['./query.component.scss']
 })
 export class QueryComponent {
+    @ViewChild('content', {static: true}) content: ElementRef;
     user: QueryEmail;
     queryForm: FormGroup;
     contentLoaded = false;
@@ -25,7 +27,11 @@ export class QueryComponent {
                 private emailService: EmailService,
                 public appService: AppService,
                 private toastr: ToastrService,
+                config: NgbModalConfig,
+                private modalService: NgbModal,
                 private router: Router) {
+        config.backdrop = 'static';
+        config.keyboard = false;
         this.populateContent();
     }
 
@@ -94,20 +100,7 @@ export class QueryComponent {
         if (!this.validateForm()) {
             return;
         }
-
-        this.disableForm = true;
-        this.user = this.queryForm.value as QueryEmail;
-        this.user.emailType = 'query';
-        this.emailService.send(this.user).then((data) => {
-            this.toastr.success(this.appService.getMessage('emailSuccess'), 'Success');
-            this.disableForm = false;
-            this.queryForm.reset();
-            this.router.navigate(['/']);
-        }, (err) => {
-            console.log("Email Failed, " + err);
-            this.disableForm = false;
-            this.toastr.warning(this.appService.getMessage('emailFailed'), 'Warning');
-        });
+        this.modalService.open(this.content);
     }
 
     validateForm() {
@@ -180,5 +173,27 @@ export class QueryComponent {
 
         this.queryForm.controls["pob_girl"].clearValidators();
         this.queryForm.controls["pob_girl"].updateValueAndValidity();
+    }
+
+    modalAction(action) {
+        this.user = this.queryForm.value as QueryEmail;
+        this.user.emailType = 'query';
+
+        if (action === 'checkout') {
+            this.disableForm = true;
+            this.emailService.send(this.user).then((data) => {
+                this.toastr.success(this.appService.getMessage('emailSuccess'), 'Success');
+                this.disableForm = false;
+                this.queryForm.reset();
+                this.router.navigate(['/']);
+            }, (err) => {
+                console.log("Email Failed, " + err);
+                this.disableForm = false;
+                this.toastr.warning(this.appService.getMessage('emailFailed'), 'Warning');
+            });
+        } else {
+            this.disableForm = false;
+        }
+        this.modalService.dismissAll();
     }
 }

@@ -37,7 +37,26 @@ form label {
   background: linear-gradient(to bottom right, #ef7f00, #f7b200);
 }
 
-.btn-primary {
-  width: 25%;
-  background: linear-gradient(to bottom right, #ef7f00, #f7b200);
+.btn {
+  &.btn-primary {
+    width: 40%;
+    background: linear-gradient(to bottom right, #ef7f00, #f7b200);
+    @media only screen and (max-device-width: 600px) {
+      width: 100%;
+    }
+  }
+
+  &.btn-checkout {
+    @media only screen and (max-device-width: 600px) {
+      width: 100%;
+    }
+    width: 40%;
+  }
+
+  &.btn-review {
+    @media only screen and (max-device-width: 600px) {
+      width: 100%;
+    }
+    width: 30%;
+  }
 }
