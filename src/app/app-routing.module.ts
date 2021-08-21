@@ -9,6 +9,7 @@ import {TermsAndConditionComponent} from "./modules/terms-and-condition/terms-an
 import {LoginComponent} from "./modules/login/login.component";
 import {AdminComponent} from "./modules/admin/admin.component";
 import {AuthGuard} from "./guard/auth.guard";
+import {SummaryComponent} from "./modules/summary/summary.component";
 
 
 const routes: Routes = [
@@ -17,8 +18,9 @@ const routes: Routes = [
     {path: "disclaimer", component: DisclaimerComponent},
     {path: "privacy-policy", component: PrivacyPolicyComponent},
     {path: "terms-and-conditions", component: TermsAndConditionComponent},
+    {path: "summary/:orderId", component: SummaryComponent},
     {path: "login", component: LoginComponent},
-    {path: "admin", component: AdminComponent, canActivate: [AuthGuard  ]},
+    {path: "admin", component: AdminComponent, canActivate: [AuthGuard]},
     {path: '**', component: HomeComponent}
 ];
 

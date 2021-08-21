@@ -7,18 +7,26 @@ import {Observable} from "rxjs";
     providedIn: 'root'
 })
 export class OrderService {
-    private orderAPI = '/order/make';
-    private verifyOrderAPI = '/order/verify'
+    private _orderAPI = '/order/make';
+    private _verifyOrderAPI = '/order/verify'
 
     constructor(private http: HttpClient, private appService: AppService) {
     }
 
     makeOrder(orderPayload): Observable<any> {
-        if(orderPayload && orderPayload.amount === 'Free Trial') orderPayload.amount = 0;
-        return this.http.post(this.appService.getBaseServerURL() + this.orderAPI, orderPayload);
+        if (orderPayload && orderPayload.amount === 'Free Trial') orderPayload.amount = 0;
+        return this.http.post(this.appService.getBaseServerURL() + this._orderAPI, orderPayload);
     }
 
     verifyOrder(paymentResponse): Observable<any> {
-        return this.http.post(this.appService.getBaseServerURL() + this.verifyOrderAPI, paymentResponse);
+        return this.http.post(this.appService.getBaseServerURL() + this._verifyOrderAPI, paymentResponse);
+    }
+
+    updateOrder(orderId, uuid) {
+        localStorage.setItem(orderId, uuid);
+    }
+
+    getOrder(orderId) {
+        return localStorage.getItem(orderId)
     }
 }

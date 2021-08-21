@@ -1,4 +1,4 @@
-import {Component, ElementRef, ViewChild} from '@angular/core';
+import {Component, ElementRef, NgZone, ViewChild} from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup, NgForm, Validators} from "@angular/forms";
 import {EmailService} from "../../services/email.service";
 import {AppService} from "../../services/app.service";
@@ -50,7 +50,8 @@ export class QueryComponent {
                 private toastr: ToastrService,
                 config: NgbModalConfig,
                 private modalService: NgbModal,
-                private router: Router) {
+                private router: Router,
+                private zone: NgZone) {
         config.backdrop = 'static';
         config.keyboard = false;
         this.populateContent();
@@ -63,7 +64,6 @@ export class QueryComponent {
             this.initForm()
             this.contentLoaded = true;
         });
-
     }
 
     initForm() {
@@ -201,7 +201,7 @@ export class QueryComponent {
         this.user.emailType = 'query';
 
         if (action === 'checkout') {
-            this.disableForm = false; //change this
+            this.disableForm = true;
             this.initiatePayment(this.user);
         } else {
             this.disableForm = false;
@@ -218,41 +218,43 @@ export class QueryComponent {
             this.razorpayOptions.name = user.email;
             this.razorpayOptions.order_id = res['value']['id'];
             this.razorpayOptions.handler = this.paymentSuccessHandler.bind(this);
-            this.razorpayOptions.modal.ondismiss = this.onPaymentModalDismiss.bind(this);
+            this.razorpayOptions.modal.ondismiss = () => this.disableForm = false;
             const rzp1 = new Razorpay(this.razorpayOptions);
 
-            rzp1.on('payment.failed', this.paymentFailureHandler.bind(this));
+            rzp1.on('payment.failed', () => {
+                //TODO:  Send failed email mail
+                this.zone.run(() => {
+                    this.toastr.warning(this.appService.getMessage('emailFailed'), 'Error');
+                    this.disableForm = false;
+                })
+            });
             rzp1.open();
         })
     }
 
-    paymentFailureHandler(response) {
-        console.log(response);
-        this.toastr.warning('Unable to make payment', 'Error');
-        this.disableForm = false;
-    }
-
     paymentSuccessHandler(response) {
-        console.log('Response', response);
-        //TODO: Verify payment from gateway https://razorpay.com/docs/payment-gateway/web-integration/standard/
         this.orderService.verifyOrder({gateway: response, user: this.user})
-            .subscribe(() => {
-                this.emailService.send(this.user)
-                    .then((data) => {
-                        this.toastr.success(this.appService.getMessage('emailSuccess'), 'Success');
-                        this.disableForm = false;
-                        this.queryForm.reset();
-                        this.router.navigate(['/']);
-                    }, (err) => {
-                        console.log("Email Failed, " + err);
-                        this.disableForm = false;
-                        this.toastr.warning(this.appService.getMessage('emailFailed'), 'Warning');
-                    });
-            })
-    }
-
-    onPaymentModalDismiss() {
-        this.disableForm = false;
-        console.log('Modal closed');
+            .subscribe(
+                (data) => {
+                    this.emailService.send(this.user)
+                        .then(() => {
+                            this.zone.run(() => {
+                                const {uuid, gateway} = data;
+                                const {razorpay_order_id} = gateway;
+                                this.orderService.updateOrder(razorpay_order_id, uuid);
+                                this.queryForm.reset();
+                                this.router.navigate([`/summary/${razorpay_order_id}`]);
+                            })
+                        }, (err) => {
+                            this.zone.run(() => {
+                                console.log("Email Failed, " + err);
+                                this.disableForm = false;
+                                this.toastr.warning(this.appService.getMessage('emailFailed'), 'Warning');
+                            })
+                        });
+                },
+                () => {
+                    this.toastr.warning(this.appService.getMessage('emailFailed'), 'Error');
+                })
     }
 }

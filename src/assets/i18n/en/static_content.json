@@ -217,5 +217,9 @@
       "newPrice": "99",
       "additionalInfo": ""
     }
-  ]
+  ],
+  "summary": {
+    "heading": "Order placed, thank you!",
+    "content": "<p>Confirmation will be sent to your email.</p>\n            <p>Please refer the below reference number in all the future communications. Your order reference number is </p>"
+  }
 }

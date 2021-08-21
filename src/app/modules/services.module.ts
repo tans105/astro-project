@@ -15,6 +15,7 @@ import {TermsAndConditionComponent} from './terms-and-condition/terms-and-condit
 import {LoginComponent} from './login/login.component';
 import {AdminComponent} from './admin/admin.component';
 import {ServicesComponent} from './services/services.component';
+import { SummaryComponent } from './summary/summary.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import {ServicesComponent} from './services/services.component';
         TermsAndConditionComponent,
         LoginComponent,
         AdminComponent,
-        ServicesComponent
+        ServicesComponent,
+        SummaryComponent
     ],
     imports: [
         CommonModule,
