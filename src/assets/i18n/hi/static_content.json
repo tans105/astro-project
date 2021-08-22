@@ -215,6 +215,7 @@
   ],
   "summary": {
     "heading": "Order placed, thank you!",
-    "content": "<p>Confirmation will be sent to your email.</p>\n            <p>Please refer the below reference number in all the future communications. Your order reference number is </p>"
+    "content": "<p>Confirmation will be sent to your email.</p>\n            <p>Please refer the below reference number in all the future communications. Your order reference number is </p>",
+    "no_order": "<p>Sorry the page is expired now. Any queries or suggestions? Please feel free to <a href=\"/contact-us\">Reach Us</a></p>"
   }
 }
