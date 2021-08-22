@@ -25,6 +25,7 @@ export class QueryComponent {
     showQuestions = false;
     perQuestionCost: number = 0;
     showSecondPerson = false;
+    isPaymentEnabled = false;
     razorpayOptions = {
         key: "",
         amount: "",
@@ -199,62 +200,67 @@ export class QueryComponent {
     modalAction(action) {
         this.user = this.queryForm.value as QueryEmail;
         this.user.emailType = 'query';
+        this.user.paymentEnabled = this.isPaymentEnabled;
 
         if (action === 'checkout') {
             this.disableForm = true;
-            this.initiatePayment(this.user);
+            this.initiateOrder(this.user);
         } else {
             this.disableForm = false;
         }
         this.modalService.dismissAll();
     }
 
-    initiatePayment(user) {
+    initiateOrder(user) {
         this.orderService.makeOrder(user).subscribe(res => {
             this.user.uuid = res.uuid;
-            this.user.order_id = res['value']['id'];
-            this.razorpayOptions.key = res['key'];
-            this.razorpayOptions.amount = res['value']['amount'];
-            this.razorpayOptions.name = user.email;
-            this.razorpayOptions.order_id = res['value']['id'];
-            this.razorpayOptions.handler = this.paymentSuccessHandler.bind(this);
-            this.razorpayOptions.modal.ondismiss = () => this.disableForm = false;
-            const rzp1 = new Razorpay(this.razorpayOptions);
 
-            rzp1.on('payment.failed', () => {
-                //TODO:  Send failed email mail
-                this.zone.run(() => {
-                    this.toastr.warning(this.appService.getMessage('emailFailed'), 'Error');
-                    this.disableForm = false;
-                })
-            });
-            rzp1.open();
+            if (!this.isPaymentEnabled) {
+                this.sendEmail(this.emailSuccessWithoutPayment.bind(this), null);
+            } else {
+                this.user.order_id = res['value']['id'];
+                this.razorpayOptions.key = res['key'];
+                this.razorpayOptions.amount = res['value']['amount'];
+                this.razorpayOptions.name = user.email;
+                this.razorpayOptions.order_id = res['value']['id'];
+                this.razorpayOptions.handler = this.paymentSuccessHandler.bind(this);
+                this.razorpayOptions.modal.ondismiss = () => this.disableForm = false;
+                const rzp1 = new Razorpay(this.razorpayOptions);
+
+                rzp1.on('payment.failed', () => {
+                    //TODO:  Send failed email mail
+                    this.zone.run(() => {
+                        this.toastr.warning(this.appService.getMessage('emailFailed'), 'Error');
+                        this.disableForm = false;
+                    })
+                });
+                rzp1.open();
+            }
         })
     }
 
     paymentSuccessHandler(response) {
         this.orderService.verifyOrder({gateway: response, user: this.user})
-            .subscribe(
-                (data) => {
-                    this.emailService.send(this.user)
-                        .then(() => {
-                            this.zone.run(() => {
-                                const {uuid, gateway} = data;
-                                const {razorpay_order_id} = gateway;
-                                this.orderService.updateOrder(razorpay_order_id, uuid);
-                                this.queryForm.reset();
-                                this.router.navigate([`/summary/${razorpay_order_id}`]);
-                            })
-                        }, (err) => {
-                            this.zone.run(() => {
-                                console.log("Email Failed, " + err);
-                                this.disableForm = false;
-                                this.toastr.warning(this.appService.getMessage('emailFailed'), 'Warning');
-                            })
-                        });
-                },
-                () => {
-                    this.toastr.warning(this.appService.getMessage('emailFailed'), 'Error');
-                })
+            .subscribe((data) => this.sendEmail(this.emailSuccessWithPayment.bind(this), data))
+    }
+
+    sendEmail(cb, data) {
+        this.emailService.send(this.user).then(() => cb(data))
+    }
+
+    emailSuccessWithoutPayment() {
+        this.queryForm.reset();
+        this.orderService.updateOrder('note', this.user.uuid);
+        this.router.navigate([`/summary/note`]);
+    }
+
+    emailSuccessWithPayment(data) {
+        this.zone.run(() => {
+            const {uuid, gateway} = data;
+            const {razorpay_order_id} = gateway;
+            this.orderService.updateOrder(razorpay_order_id, uuid);
+            this.queryForm.reset();
+            this.router.navigate([`/summary/${razorpay_order_id}`]);
+        })
     }
 }

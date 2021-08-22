@@ -24,7 +24,6 @@ export class SummaryComponent {
     }
 
     populateContent() {
-        window.scrollTo(0, 0)
         this.appService.getAssets().then((data) => {
             this.data = data;
             this.contentLoaded = true;

@@ -1,6 +1,7 @@
 import {Email} from "./email.model";
 
 export interface QueryEmail extends Email{
+    paymentEnabled: boolean;
     uuid: string;
     order_id: string;
     dob: string;
