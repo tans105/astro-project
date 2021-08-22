@@ -25,7 +25,7 @@ export class QueryComponent {
     showQuestions = false;
     perQuestionCost: number = 0;
     showSecondPerson = false;
-    isPaymentEnabled = false;
+    isPaymentEnabled = true;
     razorpayOptions = {
         key: "",
         amount: "",
