@@ -12,6 +12,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {AuthGuard} from "./guard/auth.guard";
 import {SocialLoginModule, SocialAuthServiceConfig, GoogleLoginProvider} from 'angularx-social-login';
 import {JwtModule} from '@auth0/angular-jwt';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap'
 
 export function tokenGetter() {
     return localStorage.getItem('astro_access_token');
@@ -34,7 +35,8 @@ export function tokenGetter() {
             config: {
                 tokenGetter: tokenGetter
             }
-        })
+        }),
+        NgbModule,
     ],
     providers: [
         CookieService,

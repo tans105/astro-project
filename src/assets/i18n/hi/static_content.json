@@ -25,6 +25,10 @@
     "questions": "प्रशन",
     "submitQuery": "फार्म जमा करें",
     "downloadSampleReport": "सैंपल रिपोर्ट",
+    "review": "Review Again",
+    "payment_proceed": "Proceed to payment",
+    "confirmation_message": "Are you sure you want to proceed with checkout?",
+    "confirmation_heading": "Confirm",
     "states": [
       "आंध्र प्रदेश",
       "अरुणाचल प्रदेश",
@@ -208,5 +212,10 @@
       "newPrice": "99",
       "additionalInfo": "per question"
     }
-  ]
+  ],
+  "summary": {
+    "heading": "Order placed, thank you!",
+    "content": "<p>Confirmation will be sent to your email.</p>\n            <p>Please refer the below reference number in all the future communications. Your order reference number is </p>",
+    "no_order": "<p>Sorry the page is expired now. Any queries or suggestions? Please feel free to <a href=\"/contact-us\">Reach Us</a></p>"
+  }
 }

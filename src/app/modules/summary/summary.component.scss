@@ -1,0 +1,32 @@
+@import "src/utilities/colorpalette";
+
+.summary-container {
+  .summary-heading {
+    display: flex;
+    border-bottom: 1px solid white;
+
+    .text {
+      margin-left: 10px;
+    }
+
+    .fa-check-circle:before {
+      position: relative;
+      top: 6px;
+      color: white;
+      font-size: 28px;
+    }
+  }
+
+  .summary-content {
+    margin-top: 24px;
+  }
+
+  .ref-number {
+    color: $primary;
+    font-weight: 700;
+    margin-bottom: 30vh;
+    padding-left: 10px;
+    border-left: 4px solid white;
+  }
+}
+

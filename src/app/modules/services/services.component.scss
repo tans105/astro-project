@@ -68,9 +68,9 @@
   }
 
   .new-price {
-  //  &:before {
-  //    content: '₹'
-  //  }
+    &:before {
+      content: '₹'
+    }
   }
 }
 

@@ -1,0 +1,13 @@
+<div *ngIf="contentLoaded">
+    <div class="summary-container">
+        <div *ngIf="uuid">
+            <div class="summary-heading">
+                <i class="fa fa-check-circle" aria-hidden="true"></i>
+                <h2 class="text">{{data.summary.heading}}</h2>
+            </div>
+            <div class="summary-content" [innerHTML]="data.summary.content"></div>
+            <div class="ref-number">{{uuid}}</div>
+        </div>
+        <div *ngIf="!uuid" [innerHTML]="data.summary.no_order"></div>
+    </div>
+</div>

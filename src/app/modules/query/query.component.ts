@@ -1,10 +1,14 @@
-import {Component} from '@angular/core';
+import {Component, ElementRef, NgZone, ViewChild} from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup, NgForm, Validators} from "@angular/forms";
 import {EmailService} from "../../services/email.service";
 import {AppService} from "../../services/app.service";
 import {ToastrService} from "ngx-toastr";
 import {QueryEmail} from "../../model/user.model";
+import {NgbModalConfig, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {Router} from "@angular/router";
+import {OrderService} from "../../services/order_service";
+
+declare var Razorpay: any;
 
 @Component({
     selector: 'app-query',
@@ -12,6 +16,7 @@ import {Router} from "@angular/router";
     styleUrls: ['./query.component.scss']
 })
 export class QueryComponent {
+    @ViewChild('content', {static: true}) content: ElementRef;
     user: QueryEmail;
     queryForm: FormGroup;
     contentLoaded = false;
@@ -20,12 +25,36 @@ export class QueryComponent {
     showQuestions = false;
     perQuestionCost: number = 0;
     showSecondPerson = false;
+    isPaymentEnabled = false;
+    razorpayOptions = {
+        key: "",
+        amount: "",
+        currency: "INR",
+        name: "",
+        description: "MangalamBhav Query",
+        order_id: "",
+        modal: {
+            escape: false,
+            ondismiss: () => {
+                //nothing
+            }
+        },
+        handler: (response) => {
+            //nothing
+        }
+    };
 
     constructor(private fb: FormBuilder,
                 private emailService: EmailService,
+                private orderService: OrderService,
                 public appService: AppService,
                 private toastr: ToastrService,
-                private router: Router) {
+                config: NgbModalConfig,
+                private modalService: NgbModal,
+                private router: Router,
+                private zone: NgZone) {
+        config.backdrop = 'static';
+        config.keyboard = false;
         this.populateContent();
     }
 
@@ -36,7 +65,6 @@ export class QueryComponent {
             this.initForm()
             this.contentLoaded = true;
         });
-
     }
 
     initForm() {
@@ -94,20 +122,7 @@ export class QueryComponent {
         if (!this.validateForm()) {
             return;
         }
-
-        this.disableForm = true;
-        this.user = this.queryForm.value as QueryEmail;
-        this.user.emailType = 'query';
-        this.emailService.send(this.user).then((data) => {
-            this.toastr.success(this.appService.getMessage('emailSuccess'), 'Success');
-            this.disableForm = false;
-            this.queryForm.reset();
-            this.router.navigate(['/']);
-        }, (err) => {
-            console.log("Email Failed, " + err);
-            this.disableForm = false;
-            this.toastr.warning(this.appService.getMessage('emailFailed'), 'Warning');
-        });
+        this.modalService.open(this.content);
     }
 
     validateForm() {
@@ -180,5 +195,72 @@ export class QueryComponent {
 
         this.queryForm.controls["pob_girl"].clearValidators();
         this.queryForm.controls["pob_girl"].updateValueAndValidity();
+    }
+
+    modalAction(action) {
+        this.user = this.queryForm.value as QueryEmail;
+        this.user.emailType = 'query';
+        this.user.paymentEnabled = this.isPaymentEnabled;
+
+        if (action === 'checkout') {
+            this.disableForm = true;
+            this.initiateOrder(this.user);
+        } else {
+            this.disableForm = false;
+        }
+        this.modalService.dismissAll();
+    }
+
+    initiateOrder(user) {
+        this.orderService.makeOrder(user).subscribe(res => {
+            this.user.uuid = res.uuid;
+
+            if (!this.isPaymentEnabled) {
+                this.sendEmail(this.emailSuccessWithoutPayment.bind(this), null);
+            } else {
+                this.user.order_id = res['value']['id'];
+                this.razorpayOptions.key = res['key'];
+                this.razorpayOptions.amount = res['value']['amount'];
+                this.razorpayOptions.name = user.email;
+                this.razorpayOptions.order_id = res['value']['id'];
+                this.razorpayOptions.handler = this.paymentSuccessHandler.bind(this);
+                this.razorpayOptions.modal.ondismiss = () => this.disableForm = false;
+                const rzp1 = new Razorpay(this.razorpayOptions);
+
+                rzp1.on('payment.failed', () => {
+                    //TODO:  Send failed email mail
+                    this.zone.run(() => {
+                        this.toastr.warning(this.appService.getMessage('emailFailed'), 'Error');
+                        this.disableForm = false;
+                    })
+                });
+                rzp1.open();
+            }
+        })
+    }
+
+    paymentSuccessHandler(response) {
+        this.orderService.verifyOrder({gateway: response, user: this.user})
+            .subscribe((data) => this.sendEmail(this.emailSuccessWithPayment.bind(this), data))
+    }
+
+    sendEmail(cb, data) {
+        this.emailService.send(this.user).then(() => cb(data))
+    }
+
+    emailSuccessWithoutPayment() {
+        this.queryForm.reset();
+        this.orderService.updateOrder('note', this.user.uuid);
+        this.router.navigate([`/summary/note`]);
+    }
+
+    emailSuccessWithPayment(data) {
+        this.zone.run(() => {
+            const {uuid, gateway} = data;
+            const {razorpay_order_id} = gateway;
+            this.orderService.updateOrder(razorpay_order_id, uuid);
+            this.queryForm.reset();
+            this.router.navigate([`/summary/${razorpay_order_id}`]);
+        })
     }
 }

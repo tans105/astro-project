@@ -197,14 +197,14 @@
                 </div>
             </div>
 
-<!--            <div class="form-group mt-5">-->
-<!--                <div class="row">-->
-<!--                    <label class="col-md-1 col-form-label">Cost (₹)</label>-->
-<!--                    <div class="col-md-3">-->
-<!--                        <input type="text" formControlName="amount" class="form-control" readonly>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
+            <div class="form-group mt-5" *ngIf="isPaymentEnabled">
+                <div class="row">
+                    <label class="col-md-1 col-form-label">Cost (₹)</label>
+                    <div class="col-md-3">
+                        <input type="text" formControlName="amount" class="form-control" readonly>
+                    </div>
+                </div>
+            </div>
 
             <div class="form-group row mt-5">
                 <div class="col-sm-12 text-center">
@@ -220,6 +220,22 @@
         </fieldset>
     </form>
 </div>
+
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">{{data.queryForm.confirmation_heading}}</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modalAction('review')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p>{{data.queryForm.confirmation_message}}</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary btn-checkout" (click)="modalAction('checkout')">{{data.queryForm.payment_proceed}}</button>
+    </div>
+</ng-template>
+
 <div *ngIf="!contentLoaded">
     <app-loading></app-loading>
 </div>
